@@ -21,3 +21,4 @@ C:\Users\Admin\Documents\Sites\Freedle\Freedle\Web\Freedle.Web.Infrastructure\ob
 C:\Users\Admin\Documents\Sites\Freedle\Freedle\Web\Freedle.Web.Infrastructure\obj\Debug\net7.0\refint\Freedle.Web.Infrastructure.dll
 C:\Users\Admin\Documents\Sites\Freedle\Freedle\Web\Freedle.Web.Infrastructure\obj\Debug\net7.0\Freedle.Web.Infrastructure.pdb
 C:\Users\Admin\Documents\Sites\Freedle\Freedle\Web\Freedle.Web.Infrastructure\obj\Debug\net7.0\ref\Freedle.Web.Infrastructure.dll
+C:\Users\Admin\Documents\Sites\Freedle\Web\Freedle.Web.Infrastructure\obj\Debug\net7.0\Freedle.Web.Infrastructure.sourcelink.json

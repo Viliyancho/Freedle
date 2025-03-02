@@ -1,0 +1,13 @@
+{
+  "Freedle.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle.Common",
+  "Freedle.Data.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Common",
+  "Freedle.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data",
+  "Freedle.Data.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models",
+  "Freedle.Services.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Services\\Freedle.Services.Data",
+  "Freedle.Services, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Services\\Freedle.Services",
+  "Freedle.Services.Mapping, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Services\\Freedle.Services.Mapping",
+  "Freedle.Services.Messaging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Services\\Freedle.Services.Messaging",
+  "Freedle.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web",
+  "Freedle.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web.Infrastructure",
+  "Freedle.Web.ViewModels, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web.ViewModels"
+}

@@ -944,11 +944,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Data\\Freedle.Data.Models\\Freedle.Data.Models.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models\\Freedle.Data.Models.csproj",
       "projectName": "Freedle.Data.Models",
-      "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Data\\Freedle.Data.Models\\Freedle.Data.Models.csproj",
+      "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models\\Freedle.Data.Models.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Data\\Freedle.Data.Models\\obj\\",
+      "outputPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -966,8 +966,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Data\\Freedle.Data.Common\\Freedle.Data.Common.csproj": {
-              "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Data\\Freedle.Data.Common\\Freedle.Data.Common.csproj"
+            "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Common\\Freedle.Data.Common.csproj": {
+              "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Common\\Freedle.Data.Common.csproj"
             }
           }
         }

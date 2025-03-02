@@ -23,3 +23,4 @@ C:\Users\Admin\Documents\Sites\Freedle\Freedle\Services\Freedle.Services.Mapping
 C:\Users\Admin\Documents\Sites\Freedle\Freedle\Services\Freedle.Services.Mapping\obj\Debug\net7.0\refint\Freedle.Services.Mapping.dll
 C:\Users\Admin\Documents\Sites\Freedle\Freedle\Services\Freedle.Services.Mapping\obj\Debug\net7.0\Freedle.Services.Mapping.pdb
 C:\Users\Admin\Documents\Sites\Freedle\Freedle\Services\Freedle.Services.Mapping\obj\Debug\net7.0\ref\Freedle.Services.Mapping.dll
+C:\Users\Admin\Documents\Sites\Freedle\Services\Freedle.Services.Mapping\obj\Debug\net7.0\Freedle.Services.Mapping.sourcelink.json

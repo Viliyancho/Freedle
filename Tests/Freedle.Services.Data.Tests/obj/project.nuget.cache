@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "h24O2NB5XnA=",
+  "dgSpecHash": "qDkgJ8naE4E=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Tests\\Freedle.Services.Data.Tests\\Freedle.Services.Data.Tests.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Tests\\Freedle.Services.Data.Tests\\Freedle.Services.Data.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",

@@ -23,3 +23,4 @@ C:\Users\Admin\Documents\Sites\Freedle\Freedle\Services\Freedle.Services.Messagi
 C:\Users\Admin\Documents\Sites\Freedle\Freedle\Services\Freedle.Services.Messaging\obj\Debug\net7.0\refint\Freedle.Services.Messaging.dll
 C:\Users\Admin\Documents\Sites\Freedle\Freedle\Services\Freedle.Services.Messaging\obj\Debug\net7.0\Freedle.Services.Messaging.pdb
 C:\Users\Admin\Documents\Sites\Freedle\Freedle\Services\Freedle.Services.Messaging\obj\Debug\net7.0\ref\Freedle.Services.Messaging.dll
+C:\Users\Admin\Documents\Sites\Freedle\Services\Freedle.Services.Messaging\obj\Debug\net7.0\Freedle.Services.Messaging.sourcelink.json

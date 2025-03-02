@@ -8784,11 +8784,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Tests\\Freedle.Services.Data.Tests\\Freedle.Services.Data.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Tests\\Freedle.Services.Data.Tests\\Freedle.Services.Data.Tests.csproj",
       "projectName": "Freedle.Services.Data.Tests",
-      "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Tests\\Freedle.Services.Data.Tests\\Freedle.Services.Data.Tests.csproj",
+      "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Tests\\Freedle.Services.Data.Tests\\Freedle.Services.Data.Tests.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Tests\\Freedle.Services.Data.Tests\\obj\\",
+      "outputPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Tests\\Freedle.Services.Data.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8806,11 +8806,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Data\\Freedle.Data\\Freedle.Data.csproj": {
-              "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Data\\Freedle.Data\\Freedle.Data.csproj"
+            "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data\\Freedle.Data.csproj": {
+              "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data\\Freedle.Data.csproj"
             },
-            "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Services\\Freedle.Services.Data\\Freedle.Services.Data.csproj": {
-              "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Services\\Freedle.Services.Data\\Freedle.Services.Data.csproj"
+            "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Services\\Freedle.Services.Data\\Freedle.Services.Data.csproj": {
+              "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Services\\Freedle.Services.Data\\Freedle.Services.Data.csproj"
             }
           }
         }

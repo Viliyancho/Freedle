@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Freedle.Common\\Freedle.Common.csproj": {}
+    "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle.Common\\Freedle.Common.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Freedle.Common\\Freedle.Common.csproj": {
+    "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle.Common\\Freedle.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Freedle.Common\\Freedle.Common.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle.Common\\Freedle.Common.csproj",
         "projectName": "Freedle.Common",
-        "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Freedle.Common\\Freedle.Common.csproj",
+        "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle.Common\\Freedle.Common.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Freedle.Common\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle.Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",

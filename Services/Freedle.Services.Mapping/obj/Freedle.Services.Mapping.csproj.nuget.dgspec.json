@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Services\\Freedle.Services.Mapping\\Freedle.Services.Mapping.csproj": {}
+    "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Services\\Freedle.Services.Mapping\\Freedle.Services.Mapping.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Services\\Freedle.Services.Mapping\\Freedle.Services.Mapping.csproj": {
+    "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Services\\Freedle.Services.Mapping\\Freedle.Services.Mapping.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Services\\Freedle.Services.Mapping\\Freedle.Services.Mapping.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Services\\Freedle.Services.Mapping\\Freedle.Services.Mapping.csproj",
         "projectName": "Freedle.Services.Mapping",
-        "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Services\\Freedle.Services.Mapping\\Freedle.Services.Mapping.csproj",
+        "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Services\\Freedle.Services.Mapping\\Freedle.Services.Mapping.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Services\\Freedle.Services.Mapping\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Services\\Freedle.Services.Mapping\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",

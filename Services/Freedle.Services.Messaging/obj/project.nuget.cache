@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pLjdxB4xZs0=",
+  "dgSpecHash": "MW0sd8PvybA=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Services\\Freedle.Services.Messaging\\Freedle.Services.Messaging.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Services\\Freedle.Services.Messaging\\Freedle.Services.Messaging.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\sendgrid\\9.28.1\\sendgrid.9.28.1.nupkg.sha512",

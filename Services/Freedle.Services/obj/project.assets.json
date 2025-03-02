@@ -65,11 +65,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Services\\Freedle.Services\\Freedle.Services.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Services\\Freedle.Services\\Freedle.Services.csproj",
       "projectName": "Freedle.Services",
-      "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Services\\Freedle.Services\\Freedle.Services.csproj",
+      "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Services\\Freedle.Services\\Freedle.Services.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Services\\Freedle.Services\\obj\\",
+      "outputPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Services\\Freedle.Services\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",

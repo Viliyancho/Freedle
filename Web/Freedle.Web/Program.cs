@@ -1,5 +1,9 @@
-﻿namespace Freedle.Web
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Freedle.Data;
+namespace Freedle.Web
 {
+    using System;
     using System.Reflection;
 
     using Freedle.Data;
@@ -26,6 +30,9 @@
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
+
+
             ConfigureServices(builder.Services, builder.Configuration);
             var app = builder.Build();
             Configure(app);

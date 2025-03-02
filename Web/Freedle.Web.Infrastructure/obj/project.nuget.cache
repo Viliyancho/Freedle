@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PTvsJVZF1kM=",
+  "dgSpecHash": "YBmRkgRAkbk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Web\\Freedle.Web.Infrastructure\\Freedle.Web.Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web.Infrastructure\\Freedle.Web.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.435\\stylecop.analyzers.1.2.0-beta.435.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.435\\stylecop.analyzers.unstable.1.2.0.435.nupkg.sha512"

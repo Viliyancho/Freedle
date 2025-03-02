@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Freedle.Services.Mapping
-build_property.ProjectDir = C:\Users\Admin\Documents\Sites\Freedle\Freedle\Services\Freedle.Services.Mapping\
+build_property.ProjectDir = C:\Users\Admin\Documents\Sites\Freedle\Services\Freedle.Services.Mapping\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

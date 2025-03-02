@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Services\\Freedle.Services.Messaging\\Freedle.Services.Messaging.csproj": {}
+    "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Services\\Freedle.Services.Messaging\\Freedle.Services.Messaging.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Services\\Freedle.Services.Messaging\\Freedle.Services.Messaging.csproj": {
+    "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Services\\Freedle.Services.Messaging\\Freedle.Services.Messaging.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Services\\Freedle.Services.Messaging\\Freedle.Services.Messaging.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Services\\Freedle.Services.Messaging\\Freedle.Services.Messaging.csproj",
         "projectName": "Freedle.Services.Messaging",
-        "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Services\\Freedle.Services.Messaging\\Freedle.Services.Messaging.csproj",
+        "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Services\\Freedle.Services.Messaging\\Freedle.Services.Messaging.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Services\\Freedle.Services.Messaging\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Services\\Freedle.Services.Messaging\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",

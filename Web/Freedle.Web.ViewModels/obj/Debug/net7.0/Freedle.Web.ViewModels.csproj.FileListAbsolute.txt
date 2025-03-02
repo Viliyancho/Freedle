@@ -37,3 +37,4 @@ C:\Users\Admin\Documents\Sites\Freedle\Freedle\Web\Freedle.Web.ViewModels\obj\De
 C:\Users\Admin\Documents\Sites\Freedle\Freedle\Web\Freedle.Web.ViewModels\obj\Debug\net7.0\refint\Freedle.Web.ViewModels.dll
 C:\Users\Admin\Documents\Sites\Freedle\Freedle\Web\Freedle.Web.ViewModels\obj\Debug\net7.0\Freedle.Web.ViewModels.pdb
 C:\Users\Admin\Documents\Sites\Freedle\Freedle\Web\Freedle.Web.ViewModels\obj\Debug\net7.0\ref\Freedle.Web.ViewModels.dll
+C:\Users\Admin\Documents\Sites\Freedle\Web\Freedle.Web.ViewModels\obj\Debug\net7.0\Freedle.Web.ViewModels.sourcelink.json

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Web\\Freedle.Web.Infrastructure\\Freedle.Web.Infrastructure.csproj": {}
+    "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web.Infrastructure\\Freedle.Web.Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Web\\Freedle.Web.Infrastructure\\Freedle.Web.Infrastructure.csproj": {
+    "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web.Infrastructure\\Freedle.Web.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Web\\Freedle.Web.Infrastructure\\Freedle.Web.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web.Infrastructure\\Freedle.Web.Infrastructure.csproj",
         "projectName": "Freedle.Web.Infrastructure",
-        "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Web\\Freedle.Web.Infrastructure\\Freedle.Web.Infrastructure.csproj",
+        "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web.Infrastructure\\Freedle.Web.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Web\\Freedle.Web.Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",

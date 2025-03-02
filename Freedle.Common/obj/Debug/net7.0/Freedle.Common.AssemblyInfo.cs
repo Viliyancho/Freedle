@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Freedle.Common")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7b81f0429a97705c9119d3f47761511742258b3c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+422069f6e5223c799ba941a9c9d29acac0730392")]
 [assembly: System.Reflection.AssemblyProductAttribute("Freedle.Common")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Freedle.Common")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

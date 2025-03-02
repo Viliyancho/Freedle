@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Freedle.Web.Tests.props" />
+</Project>

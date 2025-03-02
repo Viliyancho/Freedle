@@ -37,3 +37,4 @@ C:\Users\Admin\Documents\Sites\Freedle\Freedle\Services\Freedle.Services.Data\ob
 C:\Users\Admin\Documents\Sites\Freedle\Freedle\Services\Freedle.Services.Data\obj\Debug\net7.0\refint\Freedle.Services.Data.dll
 C:\Users\Admin\Documents\Sites\Freedle\Freedle\Services\Freedle.Services.Data\obj\Debug\net7.0\Freedle.Services.Data.pdb
 C:\Users\Admin\Documents\Sites\Freedle\Freedle\Services\Freedle.Services.Data\obj\Debug\net7.0\ref\Freedle.Services.Data.dll
+C:\Users\Admin\Documents\Sites\Freedle\Services\Freedle.Services.Data\obj\Debug\net7.0\Freedle.Services.Data.sourcelink.json

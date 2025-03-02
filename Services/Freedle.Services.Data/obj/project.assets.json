@@ -1091,11 +1091,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Services\\Freedle.Services.Data\\Freedle.Services.Data.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Services\\Freedle.Services.Data\\Freedle.Services.Data.csproj",
       "projectName": "Freedle.Services.Data",
-      "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Services\\Freedle.Services.Data\\Freedle.Services.Data.csproj",
+      "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Services\\Freedle.Services.Data\\Freedle.Services.Data.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Services\\Freedle.Services.Data\\obj\\",
+      "outputPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Services\\Freedle.Services.Data\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1113,14 +1113,14 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Data\\Freedle.Data.Common\\Freedle.Data.Common.csproj": {
-              "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Data\\Freedle.Data.Common\\Freedle.Data.Common.csproj"
+            "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Common\\Freedle.Data.Common.csproj": {
+              "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Common\\Freedle.Data.Common.csproj"
             },
-            "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Data\\Freedle.Data.Models\\Freedle.Data.Models.csproj": {
-              "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Data\\Freedle.Data.Models\\Freedle.Data.Models.csproj"
+            "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models\\Freedle.Data.Models.csproj": {
+              "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models\\Freedle.Data.Models.csproj"
             },
-            "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Services\\Freedle.Services.Mapping\\Freedle.Services.Mapping.csproj": {
-              "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Freedle\\Services\\Freedle.Services.Mapping\\Freedle.Services.Mapping.csproj"
+            "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Services\\Freedle.Services.Mapping\\Freedle.Services.Mapping.csproj": {
+              "projectPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Services\\Freedle.Services.Mapping\\Freedle.Services.Mapping.csproj"
             }
           }
         }

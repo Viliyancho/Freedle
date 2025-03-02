@@ -24,6 +24,18 @@
         {
         }
 
+        public DbSet<UserFollower> UserFollowers { get; set; }
+
+        public DbSet<PostReport> PostReports { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
+
+        public DbSet<Page> Pages { get; set; }
+
+        public DbSet<Post> Posts { get; set; }
+
+        public DbSet<UserLike> UserLikes { get; set; }
+
         public DbSet<Setting> Settings { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);

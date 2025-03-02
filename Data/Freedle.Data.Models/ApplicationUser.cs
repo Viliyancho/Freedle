@@ -16,7 +16,38 @@ namespace Freedle.Data.Models
             this.Roles = new HashSet<IdentityUserRole<string>>();
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
+
+            this.Posts = new HashSet<Post>();
+            this.Comments = new HashSet<Comment>();
+            this.UserPages = new HashSet<Page>();
+            this.Likes = new HashSet<UserLike>();
         }
+
+        // Base Info
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string ProfilePictureURL { get; set; }
+
+        public DateTime? BirthDay { get; set; }
+
+        public Gender? Gender { get; set; }
+
+        public string Description { get; set; }
+
+        public string City { get; set; }
+
+        public string Country { get; set; }
+
+        public ICollection<Post> Posts { get; set; }
+
+        public ICollection<Comment> Comments { get; set; }
+
+        public ICollection<Page> UserPages { get; set; }
+
+        public ICollection<UserLike> Likes { get; set; }
 
         // Audit info
         public DateTime CreatedOn { get; set; }

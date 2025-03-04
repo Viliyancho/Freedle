@@ -17,21 +17,42 @@
 
         <!-- Централна част - Постове -->
         <div class="col-md-6">
-            <div class="card shadow-sm mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Post Title</h5>
-                    <p class="card-text">This is an example post. More posts will be loaded dynamically.</p>
-                    <a href="#" class="btn btn-primary">Read More</a>
-                </div>
-            </div>
-            <!-- Добавяме още примерни постове -->
-            <div class="card shadow-sm mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Another Post</h5>
-                    <p class="card-text">This is another example post. More content coming soon.</p>
-                    <a href="#" class="btn btn-primary">Read More</a>
-                </div>
-            </div>
+            <h2 class="text-center fw-bold mb-4">Последни публикации</h2>
+
+            @if (Model.Posts.Any())
+            {
+                @foreach (var post in Model.Posts)
+                {
+                    <div class="card mb-4 post-card">
+                        <!-- Автор на поста -->
+                        <div class="card-header d-flex align-items-center">
+                            <img src="@post.AuthorProfilePictureUrl" class="rounded-circle me-2" width="40" height="40" />
+                            <strong>@post.AuthorName</strong>
+                            <span class="text-muted ms-auto">@post.CreatedOn</span>
+                        </div>
+
+                        <!-- Съдържание на поста -->
+                        <div class="card-body">
+                            <h5 class="card-title">@post.Title</h5>
+                            <p class="card-text">@post.Content</p>
+                        </div>
+
+                        <!-- Footer на поста -->
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            <div>
+                                <button class="btn btn-outline-primary btn-sm like-btn" data-post-id="@post.Id">
+                                    👍 @post.LikeCount
+                                </button>
+                                <a href="/Post/Details/@post.Id" class="btn btn-outline-secondary btn-sm">💬 Коментари</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p class="text-center text-muted">Все още няма публикации.</p>
+            }
         </div>
 
         <!-- Дясна страна -->

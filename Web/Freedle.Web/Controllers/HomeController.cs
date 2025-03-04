@@ -80,6 +80,11 @@
             return View(model);
         }
 
+        public IActionResult MessagesDemo()
+        {
+            return this.View();
+        }
+
         public IActionResult MyProfile()
         {
             return this.View();

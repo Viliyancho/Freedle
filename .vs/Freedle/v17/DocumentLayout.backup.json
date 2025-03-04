@@ -96,7 +96,7 @@
               "RelativeDocumentMoniker": "Data\\Freedle.Data\\Migrations\\20250302181816_AddNewTables.cs",
               "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data\\Migrations\\20250302181816_AddNewTables.cs",
               "RelativeToolTip": "Data\\Freedle.Data\\Migrations\\20250302181816_AddNewTables.cs",
-              "ViewState": "AgIAALsAAAAAAAAAAAAQwMgAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAALsAAAAAAAAAAAAQwMwAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-02T18:18:17.163Z",
               "EditorCaption": ""
@@ -111,8 +111,7 @@
               "RelativeToolTip": "Data\\Freedle.Data\\ApplicationDbContext.cs",
               "ViewState": "AgIAABUAAAAAAAAAAAA1wBwAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T18:10:15.107Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-02T18:10:15.107Z"
             },
             {
               "$type": "Document",
@@ -124,8 +123,7 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\Page.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAABAAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T18:05:11.579Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-02T18:05:11.579Z"
             },
             {
               "$type": "Document",
@@ -137,8 +135,7 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\PostReport.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T18:03:29.734Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-02T18:03:29.734Z"
             },
             {
               "$type": "Document",
@@ -150,8 +147,7 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\UserLike.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T18:03:08.22Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-02T18:03:08.22Z"
             },
             {
               "$type": "Document",
@@ -163,8 +159,7 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\Comment.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T18:02:39.509Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-02T18:02:39.509Z"
             },
             {
               "$type": "Document",
@@ -176,8 +171,7 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\Post.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T18:02:03.69Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-02T18:02:03.69Z"
             },
             {
               "$type": "Document",
@@ -189,8 +183,7 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\UserFollower.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T17:58:16.498Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-02T17:58:16.498Z"
             },
             {
               "$type": "Document",
@@ -202,8 +195,7 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\ApplicationUser.cs",
               "ViewState": "AgIAAC4AAAAAAAAAAAAcwBIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T17:54:34.609Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-02T17:54:34.609Z"
             },
             {
               "$type": "Document",
@@ -215,8 +207,7 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\ReportReason.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T17:52:23.088Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-02T17:52:23.088Z"
             },
             {
               "$type": "Document",
@@ -228,8 +219,7 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\Gender.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T17:51:16.438Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-02T17:51:16.438Z"
             },
             {
               "$type": "Document",
@@ -277,8 +267,7 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Program.cs",
               "ViewState": "AgIAAEIAAAAAAAAAAAAlwFIAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T10:01:19.581Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-02T10:01:19.581Z"
             },
             {
               "$type": "Document",

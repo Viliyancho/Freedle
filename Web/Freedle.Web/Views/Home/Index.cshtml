@@ -1,8 +1,43 @@
-﻿﻿﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model NewsFeedViewModel
+
+@{
+    ViewData["Title"] = "Home - Freedle";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-4">
+    <!-- Заглавие в центъра -->
+    <h1 class="text-center fw-bold text-primary">Welcome to Freedle</h1>
+
+    <div class="row mt-4">
+        <!-- Лява страна -->
+        <div class="col-md-3 bg-light text-center p-3 rounded">
+            <h5 class="fw-bold">Left Section</h5>
+            <p>Coming soon...</p>
+        </div>
+
+        <!-- Централна част - Постове -->
+        <div class="col-md-6">
+            <div class="card shadow-sm mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Post Title</h5>
+                    <p class="card-text">This is an example post. More posts will be loaded dynamically.</p>
+                    <a href="#" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+            <!-- Добавяме още примерни постове -->
+            <div class="card shadow-sm mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Another Post</h5>
+                    <p class="card-text">This is another example post. More content coming soon.</p>
+                    <a href="#" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Дясна страна -->
+        <div class="col-md-3 bg-light text-center p-3 rounded">
+            <h5 class="fw-bold">Right Section</h5>
+            <p>Coming soon...</p>
+        </div>
+    </div>
 </div>

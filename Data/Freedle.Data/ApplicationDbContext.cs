@@ -62,6 +62,23 @@
             // Needed for Identity models configuration
             base.OnModelCreating(builder);
 
+
+            // Конфигуриране на UserFollower релацията
+            builder.Entity<UserFollower>()
+                .HasKey(uf => new { uf.UserId, uf.FollowerId }); // Композитен ключ
+
+            builder.Entity<UserFollower>()
+                .HasOne(uf => uf.User)
+                .WithMany(u => u.Followers)
+                .HasForeignKey(uf => uf.UserId)
+                .OnDelete(DeleteBehavior.Restrict); // Важно, за да няма циклични зависимости!
+
+            builder.Entity<UserFollower>()
+                .HasOne(uf => uf.Follower)
+                .WithMany(u => u.Following)
+                .HasForeignKey(uf => uf.FollowerId)
+                .OnDelete(DeleteBehavior.Restrict); // Важно, за да няма циклични зависимости!
+
             this.ConfigureUserIdentityRelations(builder);
 
             EntityIndexesConfiguration.Configure(builder);

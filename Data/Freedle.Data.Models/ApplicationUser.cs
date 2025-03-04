@@ -21,6 +21,9 @@ namespace Freedle.Data.Models
             this.Comments = new HashSet<Comment>();
             this.UserPages = new HashSet<Page>();
             this.Likes = new HashSet<UserLike>();
+
+            this.Followers = new HashSet<UserFollower>();
+            this.Following = new HashSet<UserFollower>();
         }
 
         // Base Info
@@ -48,6 +51,9 @@ namespace Freedle.Data.Models
         public ICollection<Page> UserPages { get; set; }
 
         public ICollection<UserLike> Likes { get; set; }
+
+        public ICollection<UserFollower> Followers { get; set; }
+        public ICollection<UserFollower> Following { get; set; }
 
         // Audit info
         public DateTime CreatedOn { get; set; }

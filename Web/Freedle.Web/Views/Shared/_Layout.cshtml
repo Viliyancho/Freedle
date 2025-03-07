@@ -17,8 +17,8 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-evenly">
+                    <ul class="navbar-nav w-100 d-flex justify-content-evenly">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
@@ -62,6 +62,26 @@
     <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
     <script src="~/js/site.min.js" asp-append-version="true"></script>
+
+    <!-- Код за hover ефект -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () { //Изчаква всички HTML елементи да бъдат заредени, след което изпълнява функцията
+            const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+
+            navLinks.forEach(link => {
+                link.addEventListener("mouseover", function () {
+                    this.style.color = "SkyBlue";
+                    this.style.fontWeight = "bold";
+                });
+
+                link.addEventListener("mouseout", function () {
+                    this.style.color = "";  // Връща стандартния цвят
+                    this.style.fontWeight = "400"; //Не bold-ва нищо
+                });
+            });
+        });
+    </script>
+
     @await this.RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

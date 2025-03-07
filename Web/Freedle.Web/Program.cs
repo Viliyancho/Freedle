@@ -1,11 +1,9 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Freedle.Data;
 namespace Freedle.Web
 {
     using System;
     using System.Reflection;
 
+    using Freedle.Data;
     using Freedle.Data;
     using Freedle.Data.Common;
     using Freedle.Data.Common.Repositories;
@@ -16,10 +14,11 @@ namespace Freedle.Web
     using Freedle.Services.Mapping;
     using Freedle.Services.Messaging;
     using Freedle.Web.ViewModels;
-
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;

@@ -71,12 +71,17 @@
             navLinks.forEach(link => {
                 link.addEventListener("mouseover", function () {
                     this.style.color = "SkyBlue";
+                    this.style.fontSize = "1.5rem"; // Увеличаваме размера на шрифта
                     this.style.fontWeight = "bold";
+                    this.style.transform = "scale(1.2)"; // Правим го по-голямо
+                    this.style.transition = "all 0.2s ease-in-out"; // Добавяме плавност
                 });
 
                 link.addEventListener("mouseout", function () {
-                    this.style.color = "";  // Връща стандартния цвят
-                    this.style.fontWeight = "400"; //Не bold-ва нищо
+                    this.style.color = "";
+                    this.style.fontSize = "";
+                    this.style.fontWeight = "400";
+                    this.style.transform = "scale(1)"; // Връща нормалния размер
                 });
             });
         });

@@ -174,10 +174,7 @@ namespace Freedle.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AuthorId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("AuthorId1")
+                    b.Property<string>("AuthorId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CommentText")
@@ -191,11 +188,66 @@ namespace Freedle.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorId1");
+                    b.HasIndex("AuthorId");
 
                     b.HasIndex("PostId");
 
                     b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("Freedle.Data.Models.Conversation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("User1Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("User2Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("User1Id");
+
+                    b.HasIndex("User2Id");
+
+                    b.ToTable("Conversations");
+                });
+
+            modelBuilder.Entity("Freedle.Data.Models.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ConversationId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SenderId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("SentOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ConversationId");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("Freedle.Data.Models.Page", b =>
@@ -239,17 +291,14 @@ namespace Freedle.Data.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId1")
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("PageId");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Posts");
                 });
@@ -262,10 +311,7 @@ namespace Freedle.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AuthorId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("AuthorId1")
+                    b.Property<string>("AuthorId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("PostId")
@@ -279,7 +325,7 @@ namespace Freedle.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorId1");
+                    b.HasIndex("AuthorId");
 
                     b.HasIndex("PostId");
 
@@ -319,55 +365,59 @@ namespace Freedle.Data.Migrations
                     b.ToTable("Settings");
                 });
 
+            modelBuilder.Entity("Freedle.Data.Models.UserConversation", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("ConversationId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("HasReadAllMessages")
+                        .HasColumnType("bit");
+
+                    b.HasKey("UserId", "ConversationId");
+
+                    b.HasIndex("ConversationId");
+
+                    b.ToTable("UserConversations");
+                });
+
             modelBuilder.Entity("Freedle.Data.Models.UserFollower", b =>
                 {
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime?>("FollowedDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("FollowerId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("FollowedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("UnfollowedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("UserId1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("UserId");
+                    b.HasKey("UserId", "FollowerId");
 
                     b.HasIndex("FollowerId");
-
-                    b.HasIndex("UserId1");
 
                     b.ToTable("UserFollowers");
                 });
 
             modelBuilder.Entity("Freedle.Data.Models.UserLike", b =>
                 {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
-
-                    b.Property<DateTime>("LikedOn")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("PostId")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId1")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<DateTime>("LikedOn")
+                        .HasColumnType("datetime2");
 
-                    b.HasKey("UserId");
+                    b.HasKey("UserId", "PostId");
 
                     b.HasIndex("PostId");
-
-                    b.HasIndex("UserId1");
 
                     b.ToTable("UserLikes");
                 });
@@ -482,7 +532,7 @@ namespace Freedle.Data.Migrations
                 {
                     b.HasOne("Freedle.Data.Models.ApplicationUser", "Author")
                         .WithMany("Comments")
-                        .HasForeignKey("AuthorId1");
+                        .HasForeignKey("AuthorId");
 
                     b.HasOne("Freedle.Data.Models.Post", "Post")
                         .WithMany("Comments")
@@ -493,6 +543,39 @@ namespace Freedle.Data.Migrations
                     b.Navigation("Author");
 
                     b.Navigation("Post");
+                });
+
+            modelBuilder.Entity("Freedle.Data.Models.Conversation", b =>
+                {
+                    b.HasOne("Freedle.Data.Models.ApplicationUser", "User1")
+                        .WithMany()
+                        .HasForeignKey("User1Id");
+
+                    b.HasOne("Freedle.Data.Models.ApplicationUser", "User2")
+                        .WithMany()
+                        .HasForeignKey("User2Id");
+
+                    b.Navigation("User1");
+
+                    b.Navigation("User2");
+                });
+
+            modelBuilder.Entity("Freedle.Data.Models.Message", b =>
+                {
+                    b.HasOne("Freedle.Data.Models.Conversation", "Conversation")
+                        .WithMany("Messages")
+                        .HasForeignKey("ConversationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Freedle.Data.Models.ApplicationUser", "Sender")
+                        .WithMany("Messages")
+                        .HasForeignKey("SenderId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Conversation");
+
+                    b.Navigation("Sender");
                 });
 
             modelBuilder.Entity("Freedle.Data.Models.Page", b =>
@@ -512,7 +595,7 @@ namespace Freedle.Data.Migrations
 
                     b.HasOne("Freedle.Data.Models.ApplicationUser", "User")
                         .WithMany("Posts")
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
@@ -521,7 +604,7 @@ namespace Freedle.Data.Migrations
                 {
                     b.HasOne("Freedle.Data.Models.ApplicationUser", "Author")
                         .WithMany()
-                        .HasForeignKey("AuthorId1");
+                        .HasForeignKey("AuthorId");
 
                     b.HasOne("Freedle.Data.Models.Post", "Post")
                         .WithMany("PostReports")
@@ -534,15 +617,36 @@ namespace Freedle.Data.Migrations
                     b.Navigation("Post");
                 });
 
+            modelBuilder.Entity("Freedle.Data.Models.UserConversation", b =>
+                {
+                    b.HasOne("Freedle.Data.Models.Conversation", "Conversation")
+                        .WithMany("UserConversations")
+                        .HasForeignKey("ConversationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Freedle.Data.Models.ApplicationUser", "User")
+                        .WithMany("UserConversations")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Conversation");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Freedle.Data.Models.UserFollower", b =>
                 {
                     b.HasOne("Freedle.Data.Models.ApplicationUser", "Follower")
-                        .WithMany()
-                        .HasForeignKey("FollowerId");
+                        .WithMany("Following")
+                        .HasForeignKey("FollowerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("Freedle.Data.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId1")
+                        .WithMany("Followers")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -561,7 +665,9 @@ namespace Freedle.Data.Migrations
 
                     b.HasOne("Freedle.Data.Models.ApplicationUser", "User")
                         .WithMany("Likes")
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Post");
 
@@ -625,15 +731,30 @@ namespace Freedle.Data.Migrations
 
                     b.Navigation("Comments");
 
+                    b.Navigation("Followers");
+
+                    b.Navigation("Following");
+
                     b.Navigation("Likes");
 
                     b.Navigation("Logins");
+
+                    b.Navigation("Messages");
 
                     b.Navigation("Posts");
 
                     b.Navigation("Roles");
 
+                    b.Navigation("UserConversations");
+
                     b.Navigation("UserPages");
+                });
+
+            modelBuilder.Entity("Freedle.Data.Models.Conversation", b =>
+                {
+                    b.Navigation("Messages");
+
+                    b.Navigation("UserConversations");
                 });
 
             modelBuilder.Entity("Freedle.Data.Models.Page", b =>

@@ -36,6 +36,12 @@
 
         public DbSet<UserLike> UserLikes { get; set; }
 
+        public DbSet<Conversation> Conversations { get; set; }
+
+        public DbSet<Message> Messages { get; set; }
+
+        public DbSet<UserConversation> UserConversations { get; set; }
+
         public DbSet<Setting> Settings { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
@@ -63,7 +69,6 @@
             base.OnModelCreating(builder);
 
 
-            // Конфигуриране на UserFollower релацията
             builder.Entity<UserFollower>()
                 .HasKey(uf => new { uf.UserId, uf.FollowerId }); // Композитен ключ
 
@@ -86,13 +91,40 @@
                 .HasOne(ul => ul.User)
                 .WithMany(u => u.Likes)
                 .HasForeignKey(ul => ul.UserId)
-                .OnDelete(DeleteBehavior.Restrict); // Предотвратява изтриване на харесвания при изтриване на потребителя
+                .OnDelete(DeleteBehavior.Restrict); 
 
             builder.Entity<UserLike>()
                 .HasOne(ul => ul.Post)
                 .WithMany(p => p.Likes)
                 .HasForeignKey(ul => ul.PostId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<UserConversation>()
+        .HasKey(uc => new { uc.UserId, uc.ConversationId });
+
+            builder.Entity<UserConversation>()
+                .HasOne(uc => uc.User)
+                .WithMany(u => u.UserConversations)
+                .HasForeignKey(uc => uc.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<UserConversation>()
+                .HasOne(uc => uc.Conversation)
+                .WithMany(c => c.UserConversations)
+                .HasForeignKey(uc => uc.ConversationId)
+                .OnDelete(DeleteBehavior.Cascade); // Изтриването на Conversation ще изтрие съответните UserConversation записи
+
+            builder.Entity<Message>()
+                .HasOne(m => m.Conversation)
+                .WithMany(c => c.Messages)
+                .HasForeignKey(m => m.ConversationId)
+                .OnDelete(DeleteBehavior.Cascade); // Ако се изтрие Conversation, да се изтрият и съобщенията
+
+            builder.Entity<Message>()
+                .HasOne(m => m.Sender)
+                .WithMany(u => u.Messages)
+                .HasForeignKey(m => m.SenderId)
+                .OnDelete(DeleteBehavior.Restrict); 
 
             this.ConfigureUserIdentityRelations(builder);
 

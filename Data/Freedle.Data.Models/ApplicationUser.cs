@@ -53,7 +53,12 @@ namespace Freedle.Data.Models
         public ICollection<UserLike> Likes { get; set; }
 
         public ICollection<UserFollower> Followers { get; set; }
+
         public ICollection<UserFollower> Following { get; set; }
+
+        public ICollection<Message> Messages { get; set; } = new HashSet<Message>();
+
+        public ICollection<UserConversation> UserConversations { get; set; } = new HashSet<UserConversation>();
 
         // Audit info
         public DateTime CreatedOn { get; set; }

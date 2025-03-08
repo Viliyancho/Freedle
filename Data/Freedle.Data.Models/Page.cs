@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Freedle.Data.Common.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -7,14 +8,12 @@ using System.Threading.Tasks;
 
 namespace Freedle.Data.Models
 {
-    public class Page
+    public class Page : BaseDeletableModel<int>
     {
         public Page()
         {
             this.Posts = new HashSet<Post>();
         }
-
-        public int Id { get; set; }
 
         public ICollection<Post> Posts { get; set; }
 

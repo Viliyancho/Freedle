@@ -1,12 +1,13 @@
 ﻿namespace Freedle.Data.Models
 {
+    using Freedle.Data.Common.Models;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
 
-    public class Post
+    public class Post : BaseDeletableModel<int>
     {
         public Post()
         {
@@ -15,15 +16,9 @@
             this.Likes = new HashSet<UserLike>();
         }
 
-        public int Id { get; set; }
-
         public string Title { get; set; }
 
         public string Content { get; set; }
-
-        public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
-
-        public bool IsDeleted { get; set; } = false;
 
         public ICollection<UserLike> Likes { get; set; }
 

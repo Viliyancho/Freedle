@@ -1,12 +1,11 @@
 ﻿namespace Freedle.Data.Models
 {
+    using Freedle.Data.Common.Models;
     using System;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class PostReport
+    public class PostReport : BaseDeletableModel<int>
     {
-        public int Id { get; set; }
-
         public string AuthorId { get; set; }
 
         public ApplicationUser Author { get; set; }

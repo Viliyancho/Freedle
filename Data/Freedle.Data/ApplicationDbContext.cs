@@ -79,6 +79,21 @@
                 .HasForeignKey(uf => uf.FollowerId)
                 .OnDelete(DeleteBehavior.Restrict); // Важно, за да няма циклични зависимости!
 
+            builder.Entity<UserLike>()
+        .HasKey(ul => new { ul.UserId, ul.PostId }); // Композитен ключ
+
+            builder.Entity<UserLike>()
+                .HasOne(ul => ul.User)
+                .WithMany(u => u.Likes)
+                .HasForeignKey(ul => ul.UserId)
+                .OnDelete(DeleteBehavior.Restrict); // Предотвратява изтриване на харесвания при изтриване на потребителя
+
+            builder.Entity<UserLike>()
+                .HasOne(ul => ul.Post)
+                .WithMany(p => p.Likes)
+                .HasForeignKey(ul => ul.PostId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             this.ConfigureUserIdentityRelations(builder);
 
             EntityIndexesConfiguration.Configure(builder);

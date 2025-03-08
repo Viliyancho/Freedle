@@ -12,5 +12,8 @@
         Spam = 2,
         SensitiveContent = 3,
         AbusiveOrHarmful = 4,
+        HateSpeech = 5,
+        HarassmentOrBullying = 6,
+        Other = 7,
     }
 }

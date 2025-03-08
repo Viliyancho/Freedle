@@ -10,6 +10,7 @@
     {
         Male = 1,
         Famale = 2,
+        NonBinary = 3,
+        PreferNotToSay = 4,
     }
-
 }

@@ -5,7 +5,6 @@
 
     public class UserLike
     {
-        [Key]
         public string UserId { get; set; }
 
         public ApplicationUser User { get; set; }

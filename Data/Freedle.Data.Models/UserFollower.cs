@@ -10,7 +10,6 @@
 
     public class UserFollower
     {
-        [Key]
         public string UserId { get; set; }
 
         public ApplicationUser User { get; set; }
@@ -19,7 +18,7 @@
 
         public ApplicationUser Follower { get; set; }
 
-        public DateTime? FollowedDate { get; set; } = DateTime.UtcNow;
+        public DateTime FollowedDate { get; set; } = DateTime.UtcNow;
 
         public DateTime? UnfollowedDate { get; set; }
     }

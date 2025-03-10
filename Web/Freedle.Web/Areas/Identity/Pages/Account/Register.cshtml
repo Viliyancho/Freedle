@@ -12,17 +12,17 @@
         font-family: Arial, sans-serif;
     }
 
-   
+
     h1 {
-        color: skyblue; 
+        color: skyblue;
         font-weight: bold;
         text-align: center;
         margin-bottom: 0em;
     }
 
-   
+
     #registerForm {
-        background-color: rgba(255, 255, 255, 0.9); 
+        background-color: rgba(255, 255, 255, 0.9);
         border-radius: 10px;
         padding: 30px;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -30,19 +30,19 @@
         z-index: 1;
     }
 
-    
+
     .form-floating {
         margin-bottom: 20px;
     }
 
     .form-control {
-        border: 1px solid #b0c4de; 
+        border: 1px solid #b0c4de;
         border-radius: 5px;
         height: 50px;
-        background-color: #f0f8ff; 
+        background-color: #f0f8ff;
     }
 
-   
+
     #registerSubmit {
         background-color: #4a90e2;
         border: none;
@@ -57,16 +57,16 @@
             background-color: #357ab7;
         }
 
-   
+
     .form-container {
         display: flex;
         align-items: center;
         justify-content: center;
         position: relative;
-        margin-top: 1em;
+        margin-top: 3em;
     }
 
-  
+
     .left-image, .right-image {
         position: absolute;
         width: 150px;
@@ -90,6 +90,18 @@
         right: -0.5em;
         top: 5.5em;
     }
+
+    #registerForm {
+        max-height: 325px; /* Или друга височина според нуждите */
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+    }
+
+        #registerForm:hover {
+            max-height: 500px; /* Достатъчно голяма, за да покаже всички полета */
+            overflow: auto;
+        }
+
 </style>
 
 <h1>@ViewData["Title"]</h1>
@@ -98,11 +110,11 @@
 </head>
 
 <div class="form-container">
-    
+
     <img src="/images/cloud.png" alt="Clouds Left" class="left-image">
 
 
-    
+
     <div class="col-md-4">
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <h2 class="d-flex justify-content-center">Create a new account.</h2>
@@ -110,9 +122,70 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-floating">
+                <input asp-for="Input.FirstName" class="form-control" aria-required="true" placeholder="First Name" />
+                <label asp-for="Input.FirstName">First Name</label>
+                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating">
+                <input asp-for="Input.LastName" class="form-control" aria-required="true" placeholder="Last Name" />
+                <label asp-for="Input.LastName">Last Name</label>
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating">
                 <input asp-for="Input.Username" class="form-control" aria-required="true" placeholder="Username" />
                 <label asp-for="Input.Username">Username</label>
                 <span asp-validation-for="Input.Username" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating">
+                <input asp-for="Input.ProfilePictureURL" class="form-control" placeholder="Profile Picture URL" />
+                <label asp-for="Input.ProfilePictureURL">Profile Picture URL</label>
+                <span asp-validation-for="Input.ProfilePictureURL" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Input.Description" class="form-label">Description (Bio)</label>
+                <textarea asp-for="Input.Description" class="form-control" placeholder="Tell us about yourself"></textarea>
+                <span asp-validation-for="Input.Description" class="text-danger"></span>
+            </div>
+
+
+
+            <div class="form-floating">
+                <p><strong>Gender (optional):</strong></p>
+                <div class="form-check">
+                    <input asp-for="Input.Gender" type="radio" class="form-check-input" value="Male" id="genderMale">
+                    <label class="form-check-label" for="genderMale">Male</label>
+                </div>
+                <div class="form-check">
+                    <input asp-for="Input.Gender" type="radio" class="form-check-input" value="Female" id="genderFemale">
+                    <label class="form-check-label" for="genderFemale">Female</label>
+                </div>
+                <div class="form-check">
+                    <input asp-for="Input.Gender" type="radio" class="form-check-input" value="NonBinary" id="genderNonBinary">
+                    <label class="form-check-label" for="genderNonBinary">Non-Binary</label>
+                </div>
+                <span asp-validation-for="Input.Gender" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating">
+                <input asp-for="Input.BirthDay" class="form-control" type="date" id="birthDate" placeholder="Birth Date" />
+                <label asp-for="Input.BirthDay">Birth Date (optional)</label>
+                <span asp-validation-for="Input.BirthDay" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating">
+                <input asp-for="Input.City" class="form-control" placeholder="City" />
+                <label asp-for="Input.City">City</label>
+                <span asp-validation-for="Input.City" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating">
+                <input asp-for="Input.Country" class="form-control" placeholder="Country" />
+                <label asp-for="Input.Country">Country</label>
+                <span asp-validation-for="Input.Country" class="text-danger"></span>
             </div>
 
             <div class="form-floating">
@@ -137,11 +210,30 @@
         </form>
     </div>
 
-   
-  
+
+
     <img src="/images/cloud.png" alt="Clouds Right" class="right-image">
 
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let birthDateInput = document.getElementById("birthDate");
+
+        birthDateInput.addEventListener("change", function () {
+            let inputDate = new Date(this.value); // Взима стойността на въведената дата
+            let today = new Date(); // Взима текущата дата
+            let minDate = new Date(); // Създаваме нова дата за минимално разрешената възраст
+            minDate.setFullYear(today.getFullYear() - 14); // Изчисляваме 14 години назад
+
+            if (inputDate > minDate) { // Ако въведената дата е по-голяма от допустимата
+                alert("You must be at least 14 years old to register.");
+                this.value = ""; // Изчиства полето
+            }
+        });
+    });
+</script>
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

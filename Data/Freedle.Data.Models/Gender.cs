@@ -9,8 +9,7 @@
     public enum Gender
     {
         Male = 1,
-        Famale = 2,
+        Female = 2,
         NonBinary = 3,
-        PreferNotToSay = 4,
     }
 }

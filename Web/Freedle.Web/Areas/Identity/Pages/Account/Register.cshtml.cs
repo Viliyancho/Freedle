@@ -103,6 +103,34 @@ namespace Freedle.Web.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+
+            // Add new properties to capture user-specific data
+            [Required]
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+
+            [Required]
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+
+            [Display(Name = "Profile Picture URL")]
+            public string ProfilePictureURL { get; set; }
+
+            [Display(Name = "Bio")]
+            public string Description { get; set; }
+
+            [Display(Name = "Birthday")]
+            public DateTime? BirthDay { get; set; }
+
+            [Display(Name = "Gender")]
+            public Gender? Gender { get; set; }
+
+            [Display(Name = "City")]
+            public string City { get; set; }
+
+            [Display(Name = "Country")]
+            public string Country { get; set; }
         }
 
 
@@ -120,9 +148,23 @@ namespace Freedle.Web.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
-                await _userStore.SetUserNameAsync(user, Input.Username, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                var result = await _userManager.CreateAsync(user, Input.Password);
+                await _userStore.SetUserNameAsync(user, this.Input.Username, CancellationToken.None);
+                await _emailStore.SetEmailAsync(user, this.Input.Email, CancellationToken.None);
+
+                user.FirstName = this.Input.FirstName;
+                user.LastName = this.Input.LastName;
+                user.ProfilePictureURL = this.Input.ProfilePictureURL;
+                user.Description = this.Input.Description;
+                user.City = this.Input.City;
+                user.Country = this.Input.Country;
+
+                if (Input.Gender.HasValue)
+                    user.Gender = Input.Gender;
+
+                if (Input.BirthDay.HasValue)
+                    user.BirthDay = Input.BirthDay;
+
+                var result = await _userManager.CreateAsync(user, this.Input.Password);
 
                 if (result.Succeeded)
                 {
@@ -137,12 +179,12 @@ namespace Freedle.Web.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                    await _emailSender.SendEmailAsync(this.Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                        return RedirectToPage("RegisterConfirmation", new { email = this.Input.Email, returnUrl = returnUrl });
                     }
                     else
                     {

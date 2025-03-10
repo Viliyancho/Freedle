@@ -14,7 +14,9 @@ namespace Freedle.Web.ViewModels
 
         public string Content { get; set; }
 
-        public string CreatedOn { get; set; } // Ще го форматираме като "преди 5 минути"
+        public string ImageUrl { get; set; } // Снимка на поста
+
+        public string CreatedOn { get; set; } 
 
         public string AuthorId { get; set; }
 

@@ -10,7 +10,7 @@ namespace Freedle.Web.ViewModels
     {
         public List<PostViewModel> Posts { get; set; } = new List<PostViewModel>();
 
-        public List<UserProfileViewModel> SuggestedUsers { get; set; } = new List<UserProfileViewModel>();
+        public List<SuggestedUserViewModel> SuggestedUsers { get; set; } = new List<SuggestedUserViewModel>();
     }
 
 }

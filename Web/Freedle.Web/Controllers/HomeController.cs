@@ -61,7 +61,7 @@
                 .Where(u => u.Id != currentUserId)
                 .OrderBy(r => Guid.NewGuid()) // Random
                 .Take(5)
-                .Select(u => new UserProfileViewModel
+                .Select(u => new SuggestedUserViewModel
                 {
                     Id = u.Id,
                     FirstName = u.FirstName,
@@ -85,7 +85,46 @@
             return this.View();
         }
 
-        public IActionResult MyProfile()
+        public async Task<IActionResult> MyProfile()
+        {
+            var currentUser = await this.userManager.GetUserAsync(User);
+
+            // Ако потребителят не е логнат, пренасочваме към страницата за вход
+            if (currentUser == null)
+            {
+                return this.Redirect("/Identity/Account/Login");
+            }
+
+            var followerCount = this.dbContext.UserFollowers
+        .Where(f => f.UserId == currentUser.Id && f.UnfollowedDate == null)
+        .Count();
+
+            // Броят на хората, които потребителят следва: броим колко потребители текущият потребител следва
+            var followingCount = this.dbContext.UserFollowers
+                .Where(f => f.FollowerId == currentUser.Id && f.UnfollowedDate == null)
+                .Count();
+
+            // Вземаме допълнителна информация от потребителския профил (например, име, дата на раждане, пол и т.н.)
+            var userProfileViewModel = new UserProfileViewModel
+            {
+                Username = currentUser.UserName,
+                FirstName = currentUser.FirstName,
+                LastName = currentUser.LastName,
+                ProfilePictureUrl = currentUser.ProfilePictureURL,
+                Gender = currentUser.Gender,
+                BirthDay = currentUser.BirthDay,
+                Description = currentUser.Description,
+                City = currentUser.City,
+                Country = currentUser.Country,
+                FollowerCount = followerCount,
+                FollowingCount = followingCount,
+            };
+
+            // Връщаме данните към изгледа (може да го използвате с изглед с име "MyProfile")
+            return View(userProfileViewModel);
+        }
+
+        public IActionResult CreatePost()
         {
             return this.View();
         }

@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\08dfde24-b915-49d7-aab4-b094a6b7a9bf.png",
+      "PackagePath": "staticwebassets\\images\\08dfde24-b915-49d7-aab4-b094a6b7a9bf.png"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\72665da7-8e9c-4ae6-a9ff-b988d281d089.jpg",
+      "PackagePath": "staticwebassets\\images\\72665da7-8e9c-4ae6-a9ff-b988d281d089.jpg"
+    },
+    {
       "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\ae304793-7fdb-42d7-9fb1-a67711af5659.jpg",
       "PackagePath": "staticwebassets\\images\\ae304793-7fdb-42d7-9fb1-a67711af5659.jpg"
     },

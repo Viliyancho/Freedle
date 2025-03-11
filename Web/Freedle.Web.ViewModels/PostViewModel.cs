@@ -15,7 +15,7 @@ namespace Freedle.Web.ViewModels
 
         public string ImageUrl { get; set; } // Снимка на поста
 
-        public string CreatedOn { get; set; } 
+        public string CreatedOn { get; set; }
 
         public string AuthorId { get; set; }
 

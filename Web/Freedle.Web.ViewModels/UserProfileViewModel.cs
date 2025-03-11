@@ -1,4 +1,5 @@
 ﻿using Freedle.Data.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace Freedle.Web.ViewModels
 
         public int FollowingCount { get; set; }
 
-        public List<PostViewModel> Posts { get; set; } = new List<PostViewModel>();
+        public ICollection<PostViewModel> Posts { get; set; } = new HashSet<PostViewModel>();
     }
 
 }

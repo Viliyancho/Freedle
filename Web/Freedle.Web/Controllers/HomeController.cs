@@ -127,15 +127,24 @@
             return this.View();
         }
 
+        public IActionResult PostDetails()
+        {
+            return this.View();
+        }
+
         public async Task<IActionResult> MyProfile()
         {
-            var currentUser = await this.userManager.GetUserAsync(User);
+            var currentUser = await this.userManager.Users
+    .Include(u => u.Posts) // Зареждаме постовете заедно с потребителя
+    .FirstOrDefaultAsync(u => u.Id == this.userManager.GetUserId(User));
 
             // Ако потребителят не е логнат, пренасочваме към страницата за вход
             if (currentUser == null)
             {
                 return this.Redirect("/Identity/Account/Login");
             }
+
+            Console.WriteLine(currentUser.Posts.Count);
 
             var followerCount = this.dbContext.UserFollowers
         .Where(f => f.UserId == currentUser.Id && f.UnfollowedDate == null)
@@ -158,6 +167,14 @@
                 Description = currentUser.Description,
                 City = currentUser.City,
                 Country = currentUser.Country,
+                Posts = currentUser.Posts.Select(post => new PostViewModel
+                {
+                    Id = post.Id,
+                    Content = post.Content,
+                    ImageUrl = post.ImageURL,
+                    CreatedOn = post.CreatedOn.ToString("yyyy-MM-dd HH:mm"),
+                    LikeCount = post.LikeCount,
+                }).ToList(),
                 FollowerCount = followerCount,
                 FollowingCount = followingCount,
             };
@@ -169,7 +186,7 @@
         // GET метод, който показва формата за създаване на пост
         public IActionResult CreatePost()
         {
-            return View();  
+            return View();
         }
 
         [HttpPost]
@@ -218,7 +235,7 @@
                     UserId = currentUser.Id,
                 };
 
-                currentUser.Posts.Add(newPost);
+                this.dbContext.Posts.Add(newPost);
                 await this.dbContext.SaveChangesAsync();
 
                 return RedirectToAction("MyProfile", "Home");

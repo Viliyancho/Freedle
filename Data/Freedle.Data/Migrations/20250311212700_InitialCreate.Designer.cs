@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Freedle.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250311203340_InitialCreate")]
+    [Migration("20250311212700_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

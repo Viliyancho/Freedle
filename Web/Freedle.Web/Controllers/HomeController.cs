@@ -4,12 +4,14 @@
     using System.Diagnostics;
     using System.IO;
     using System.Linq;
+    using System.Security.Claims;
     using System.Threading.Tasks;
     using Freedle.Data;
     using Freedle.Data.Models;
     using Freedle.Web.ViewModels;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
 
     public class HomeController : BaseController
     {
@@ -43,7 +45,7 @@
                     AuthorId = p.User.Id,
                     AuthorName = $"{p.User.FirstName} {p.User.LastName}",
                     AuthorProfilePictureUrl = p.User.ProfilePictureURL,
-                    LikeCount = p.Likes.Count,
+                    LikeCount = p.LikeCount,
                     IsLikedByCurrentUser = p.Likes.Any(l => l.UserId == currentUserId),
                     Comments = p.Comments.Select(c => new CommentViewModel
                     {
@@ -79,6 +81,45 @@
             };
 
             return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ToggleLike(int postId)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+            {
+                return this.Redirect("/Identity/Account/Login"); // Ако не е логнат, пращаме към логин
+            }
+
+            var post = dbContext.Posts.Include(p => p.Likes).FirstOrDefault(p => p.Id == postId);
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            var existingLike = dbContext.UserLikes.FirstOrDefault(l => l.PostId == postId && l.UserId == userId);
+
+            if (existingLike != null)
+            {
+                // Премахва лайка, ако вече е натиснат
+                post.Likes.Remove(existingLike);
+                dbContext.UserLikes.Remove(existingLike);
+                post.LikeCount--;
+            }
+            else
+            {
+                // Добавя нов лайк
+                var like = new UserLike { PostId = postId, UserId = userId };
+                post.Likes.Add(like);
+                dbContext.UserLikes.Add(like);
+                post.LikeCount++;
+            }
+
+            dbContext.SaveChanges();
+
+            return RedirectToAction("Index", "Home"); // Презарежда страницата
         }
 
         public IActionResult MessagesDemo()
@@ -125,6 +166,14 @@
             return View(userProfileViewModel);
         }
 
+        // GET метод, който показва формата за създаване на пост
+        public IActionResult CreatePost()
+        {
+            return View();  
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreatePost(CreatePostViewModel model)
         {
             if (ModelState.IsValid)
@@ -135,27 +184,47 @@
                     return this.Redirect("/Identity/Account/Login");
                 }
 
-                
+                string imagePath = null;
 
-                // Създаване на новия пост
+                // Проверяваме дали потребителят е качил файл
+                if (model.ImageURL != null && model.ImageURL.Length > 0)
+                {
+                    // Генерираме уникално име за файла
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(model.ImageURL.FileName);
+                    string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
+
+                    // Създаваме директорията ако не съществува
+                    if (!Directory.Exists(uploadsFolder))
+                    {
+                        Directory.CreateDirectory(uploadsFolder);
+                    }
+
+                    string filePath = Path.Combine(uploadsFolder, fileName);
+
+                    // Запазваме файла в wwwroot/images
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await model.ImageURL.CopyToAsync(fileStream);
+                    }
+
+                    imagePath = "/images/" + fileName;
+                }
+
                 var newPost = new Post
                 {
                     Content = model.Content,
-                    ImageURL = model.ImageURL,
+                    ImageURL = imagePath,
                     CreatedOn = DateTime.UtcNow,
-                    UserId = currentUser.Id
+                    UserId = currentUser.Id,
                 };
 
-                // Записване на поста в базата данни
-                this.dbContext.Posts.Add(newPost);
+                currentUser.Posts.Add(newPost);
                 await this.dbContext.SaveChangesAsync();
 
-                // След като постът бъде създаден, може да го пренасочим към друга страница (напр. към профила на потребителя)
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("MyProfile", "Home");
             }
 
-            // Ако не е валиден, връщаме същата страница със съобщения за грешки
-            return View(model);
+            return this.Redirect("Views/Shared/Error");
         }
 
         public IActionResult Search()

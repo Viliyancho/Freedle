@@ -5,17 +5,14 @@
 }
 
 <div class="container mt-4">
-    <!-- Заглавие в центъра -->
     <h1 class="text-center fw-bold text-primary">Welcome to Freedle</h1>
 
     <div class="row mt-4">
-        <!-- Лява страна -->
         <div class="col-md-3 bg-light text-center p-3 rounded">
             <h5 class="fw-bold">Left Section</h5>
             <p>Coming soon...</p>
         </div>
 
-        <!-- Централна част - Постове -->
         <div class="col-md-6">
             <h2 class="text-center fw-bold mb-4">Последни публикации</h2>
 
@@ -24,25 +21,30 @@
                 @foreach (var post in Model.Posts)
                 {
                     <div class="card mb-4 post-card">
-                        <!-- Автор на поста -->
                         <div class="card-header d-flex align-items-center">
                             <img src="@post.AuthorProfilePictureUrl" class="rounded-circle me-2" width="40" height="40" />
                             <strong>@post.AuthorName</strong>
                             <span class="text-muted ms-auto">@post.CreatedOn</span>
                         </div>
 
-                        <!-- Съдържание на поста -->
-                        <div class="card-body">
-                            <h5 class="card-title">@post.ImageUrl</h5>
+                        <div class="card-body d-flex flex-column align-items-center">
+                            @if (!string.IsNullOrEmpty(post.ImageUrl))
+                            {
+                                <img src="@post.ImageUrl" class="rounded border border-8 border-dark shadow-lg mb-2"
+                                     alt="Post image" style="max-width: 75%; height: auto; display: block; margin: auto;" />
+                            }
                             <p class="card-text">@post.Content</p>
                         </div>
 
-                        <!-- Footer на поста -->
                         <div class="card-footer d-flex justify-content-between align-items-center">
-                            <div>
-                                <button class="btn btn-outline-primary btn-sm like-btn" data-post-id="@post.Id">
-                                    👍 @post.LikeCount
-                                </button>
+                            <div class="d-flex align-items-center gap-2">
+                                <form method="post" action="@Url.Action("ToggleLike", "Home")">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="postId" value="@post.Id" />
+                                    <button type="submit" class="btn @(post.IsLikedByCurrentUser ? "btn-primary" : "btn-outline-primary") btn-sm">
+                                        👍 <span class="like-count">@post.LikeCount</span>
+                                    </button>
+                                </form>
                                 <a href="/Post/Details/@post.Id" class="btn btn-outline-secondary btn-sm">💬 Коментари</a>
                             </div>
                         </div>
@@ -55,10 +57,13 @@
             }
         </div>
 
-        <!-- Дясна страна -->
         <div class="col-md-3 bg-light text-center p-3 rounded">
             <h5 class="fw-bold">Right Section</h5>
             <p>Coming soon...</p>
         </div>
     </div>
 </div>
+
+<!-- Anti-Forgery Token -->
+@Html.AntiForgeryToken()
+

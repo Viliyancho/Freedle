@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +17,7 @@ namespace Freedle.Web.ViewModels
         public string Content { get; set; }
 
         [Display(Name = "Add a photo")]
-        public string ImageURL { get; set; } // Отговаря на Posts - Title
+        [NotMapped]
+        public IFormFile ImageURL { get; set; } // Отговаря на Posts - Title
     }
 }

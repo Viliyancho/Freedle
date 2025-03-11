@@ -177,3 +177,5 @@ C:\Users\Admin\Documents\Sites\Freedle\Tests\Freedle.Services.Data.Tests\obj\Deb
 C:\Users\Admin\Documents\Sites\Freedle\Tests\Freedle.Services.Data.Tests\obj\Debug\net7.0\Freedle.Services.Data.Tests.pdb
 C:\Users\Admin\Documents\Sites\Freedle\Tests\Freedle.Services.Data.Tests\obj\Debug\net7.0\Freedle.Services.Data.Tests.genruntimeconfig.cache
 C:\Users\Admin\Documents\Sites\Freedle\Tests\Freedle.Services.Data.Tests\obj\Debug\net7.0\ref\Freedle.Services.Data.Tests.dll
+C:\Users\Admin\Documents\Sites\Freedle\Tests\Freedle.Services.Data.Tests\bin\Debug\net7.0\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\Admin\Documents\Sites\Freedle\Tests\Freedle.Services.Data.Tests\bin\Debug\net7.0\System.IO.Pipelines.dll

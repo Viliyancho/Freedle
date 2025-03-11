@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using Freedle.Data;
@@ -36,8 +37,8 @@
                 .Select(p => new PostViewModel
                 {
                     Id = p.Id,
-                    Title = p.Title,
                     Content = p.Content,
+                    ImageUrl = p.ImageURL,
                     CreatedOn = p.CreatedOn.ToString("f"),
                     AuthorId = p.User.Id,
                     AuthorName = $"{p.User.FirstName} {p.User.LastName}",
@@ -124,9 +125,37 @@
             return View(userProfileViewModel);
         }
 
-        public IActionResult CreatePost()
+        public async Task<IActionResult> CreatePost(CreatePostViewModel model)
         {
-            return this.View();
+            if (ModelState.IsValid)
+            {
+                var currentUser = await this.userManager.GetUserAsync(User);
+                if (currentUser == null)
+                {
+                    return this.Redirect("/Identity/Account/Login");
+                }
+
+                
+
+                // Създаване на новия пост
+                var newPost = new Post
+                {
+                    Content = model.Content,
+                    ImageURL = model.ImageURL,
+                    CreatedOn = DateTime.UtcNow,
+                    UserId = currentUser.Id
+                };
+
+                // Записване на поста в базата данни
+                this.dbContext.Posts.Add(newPost);
+                await this.dbContext.SaveChangesAsync();
+
+                // След като постът бъде създаден, може да го пренасочим към друга страница (напр. към профила на потребителя)
+                return RedirectToAction("Index", "Home");
+            }
+
+            // Ако не е валиден, връщаме същата страница със съобщения за грешки
+            return View(model);
         }
 
         public IActionResult Search()

@@ -2,6 +2,7 @@
 {
     using Freedle.Data.Common.Models;
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
 
     public class Comment : BaseDeletableModel<int>
@@ -18,5 +19,7 @@
         public int PostId { get; set; }
 
         public Post Post { get; set; }
+
+        public ICollection<Comment> Replies { get; set; } = new HashSet<Comment>();
     }
 }

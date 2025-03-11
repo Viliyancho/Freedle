@@ -16,7 +16,7 @@
             this.Likes = new HashSet<UserLike>();
         }
 
-        public string Title { get; set; }
+        public string ImageURL { get; set; }
 
         public string Content { get; set; }
 

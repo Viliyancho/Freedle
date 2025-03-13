@@ -1,7 +1,7 @@
 ﻿@model NewsFeedViewModel
 
 @{
-    ViewData["Title"] = "Home - Freedle";
+    ViewData["Title"] = "For you - Freedle";
 }
 
 <div class="container mt-4">
@@ -45,7 +45,7 @@
                                         👍 <span class="like-count">@post.LikeCount</span>
                                     </button>
                                 </form>
-                                <a href="/Post/Details/@post.Id" class="btn btn-outline-secondary btn-sm">💬 Коментари</a>
+                                <a href="@Url.Action("PostDetails", "Home", new { id = post.Id })" class="btn btn-outline-secondary btn-sm">💬 Comments</a>
                             </div>
                         </div>
                     </div>

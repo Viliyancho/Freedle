@@ -126,11 +126,17 @@
                 .HasForeignKey(m => m.ConversationId)
                 .OnDelete(DeleteBehavior.Cascade); // Ако се изтрие Conversation, да се изтрият и съобщенията
 
+            builder.Entity<Comment>()
+        .HasOne(c => c.ParentComment)
+        .WithMany(c => c.Replies)
+        .HasForeignKey(c => c.ParentCommentId)
+        .OnDelete(DeleteBehavior.Cascade);
+
             builder.Entity<Message>()
                 .HasOne(m => m.Sender)
                 .WithMany(u => u.Messages)
                 .HasForeignKey(m => m.SenderId)
-                .OnDelete(DeleteBehavior.Restrict); 
+                .OnDelete(DeleteBehavior.Restrict);
 
             this.ConfigureUserIdentityRelations(builder);
 

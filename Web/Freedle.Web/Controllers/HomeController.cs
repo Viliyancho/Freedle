@@ -174,6 +174,31 @@
                 return this.NotFound();
             }
 
+            var comments = post.Comments
+        .Where(c => c.ParentCommentId == null)
+        .Select(c => new CommentViewModel
+        {
+            Id = c.Id,
+            AuthorId = c.Author.Id,
+            AuthorName = $"{c.Author.FirstName} {c.Author.LastName}",
+            AuthorProfilePictureUrl = c.Author.ProfilePictureURL,
+            CommentText = c.CommentText,
+            PostedOn = c.PostedOn.ToString("yyyy-MM-dd HH:mm"),
+            Replies = post.Comments // Намираме риплеите за този коментар
+                .Where(r => r.ParentCommentId == c.Id)
+                .Select(r => new CommentViewModel
+                {
+                    Id = r.Id,
+                    AuthorId = r.Author.Id,
+                    AuthorName = $"{r.Author.FirstName} {r.Author.LastName}",
+                    AuthorProfilePictureUrl = r.Author.ProfilePictureURL,
+                    CommentText = r.CommentText,
+                    PostedOn = r.PostedOn.ToString("yyyy-MM-dd HH:mm"),
+                })
+                .ToList(),
+        })
+        .ToList();
+
             var postViewModel = new PostViewModel
             {
                 Id = post.Id,
@@ -185,15 +210,7 @@
                 AuthorProfilePictureUrl = post.User.ProfilePictureURL,
                 LikeCount = post.LikeCount,
                 IsLikedByCurrentUser = post.Likes.Any(l => l.UserId == User.FindFirst(ClaimTypes.NameIdentifier)?.Value),
-                Comments = post.Comments.Select(c => new CommentViewModel
-                {
-                    Id = c.Id,
-                    AuthorId = c.Author.Id,
-                    AuthorName = $"{c.Author.FirstName} {c.Author.LastName}",
-                    AuthorProfilePictureUrl = c.Author.ProfilePictureURL,
-                    CommentText = c.CommentText,
-                    PostedOn = c.PostedOn.ToString("yyyy-MM-dd HH:mm"),
-                }).ToList(),
+                Comments = comments,
             };
 
             return this.View(postViewModel);
@@ -321,12 +338,11 @@
                 PostedOn = DateTime.UtcNow,
             };
 
-            parentComment.Replies.Add(newReply);
 
             dbContext.Comments.Add(newReply);
             await dbContext.SaveChangesAsync();
 
-            return RedirectToAction("PostDetails", new { id = postId }); // Оставаме на същия пост
+            return Json(new { success = true, message = "Reply added successfully!", replyId = newReply.Id });
         }
 
 
@@ -334,13 +350,24 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteComment(int commentId)
         {
-            var comment = await this.dbContext.Comments.FindAsync(commentId);
+            var comment = await this.dbContext.Comments
+                                      .Include(c => c.Replies) // Зареждаме всички отговори
+                                      .FirstOrDefaultAsync(c => c.Id == commentId);
             if (comment == null)
             {
                 return this.NotFound();
             }
 
+            // Премахваме всички отговори на коментара
+            foreach (var reply in comment.Replies.ToList())
+            {
+                this.dbContext.Comments.Remove(reply);
+            }
+
+            // Премахваме самия коментар
             this.dbContext.Comments.Remove(comment);
+
+            // Записваме промените в базата
             await dbContext.SaveChangesAsync();
 
             return Ok();

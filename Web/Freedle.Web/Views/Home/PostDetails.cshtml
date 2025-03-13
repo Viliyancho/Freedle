@@ -1,6 +1,141 @@
-﻿@{
-    this.ViewData["Title"] = "Post Details";
-}
-<h1>@this.ViewData["Title"]</h1>
+﻿@model Freedle.Web.ViewModels.PostViewModel
 
-<p>Use this page to detail your site's privacy policy.</p>
+<style>
+    body {
+        background: linear-gradient(to right, skyblue, #708090);
+        font-family: Arial, sans-serif;
+        padding: 20px;
+    }
+
+    .post-card {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .post-card:hover {
+            transform: scale(1.02);
+        }
+
+    .card-header {
+        background: rgba(255, 255, 255, 0.9);
+        border-bottom: 1px solid #ddd;
+        padding: 10px 15px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .card-body {
+        padding: 15px;
+        text-align: center;
+    }
+
+    .card-footer {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 10px 15px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    button {
+        transition: all 0.3s ease;
+    }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+    .comment {
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 5px;
+        padding: 10px;
+        margin-top: 10px;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+        .comment:hover {
+            opacity: 0.9;
+        }
+
+    textarea {
+        transition: box-shadow 0.3s;
+    }
+
+        textarea:focus {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+</style>
+
+<div class="card mb-4 post-card">
+    <div class="card-header d-flex align-items-center">
+        <img src="@Model.AuthorProfilePictureUrl" class="rounded-circle me-2" width="40" height="40" />
+        <strong>@Model.AuthorName</strong>
+        <span class="text-muted ms-auto">@Model.CreatedOn</span>
+    </div>
+
+    <div class="card-body d-flex flex-column align-items-center">
+        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+        {
+            <img src="@Model.ImageUrl" class="rounded border border-8 border-dark shadow-lg mb-2"
+                 alt="Post image" style="max-width: 75%; height: auto; display: block; margin: auto;" />
+        }
+        <p class="card-text">@Model.Content</p>
+    </div>
+
+    <div class="card-footer d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center gap-2">
+            <form method="post" action="@Url.Action("ToggleLike", "Home")">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="postId" value="@Model.Id" />
+                <button type="submit" class="btn @(Model.IsLikedByCurrentUser ? "btn-primary" : "btn-outline-primary") btn-sm">
+                    👍 <span class="like-count">@Model.LikeCount</span>
+                </button>
+            </form>
+            <a href="/Post/Details/@Model.Id" class="btn btn-outline-secondary btn-sm">💬 Comments</a>
+        </div>
+    </div>
+</div>
+
+<h4>Comments</h4>
+@if (Model.Comments.Any())
+{
+    @foreach (var comment in Model.Comments)
+    {
+        <div class="comment">
+            <img src="@comment.AuthorProfilePictureUrl" class="rounded-circle me-2" width="30" height="30" />
+            <strong>@comment.AuthorName</strong>
+            <p>@comment.CommentText</p>
+            <span class="text-muted">@comment.PostedOn</span>
+        </div>
+    }
+}
+else
+{
+    <p>No comments yet.</p>
+}
+
+<form method="post" action="@Url.Action("AddComment", "Home")">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="postId" value="@Model.Id" />
+    <textarea name="commentText" class="form-control" placeholder="Add a comment..." required></textarea>
+    <button type="submit" class="btn btn-primary mt-2">Publish</button>
+</form>
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const commentButton = document.querySelector(".btn-outline-secondary");
+        const commentField = document.querySelector("textarea");
+
+        if (commentButton && commentField) {
+            commentButton.addEventListener("click", function(event) {
+                event.preventDefault();
+                commentField.scrollIntoView({ behavior: "smooth" });
+                commentField.focus();
+            });
+        }
+    });
+</script>

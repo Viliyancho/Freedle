@@ -127,10 +127,44 @@
             return this.View();
         }
 
-        public IActionResult PostDetails()
+        public async Task<IActionResult> PostDetails(int id)
         {
-            return this.View();
+            var post = await this.dbContext.Posts
+                .Include(p => p.User)
+                .Include(p => p.Comments)
+                .ThenInclude(c => c.Author)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (post == null)
+            {
+                return this.NotFound();
+            }
+
+            var postViewModel = new PostViewModel
+            {
+                Id = post.Id,
+                Content = post.Content,
+                ImageUrl = post.ImageURL,
+                CreatedOn = post.CreatedOn.ToString("yyyy-MM-dd HH:mm"),
+                AuthorId = post.User.Id,
+                AuthorName = $"{post.User.FirstName} {post.User.LastName}",
+                AuthorProfilePictureUrl = post.User.ProfilePictureURL,
+                LikeCount = post.LikeCount,
+                IsLikedByCurrentUser = post.Likes.Any(l => l.UserId == User.FindFirst(ClaimTypes.NameIdentifier)?.Value),
+                Comments = post.Comments.Select(c => new CommentViewModel
+                {
+                    Id = c.Id,
+                    AuthorId = c.Author.Id,
+                    AuthorName = $"{c.Author.FirstName} {c.Author.LastName}",
+                    AuthorProfilePictureUrl = c.Author.ProfilePictureURL,
+                    CommentText = c.CommentText,
+                    PostedOn = c.PostedOn.ToString("yyyy-MM-dd HH:mm"),
+                }).ToList(),
+            };
+
+            return this.View(postViewModel);
         }
+
 
         public async Task<IActionResult> MyProfile()
         {
@@ -181,6 +215,11 @@
 
             // Връщаме данните към изгледа (може да го използвате с изглед с име "MyProfile")
             return View(userProfileViewModel);
+        }
+
+        public IActionResult AddComment()
+        {
+            return View();
         }
 
         // GET метод, който показва формата за създаване на пост

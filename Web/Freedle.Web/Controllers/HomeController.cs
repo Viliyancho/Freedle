@@ -12,6 +12,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
+    using SendGrid.Helpers.Mail;
 
     public class HomeController : BaseController
     {
@@ -80,7 +81,7 @@
                 SuggestedUsers = suggestedUsers,
             };
 
-            return View(model);
+            return this.View(model);
         }
 
         [HttpPost]
@@ -93,19 +94,19 @@
                 return this.Redirect("/Identity/Account/Login"); // Ако не е логнат, пращаме към логин
             }
 
-            var post = dbContext.Posts.Include(p => p.Likes).FirstOrDefault(p => p.Id == postId);
+            var post = this.dbContext.Posts.Include(p => p.Likes).FirstOrDefault(p => p.Id == postId);
             if (post == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
-            var existingLike = dbContext.UserLikes.FirstOrDefault(l => l.PostId == postId && l.UserId == userId);
+            var existingLike = this.dbContext.UserLikes.FirstOrDefault(l => l.PostId == postId && l.UserId == userId);
 
             if (existingLike != null)
             {
                 // Премахва лайка, ако вече е натиснат
                 post.Likes.Remove(existingLike);
-                dbContext.UserLikes.Remove(existingLike);
+                this.dbContext.UserLikes.Remove(existingLike);
                 post.LikeCount--;
             }
             else
@@ -217,15 +218,108 @@
             return View(userProfileViewModel);
         }
 
-        public IActionResult AddComment()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddComment(int postId, string commentText)
         {
-            return View();
+            if (string.IsNullOrWhiteSpace(commentText))
+            {
+                TempData["ErrorMessage"] = "Comment must not be empty.";
+                return RedirectToAction("MyProfile", "Home");
+            }
+
+            var user = await this.userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            var post = dbContext.Posts.Include(p => p.Comments).FirstOrDefault(p => p.Id == postId);
+
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            var newComment = new Comment
+            {
+                PostId = postId,
+                AuthorId = user.Id, // Връзка с потребителя
+                CommentText = commentText.Trim(), // Премахване на празни символи
+                PostedOn = DateTime.UtcNow,
+            };
+
+            post.Comments.Add(newComment);
+            await this.dbContext.SaveChangesAsync(); // Асинхронно записване
+
+            return RedirectToAction("PostDetails", new { id = postId });
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddReply(int commentId, int postId, string replyText)
+        {
+            if (string.IsNullOrWhiteSpace(replyText))
+            {
+                TempData["ErrorMessage"] = "Reply cannot be empty.";
+                return RedirectToAction("PostDetails", new { id = postId }); // Оставаме на същия пост
+            }
+
+            var user = await this.userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            var parentComment = await dbContext.Comments
+                .FirstOrDefaultAsync(c => c.Id == commentId);
+
+            if (parentComment == null)
+            {
+                return NotFound();
+            }
+
+            var newReply = new Comment
+            {
+                PostId = postId, // Свързваме риплея с публикацията
+                AuthorId = user.Id,
+                CommentText = replyText.Trim(),
+                ParentCommentId = commentId,
+                PostedOn = DateTime.UtcNow,
+            };
+
+            parentComment.Replies.Add(newReply);
+
+            dbContext.Comments.Add(newReply);
+            await dbContext.SaveChangesAsync();
+
+            return RedirectToAction("PostDetails", new { id = postId }); // Оставаме на същия пост
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteComment(int commentId)
+        {
+            var comment = await this.dbContext.Comments.FindAsync(commentId);
+            if (comment == null)
+            {
+                return this.NotFound();
+            }
+
+            this.dbContext.Comments.Remove(comment);
+            await dbContext.SaveChangesAsync();
+
+            return Ok();
+        }
+
+
+
 
         // GET метод, който показва формата за създаване на пост
         public IActionResult CreatePost()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Freedle.Web.ViewModels")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4c233c47a9a28b62fc797299d26d3d9552ca52d8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bc6e20757c5a3c0b5f4e2724e5721384e1906473")]
 [assembly: System.Reflection.AssemblyProductAttribute("Freedle.Web.ViewModels")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Freedle.Web.ViewModels")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

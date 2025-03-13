@@ -18,7 +18,11 @@ namespace Freedle.Web.ViewModels
 
         public string CommentText { get; set; }
 
-        public string PostedOn { get; set; } // Форматирано като "преди 2 часа"
+        public string PostedOn { get; set; }
+
+        public int? ParentCommentId { get; set; }
+
+        public List<CommentViewModel> Replies { get; set; } = new List<CommentViewModel>();
     }
 
 }

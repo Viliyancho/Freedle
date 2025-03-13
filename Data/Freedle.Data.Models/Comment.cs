@@ -20,6 +20,11 @@
 
         public Post Post { get; set; }
 
+        // Добавено поле за parent comment (само ако е reply)
+        public int? ParentCommentId { get; set; }
+
+        public Comment ParentComment { get; set; }
+
         public ICollection<Comment> Replies { get; set; } = new HashSet<Comment>();
     }
 }

@@ -110,6 +110,7 @@
             dbContext.Comments.RemoveRange(post.Comments);
             dbContext.SaveChanges(); // Запази промените преди да трием поста
 
+
             dbContext.Posts.Remove(post);
             dbContext.SaveChanges();
 

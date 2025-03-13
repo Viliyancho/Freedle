@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\05ac95b3-b2e7-4666-a188-1844e9bbb94b.png",
+      "PackagePath": "staticwebassets\\images\\05ac95b3-b2e7-4666-a188-1844e9bbb94b.png"
+    },
+    {
       "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\08dfde24-b915-49d7-aab4-b094a6b7a9bf.png",
       "PackagePath": "staticwebassets\\images\\08dfde24-b915-49d7-aab4-b094a6b7a9bf.png"
     },
@@ -63,6 +67,10 @@
     {
       "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\df0d6bf2-2bd4-4ec7-9c3e-dc8a1fba2eed.jpg",
       "PackagePath": "staticwebassets\\images\\df0d6bf2-2bd4-4ec7-9c3e-dc8a1fba2eed.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\df60463c-6046-4c3b-8600-bd4ce87d4f02.jpg",
+      "PackagePath": "staticwebassets\\images\\df60463c-6046-4c3b-8600-bd4ce87d4f02.jpg"
     },
     {
       "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\js\\site.js",

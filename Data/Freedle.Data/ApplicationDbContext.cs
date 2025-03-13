@@ -97,7 +97,7 @@
                 .HasOne(ul => ul.User)
                 .WithMany(u => u.Likes)
                 .HasForeignKey(ul => ul.UserId)
-                .OnDelete(DeleteBehavior.Restrict); 
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<UserLike>()
                 .HasOne(ul => ul.Post)
@@ -125,6 +125,12 @@
                 .WithMany(c => c.Messages)
                 .HasForeignKey(m => m.ConversationId)
                 .OnDelete(DeleteBehavior.Cascade); // Ако се изтрие Conversation, да се изтрият и съобщенията
+
+            builder.Entity<UserLike>()
+            .HasOne(ul => ul.Post) // Свързваме UserLike с Post
+            .WithMany(p => p.Likes) // Има много Likes за един Post
+            .HasForeignKey(ul => ul.PostId) // Външен ключ
+            .OnDelete(DeleteBehavior.Cascade); // Каскадно изтриване
 
             builder.Entity<Comment>()
         .HasOne(c => c.ParentComment)

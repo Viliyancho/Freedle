@@ -86,6 +86,39 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        public IActionResult DeletePost(int postId)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+            {
+                return Unauthorized(); // Ако не е логнат, връщаме грешка
+            }
+
+            var post = dbContext.Posts.FirstOrDefault(p => p.Id == postId);
+            if (post == null)
+            {
+                return NotFound(); // Постът не съществува
+            }
+
+            // Проверка дали текущият потребител е автор на поста или администратор
+            bool isAdmin = User.IsInRole("Admin"); // Ако имаш роля за админ
+            if (post.UserId != userId && !isAdmin)
+            {
+                return Forbid(); // Забраняваме изтриването, ако не е негов
+            }
+
+            dbContext.Comments.RemoveRange(post.Comments);
+            dbContext.SaveChanges(); // Запази промените преди да трием поста
+
+            dbContext.Posts.Remove(post);
+            dbContext.SaveChanges();
+
+            return Ok(); // Връщаме 200 статус за успешна заявка
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult ToggleLike(int postId)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;

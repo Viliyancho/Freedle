@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using System.Reflection;
+    using System.Reflection.Emit;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -68,6 +69,11 @@
             // Needed for Identity models configuration
             base.OnModelCreating(builder);
 
+            builder.Entity<Comment>()
+        .HasOne(c => c.Post)
+        .WithMany(p => p.Comments)
+        .HasForeignKey(c => c.PostId)
+        .OnDelete(DeleteBehavior.Cascade); // Каскадно триене
 
             builder.Entity<UserFollower>()
                 .HasKey(uf => new { uf.UserId, uf.FollowerId }); // Композитен ключ

@@ -32,6 +32,10 @@ namespace Freedle.Web.ViewModels
 
         public int FollowingCount { get; set; }
 
+        public string CurrentUserId { get; set; }
+
+        public string ProfileUserId { get; set; }
+
         public ICollection<PostViewModel> Posts { get; set; } = new HashSet<PostViewModel>();
     }
 

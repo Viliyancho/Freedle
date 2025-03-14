@@ -312,6 +312,78 @@
             return RedirectToAction("PostDetails", new { id = postId });
         }
 
+        [HttpGet]
+        public async Task<IActionResult> EditProfile()
+        {
+            var user = await this.userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var model = new EditMyProfileViewModel
+            {
+                Username = user.UserName,
+                Description = user.Description
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditProfile(EditMyProfileViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("MyProfile", "Home");
+            }
+
+            var user = await this.dbContext.Users.FirstOrDefaultAsync(u => u.Id == this.userManager.GetUserId(User));
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            user.UserName = model.Username;
+            user.Description = model.Description;
+
+            // Ако има нова снимка, качваме я и променяме URL
+            if (model.ProfilePicture != null)
+            {
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/profile_pics");
+
+                // Проверка дали папката съществува, ако не – създаваме я
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+
+                var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(model.ProfilePicture.FileName);
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await model.ProfilePicture.CopyToAsync(fileStream);
+                }
+
+                user.ProfilePictureURL = "/images/profile_pics/" + uniqueFileName;
+            }
+
+            try
+            {
+                await this.dbContext.SaveChangesAsync();
+                return RedirectToAction("MyProfile", "Home");
+            }
+            catch (Exception ex)
+            {
+                // Логване на грешката (ако имаш логер)
+                Console.WriteLine($"Error updating profile: {ex.Message}");
+                return StatusCode(500, new { message = "Error updating profile", error = ex.Message });
+            }
+        }
+
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddReply(int commentId, int postId, string replyText)

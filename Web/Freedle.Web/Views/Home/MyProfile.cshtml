@@ -1,6 +1,10 @@
 ﻿@using Freedle.Data.Models
 @model Freedle.Web.ViewModels.UserProfileViewModel
 
+@{
+    var isCurrentUser = Model.CurrentUserId == Model.ProfileUserId;
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -116,11 +120,32 @@
                 color: #999;
                 transform: scale(1.2);
             }
+
+        .edit-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: blue;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+            .edit-btn:hover {
+                background-color: darkblue;
+            }
     </style>
 </head>
 <body>
     <div class="profile-container">
         <img class="profile-pic" src="@Model.ProfilePictureUrl" alt="Profile Picture">
+        <a href="@Url.Action("EditProfile", "Home")">
+            <button class="edit-btn">Edit Profile</button>
+        </a>
         <div class="username">
             @if (Model.Gender == Gender.Male)
             {

@@ -22,6 +22,8 @@ namespace Freedle.Web.ViewModels
 
         public int? ParentCommentId { get; set; }
 
+        public string PostAuthorId { get; set; }
+
         public List<CommentViewModel> Replies { get; set; } = new List<CommentViewModel>();
     }
 

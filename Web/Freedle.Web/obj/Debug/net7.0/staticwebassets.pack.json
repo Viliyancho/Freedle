@@ -37,6 +37,10 @@
       "PackagePath": "staticwebassets\\images\\263adc4d-90ce-4128-a3b0-5f6b1e425046.jpg"
     },
     {
+      "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\27bccbcb-4e15-43be-a7a1-c12eda319ee3.jpg",
+      "PackagePath": "staticwebassets\\images\\27bccbcb-4e15-43be-a7a1-c12eda319ee3.jpg"
+    },
+    {
       "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\3bd5cd80-56ec-4b44-98b3-2bf5c4fb83ae.jpeg",
       "PackagePath": "staticwebassets\\images\\3bd5cd80-56ec-4b44-98b3-2bf5c4fb83ae.jpeg"
     },
@@ -47,6 +51,10 @@
     {
       "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\5dc15b0b-c5bc-480d-b0e0-89842c550be5.jpeg",
       "PackagePath": "staticwebassets\\images\\5dc15b0b-c5bc-480d-b0e0-89842c550be5.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\603eecbc-8441-49a2-88fc-33f87ba447a0.jpg",
+      "PackagePath": "staticwebassets\\images\\603eecbc-8441-49a2-88fc-33f87ba447a0.jpg"
     },
     {
       "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\655c0abb-5681-4385-b923-edbe60296368.png",
@@ -143,6 +151,10 @@
     {
       "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\uploads\\26e94b8d-ca56-4ecc-abe9-f2500b38b693_Screenshot 2022-11-01 112120.png",
+      "PackagePath": "staticwebassets\\uploads\\26e94b8d-ca56-4ecc-abe9-f2500b38b693_Screenshot 2022-11-01 112120.png"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Freedle.Web.Microsoft.AspNetCore.StaticWebAssets.props",

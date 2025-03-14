@@ -184,6 +184,7 @@
             AuthorName = $"{c.Author.FirstName} {c.Author.LastName}",
             AuthorProfilePictureUrl = c.Author.ProfilePictureURL,
             CommentText = c.CommentText,
+            PostAuthorId = c.Post.UserId,
             PostedOn = c.PostedOn.ToString("yyyy-MM-dd HH:mm"),
             Replies = post.Comments // Намираме риплеите за този коментар
                 .Where(r => r.ParentCommentId == c.Id)
@@ -345,6 +346,60 @@
 
             return Json(new { success = true, message = "Reply added successfully!", replyId = newReply.Id });
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteReply(int replyId)
+        {
+
+            Console.WriteLine("REPLY ID = " + replyId);
+            try
+            {
+                if (replyId <= 0)
+                {
+                    return Json(new { success = false, message = "Invalid reply ID" });
+                }
+
+                var reply = await dbContext.Comments.FindAsync(replyId);
+                if (reply == null)
+                {
+                    return Json(new { success = false, message = "Reply not found" });
+                }
+
+                var post = await dbContext.Posts
+                    .Include(p => p.Comments)
+                    .FirstOrDefaultAsync(p => p.Comments.Any(c => c.Id == replyId));
+
+                if (post == null)
+                {
+                    return Json(new { success = false, message = "Post not found" });
+                }
+
+                var currentUserId = this.userManager.GetUserId(User);
+
+                if (string.IsNullOrEmpty(currentUserId))
+                {
+                    return Json(new { success = false, message = "User not authenticated" });
+                }
+
+                if (!User.IsInRole("Admin") && reply.AuthorId != currentUserId && post.UserId != currentUserId)
+                {
+                    return Json(new { success = false, message = "Permission denied" });
+                }
+
+                dbContext.Comments.Remove(reply);
+                await dbContext.SaveChangesAsync();
+
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"DeleteReply Error: {ex.Message}");
+                return Json(new { success = false, message = "An error occurred", error = ex.Message });
+            }
+        }
+
+
 
 
         [HttpPost]

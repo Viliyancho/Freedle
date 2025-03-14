@@ -45,7 +45,7 @@
                                         👍 <span class="like-count">@post.LikeCount</span>
                                     </button>
                                 </form>
-                                <a href="@Url.Action("PostDetails", "Home", new { id = post.Id })" class="btn btn-outline-secondary btn-sm">💬 Comments</a>
+                                <a href="#" class="btn btn-outline-secondary btn-sm comment-btn" data-url="@Url.Action("PostDetails", "Home", new { id = post.Id })">💬 Comments</a>
                             </div>
                         </div>
                     </div>
@@ -67,3 +67,21 @@
 <!-- Anti-Forgery Token -->
 @Html.AntiForgeryToken()
 
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".comment-btn").forEach(button => {
+            button.addEventListener("click", function (event) {
+                event.preventDefault(); // Спира стандартния линк
+
+                let isAuthenticated = @Json.Serialize(User.Identity.IsAuthenticated);
+
+                if (isAuthenticated) {
+                    window.location.href = this.dataset.url; // Пренасочване към PostDetails
+                } else {
+                    window.location.href = "/Identity/Account/Login"; // Пренасочване към Login
+                }
+            });
+        });
+    });
+</script>

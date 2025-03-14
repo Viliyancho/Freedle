@@ -25,12 +25,20 @@
       "PackagePath": "staticwebassets\\images\\11e7cf56-6cec-4ab6-9895-0b73df835d48.png"
     },
     {
+      "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\1499a2cd-67c9-48a0-813c-7687595ee24e.jpg",
+      "PackagePath": "staticwebassets\\images\\1499a2cd-67c9-48a0-813c-7687595ee24e.jpg"
+    },
+    {
       "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\22aa8862-0d15-4843-993c-d81c61816a67.png",
       "PackagePath": "staticwebassets\\images\\22aa8862-0d15-4843-993c-d81c61816a67.png"
     },
     {
       "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\263adc4d-90ce-4128-a3b0-5f6b1e425046.jpg",
       "PackagePath": "staticwebassets\\images\\263adc4d-90ce-4128-a3b0-5f6b1e425046.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\3bd5cd80-56ec-4b44-98b3-2bf5c4fb83ae.jpeg",
+      "PackagePath": "staticwebassets\\images\\3bd5cd80-56ec-4b44-98b3-2bf5c4fb83ae.jpeg"
     },
     {
       "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\3e017c12-c2a1-4f27-8c91-51cea34dce10.png",
@@ -49,12 +57,24 @@
       "PackagePath": "staticwebassets\\images\\72665da7-8e9c-4ae6-a9ff-b988d281d089.jpg"
     },
     {
+      "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\848a840a-796d-43d6-b53f-15e75a8b2a46.jpg",
+      "PackagePath": "staticwebassets\\images\\848a840a-796d-43d6-b53f-15e75a8b2a46.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\8b916723-d191-4dd1-82e7-5a582dcf56df.png",
+      "PackagePath": "staticwebassets\\images\\8b916723-d191-4dd1-82e7-5a582dcf56df.png"
+    },
+    {
       "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\9cc3ae7f-0d83-4790-9ebc-089e958df999.jpeg",
       "PackagePath": "staticwebassets\\images\\9cc3ae7f-0d83-4790-9ebc-089e958df999.jpeg"
     },
     {
       "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\ae304793-7fdb-42d7-9fb1-a67711af5659.jpg",
       "PackagePath": "staticwebassets\\images\\ae304793-7fdb-42d7-9fb1-a67711af5659.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\af7d9db3-3f67-48d6-b82b-494d78a87ca2.jpeg",
+      "PackagePath": "staticwebassets\\images\\af7d9db3-3f67-48d6-b82b-494d78a87ca2.jpeg"
     },
     {
       "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\c0908da7-c401-46d8-b194-bc175e86c8dd.jpeg",
@@ -71,6 +91,10 @@
     {
       "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\df60463c-6046-4c3b-8600-bd4ce87d4f02.jpg",
       "PackagePath": "staticwebassets\\images\\df60463c-6046-4c3b-8600-bd4ce87d4f02.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\e99cd251-d472-48e2-9944-15a422c562b6.jpg",
+      "PackagePath": "staticwebassets\\images\\e99cd251-d472-48e2-9944-15a422c562b6.jpg"
     },
     {
       "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\js\\site.js",

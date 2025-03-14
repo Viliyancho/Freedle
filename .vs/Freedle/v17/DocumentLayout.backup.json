@@ -11,6 +11,10 @@
       "RelativeMoniker": "D:0:0:{B90D1067-FE4C-400E-BA78-5413E30AB9ED}|Web\\Freedle.Web\\Freedle.Web.csproj|solutionrelative:web\\freedle.web\\views\\home\\postdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{E9FDB52F-52DC-48B2-86E1-0176377BB53F}|Data\\Freedle.Data.Models\\Freedle.Data.Models.csproj|c:\\users\\admin\\documents\\sites\\freedle\\data\\freedle.data.models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9FDB52F-52DC-48B2-86E1-0176377BB53F}|Data\\Freedle.Data.Models\\Freedle.Data.Models.csproj|solutionrelative:data\\freedle.data.models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{13B7AACB-9C85-4409-8D4B-95A67D0DFFF7}|Web\\Freedle.Web.ViewModels\\Freedle.Web.ViewModels.csproj|c:\\users\\admin\\documents\\sites\\freedle\\web\\freedle.web.viewmodels\\commentviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{13B7AACB-9C85-4409-8D4B-95A67D0DFFF7}|Web\\Freedle.Web.ViewModels\\Freedle.Web.ViewModels.csproj|solutionrelative:web\\freedle.web.viewmodels\\commentviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -33,10 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B90D1067-FE4C-400E-BA78-5413E30AB9ED}|Web\\Freedle.Web\\Freedle.Web.csproj|c:\\users\\admin\\documents\\sites\\freedle\\web\\freedle.web\\areas\\identity\\pages\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B90D1067-FE4C-400E-BA78-5413E30AB9ED}|Web\\Freedle.Web\\Freedle.Web.csproj|solutionrelative:web\\freedle.web\\areas\\identity\\pages\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E9FDB52F-52DC-48B2-86E1-0176377BB53F}|Data\\Freedle.Data.Models\\Freedle.Data.Models.csproj|c:\\users\\admin\\documents\\sites\\freedle\\data\\freedle.data.models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E9FDB52F-52DC-48B2-86E1-0176377BB53F}|Data\\Freedle.Data.Models\\Freedle.Data.Models.csproj|solutionrelative:data\\freedle.data.models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{13B7AACB-9C85-4409-8D4B-95A67D0DFFF7}|Web\\Freedle.Web.ViewModels\\Freedle.Web.ViewModels.csproj|c:\\users\\admin\\documents\\sites\\freedle\\web\\freedle.web.viewmodels\\createpostviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -170,7 +170,8 @@
               "RelativeToolTip": "Data\\Freedle.Data\\Migrations\\20250313204621_AddCascadeDeleteForUserLikes.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAAswCkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-13T20:46:21.826Z"
+              "WhenOpened": "2025-03-13T20:46:21.826Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -182,7 +183,8 @@
               "RelativeToolTip": "Data\\Freedle.Data\\Migrations\\20250313184824_EnableCascadeDeletion.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-13T18:48:24.469Z"
+              "WhenOpened": "2025-03-13T18:48:24.469Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -192,19 +194,20 @@
               "RelativeDocumentMoniker": "Data\\Freedle.Data\\Migrations\\20250313122709_AddParrentCommentLogic.cs",
               "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data\\Migrations\\20250313122709_AddParrentCommentLogic.cs",
               "RelativeToolTip": "Data\\Freedle.Data\\Migrations\\20250313122709_AddParrentCommentLogic.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADkAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-13T12:27:09.419Z"
+              "WhenOpened": "2025-03-13T12:27:09.419Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "CommentViewModel.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web.ViewModels\\CommentViewModel.cs",
               "RelativeDocumentMoniker": "Web\\Freedle.Web.ViewModels\\CommentViewModel.cs",
               "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web.ViewModels\\CommentViewModel.cs",
               "RelativeToolTip": "Web\\Freedle.Web.ViewModels\\CommentViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAIwBQAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAzwBgAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-13T11:38:17.464Z",
               "EditorCaption": ""
@@ -217,7 +220,7 @@
               "RelativeDocumentMoniker": "Web\\Freedle.Web\\Views\\Home\\PostDetails.cshtml",
               "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Views\\Home\\PostDetails.cshtml",
               "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\PostDetails.cshtml",
-              "ViewState": "AgIAAOcAAAAAAAAAAAAuwPwAAAArAAAAAAAAAA==",
+              "ViewState": "AgIAAKIAAAAAAAAAAAAnwKkAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-03-11T23:18:44.659Z",
               "EditorCaption": ""
@@ -232,7 +235,8 @@
               "RelativeToolTip": "Data\\Freedle.Data\\Migrations\\20250311220322_LikedCountZero.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T22:03:22.956Z"
+              "WhenOpened": "2025-03-11T22:03:22.956Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -244,7 +248,8 @@
               "RelativeToolTip": "Data\\Freedle.Data\\Migrations\\20250311215346_AddLikeCountToPost.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T21:53:46.662Z"
+              "WhenOpened": "2025-03-11T21:53:46.662Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -256,7 +261,8 @@
               "RelativeToolTip": "Data\\Freedle.Data\\Migrations\\20250311212700_InitialCreate.cs",
               "ViewState": "AgIAABMAAAAAAAAAAAAQwA0AAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T21:27:00.889Z"
+              "WhenOpened": "2025-03-11T21:27:00.889Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -268,7 +274,8 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Controllers\\BaseController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T21:15:10.349Z"
+              "WhenOpened": "2025-03-11T21:15:10.349Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -280,7 +287,8 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\Index.cshtml",
               "ViewState": "AgIAACUAAAAAAAAAAAAuwDQAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-11T20:31:49.405Z"
+              "WhenOpened": "2025-03-11T20:31:49.405Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -292,7 +300,8 @@
               "RelativeToolTip": "Web\\Freedle.Web.ViewModels\\CreatePostViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T20:18:09.538Z"
+              "WhenOpened": "2025-03-11T20:18:09.538Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -304,7 +313,8 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\CreatePost.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-10T17:55:40.623Z"
+              "WhenOpened": "2025-03-10T17:55:40.623Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -316,7 +326,8 @@
               "RelativeToolTip": "Web\\Freedle.Web.ViewModels\\PostViewModel.cs",
               "ViewState": "AgIAAAQAAAAAAAAAAAAQwCEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T17:01:26.936Z"
+              "WhenOpened": "2025-03-10T17:01:26.936Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -328,7 +339,8 @@
               "RelativeToolTip": "Web\\Freedle.Web.ViewModels\\NewsFeedViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T16:59:44.08Z"
+              "WhenOpened": "2025-03-10T16:59:44.08Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -340,17 +352,18 @@
               "RelativeToolTip": "Web\\Freedle.Web.ViewModels\\SuggestedUserViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T16:58:42.705Z"
+              "WhenOpened": "2025-03-10T16:58:42.705Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "MyProfile.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Views\\Home\\MyProfile.cshtml",
               "RelativeDocumentMoniker": "Web\\Freedle.Web\\Views\\Home\\MyProfile.cshtml",
               "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Views\\Home\\MyProfile.cshtml",
               "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\MyProfile.cshtml",
-              "ViewState": "AgIAAJkAAAAAAAAAAAAAAKwAAAAHAAAAAAAAAA==",
+              "ViewState": "AgIAAJYAAAAAAAAAAIBJwKwAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-03-10T16:52:04.129Z",
               "EditorCaption": ""
@@ -365,7 +378,8 @@
               "RelativeToolTip": "Web\\Freedle.Web.ViewModels\\UserProfileViewModel.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAxwCEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T16:39:14.479Z"
+              "WhenOpened": "2025-03-10T16:39:14.479Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -375,14 +389,14 @@
               "RelativeDocumentMoniker": "Web\\Freedle.Web\\Controllers\\HomeController.cs",
               "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Controllers\\HomeController.cs",
               "RelativeToolTip": "Web\\Freedle.Web\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAGcBAAAAAAAAAAAUwHkBAABFAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAmwGIAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-10T16:37:48.701Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Register.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
               "RelativeDocumentMoniker": "Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
@@ -390,7 +404,8 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
               "ViewState": "AgIAALYAAAAAAAAAAAAuwMIAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-10T16:15:06.626Z"
+              "WhenOpened": "2025-03-10T16:15:06.626Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -400,13 +415,14 @@
               "RelativeDocumentMoniker": "Data\\Freedle.Data.Models\\PostReport.cs",
               "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models\\PostReport.cs",
               "RelativeToolTip": "Data\\Freedle.Data.Models\\PostReport.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwBUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T17:17:15.571Z"
+              "WhenOpened": "2025-03-08T17:17:15.571Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Post.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models\\Post.cs",
               "RelativeDocumentMoniker": "Data\\Freedle.Data.Models\\Post.cs",
@@ -427,19 +443,21 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\Page.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwBkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T17:15:59.712Z"
+              "WhenOpened": "2025-03-08T17:15:59.712Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 2,
               "Title": "ApplicationUser.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models\\ApplicationUser.cs",
               "RelativeDocumentMoniker": "Data\\Freedle.Data.Models\\ApplicationUser.cs",
               "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models\\ApplicationUser.cs",
               "RelativeToolTip": "Data\\Freedle.Data.Models\\ApplicationUser.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAwwE8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAwwAoAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T15:48:42.336Z"
+              "WhenOpened": "2025-03-08T15:48:42.336Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -451,7 +469,8 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\UserConversation.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T15:41:34.217Z"
+              "WhenOpened": "2025-03-08T15:41:34.217Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -463,7 +482,8 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\Message.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T15:40:03.835Z"
+              "WhenOpened": "2025-03-08T15:40:03.835Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -475,7 +495,8 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\Conversation.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T15:39:27.277Z"
+              "WhenOpened": "2025-03-08T15:39:27.277Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -487,7 +508,8 @@
               "RelativeToolTip": "Data\\Freedle.Data\\ApplicationDbContext.cs",
               "ViewState": "AgIAAHwAAAAAAAAAAAAAwIMAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T15:23:28.159Z"
+              "WhenOpened": "2025-03-08T15:23:28.159Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -499,7 +521,8 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\UserLike.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T15:22:09.364Z"
+              "WhenOpened": "2025-03-08T15:22:09.364Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -511,7 +534,8 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\UserFollower.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAcwBkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T15:18:35.705Z"
+              "WhenOpened": "2025-03-08T15:18:35.705Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -523,7 +547,8 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\ReportReason.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T15:17:45.585Z"
+              "WhenOpened": "2025-03-08T15:17:45.585Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -535,11 +560,12 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\Gender.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T15:14:50.419Z"
+              "WhenOpened": "2025-03-08T15:14:50.419Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Comment.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models\\Comment.cs",
               "RelativeDocumentMoniker": "Data\\Freedle.Data.Models\\Comment.cs",
@@ -560,11 +586,12 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
               "ViewState": "AgIAAF0AAAAAAAAAAAAUwGEAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-07T19:41:28.702Z"
+              "WhenOpened": "2025-03-07T19:41:28.702Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Register.cshtml.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
               "RelativeDocumentMoniker": "Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
@@ -585,7 +612,8 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Views\\Shared\\_LoginPartial.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-07T19:22:34.811Z"
+              "WhenOpened": "2025-03-07T19:22:34.811Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -597,7 +625,8 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAAAEAAAAAAAAAAAAwwA8AAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-07T19:15:19.665Z"
+              "WhenOpened": "2025-03-07T19:15:19.665Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -609,7 +638,8 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Program.cs",
               "ViewState": "AgIAADgAAAAAAAAAAAAmwCUAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-07T18:59:53.17Z"
+              "WhenOpened": "2025-03-07T18:59:53.17Z",
+              "EditorCaption": ""
             }
           ]
         }

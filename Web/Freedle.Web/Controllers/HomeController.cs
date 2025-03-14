@@ -164,6 +164,10 @@
 
         public async Task<IActionResult> PostDetails(int id)
         {
+            var currentUserId = await this.userManager.GetUserAsync(User);
+
+            ViewData["CurrentUserId"] = currentUserId;
+
             var post = await this.dbContext.Posts
                 .Include(p => p.User)
                 .Include(p => p.Comments)
@@ -185,6 +189,7 @@
             AuthorProfilePictureUrl = c.Author.ProfilePictureURL,
             CommentText = c.CommentText,
             PostAuthorId = c.Post.UserId,
+            PostAuthorName = c.Post.User.UserName,
             PostedOn = c.PostedOn.ToString("yyyy-MM-dd HH:mm"),
             Replies = post.Comments // Намираме риплеите за този коментар
                 .Where(r => r.ParentCommentId == c.Id)
@@ -351,8 +356,6 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteReply(int replyId)
         {
-
-            Console.WriteLine("REPLY ID = " + replyId);
             try
             {
                 if (replyId <= 0)
@@ -406,28 +409,62 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteComment(int commentId)
         {
-            var comment = await this.dbContext.Comments
-                                      .Include(c => c.Replies) // Зареждаме всички отговори
-                                      .FirstOrDefaultAsync(c => c.Id == commentId);
-            if (comment == null)
+            try
             {
-                return this.NotFound();
-            }
+                if (commentId <= 0)
+                {
+                    return Json(new { success = false, message = "Invalid comment ID" });
+                }
 
-            // Премахваме всички отговори на коментара
-            foreach (var reply in comment.Replies.ToList())
+                var comment = await dbContext.Comments
+                    .Include(c => c.Replies) // Зареждаме всички отговори на коментара
+                    .FirstOrDefaultAsync(c => c.Id == commentId);
+                if (comment == null)
+                {
+                    return Json(new { success = false, message = "Comment not found" });
+                }
+
+                var post = await dbContext.Posts
+                    .FirstOrDefaultAsync(p => p.Comments.Any(c => c.Id == commentId));
+
+                if (post == null)
+                {
+                    return Json(new { success = false, message = "Post not found" });
+                }
+
+                var currentUserId = this.userManager.GetUserId(User);
+                if (string.IsNullOrEmpty(currentUserId))
+                {
+                    return Json(new { success = false, message = "User not authenticated" });
+                }
+
+                // Проверяваме дали потребителят е администратор, автор на коментара или автор на поста
+                if (!User.IsInRole("Admin") && comment.AuthorId != currentUserId && post.UserId != currentUserId)
+                {
+                    return Json(new { success = false, message = "Permission denied" });
+                }
+
+                // Премахваме всички отговори на коментара
+                foreach (var reply in comment.Replies.ToList())
+                {
+                    this.dbContext.Comments.Remove(reply);
+                }
+
+                // Премахваме самия коментар
+                this.dbContext.Comments.Remove(comment);
+
+                // Записваме промените в базата
+                await dbContext.SaveChangesAsync();
+
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
             {
-                this.dbContext.Comments.Remove(reply);
+                Console.WriteLine($"DeleteComment Error: {ex.Message}");
+                return Json(new { success = false, message = "An error occurred", error = ex.Message });
             }
-
-            // Премахваме самия коментар
-            this.dbContext.Comments.Remove(comment);
-
-            // Записваме промените в базата
-            await dbContext.SaveChangesAsync();
-
-            return Ok();
         }
+
 
 
 

@@ -24,6 +24,8 @@ namespace Freedle.Web.ViewModels
 
         public string PostAuthorId { get; set; }
 
+        public string PostAuthorName { get; set; }
+
         public List<CommentViewModel> Replies { get; set; } = new List<CommentViewModel>();
     }
 

@@ -113,6 +113,14 @@
       "PackagePath": "staticwebassets\\images\\e99cd251-d472-48e2-9944-15a422c562b6.jpg"
     },
     {
+      "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\profile_pics\\70ab8e18-a679-4d45-92d3-43446354b972_462552805_539076969009171_4156775799107025084_n.jpg",
+      "PackagePath": "staticwebassets\\images\\profile_pics\\70ab8e18-a679-4d45-92d3-43446354b972_462552805_539076969009171_4156775799107025084_n.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\profile_pics\\d88a44f9-f3dc-4495-81dd-956af42d563f_3fbf5e57-6352-4dbe-b6a9-861ba08c9e8f.a33f77df4e4bbf871a0d388a4cfbacc9.jpeg",
+      "PackagePath": "staticwebassets\\images\\profile_pics\\d88a44f9-f3dc-4495-81dd-956af42d563f_3fbf5e57-6352-4dbe-b6a9-861ba08c9e8f.a33f77df4e4bbf871a0d388a4cfbacc9.jpeg"
+    },
+    {
       "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

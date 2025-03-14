@@ -12,14 +12,12 @@
         font-family: Arial, sans-serif;
     }
 
-
     h1 {
         color: skyblue;
         font-weight: bold;
         text-align: center;
         margin-bottom: 0em;
     }
-
 
     #registerForm {
         background-color: rgba(255, 255, 255, 0.9);
@@ -29,7 +27,6 @@
         position: relative;
         z-index: 1;
     }
-
 
     .form-floating {
         margin-bottom: 20px;
@@ -41,7 +38,6 @@
         height: 50px;
         background-color: #f0f8ff;
     }
-
 
     #registerSubmit {
         background-color: #4a90e2;
@@ -57,7 +53,6 @@
             background-color: #357ab7;
         }
 
-
     .form-container {
         display: flex;
         align-items: center;
@@ -66,14 +61,12 @@
         margin-top: 3em;
     }
 
-
     .left-image, .right-image {
         position: absolute;
         width: 150px;
         opacity: 0.8;
         z-index: 0;
     }
-
 
     .left-image {
         position: absolute;
@@ -92,19 +85,20 @@
     }
 
     #registerForm {
-        max-height: 325px; /* Или друга височина според нуждите */
+        max-height: 325px;
         overflow: hidden;
         transition: max-height 0.3s ease-in-out;
     }
 
         #registerForm:hover {
-            max-height: 500px; /* Достатъчно голяма, за да покаже всички полета */
+            max-height: 500px;
             overflow: auto;
         }
 
 </style>
 
 <h1>@ViewData["Title"]</h1>
+
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -113,10 +107,8 @@
 
     <img src="/images/cloud.png" alt="Clouds Left" class="left-image">
 
-
-
     <div class="col-md-4">
-        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
             <h2 class="d-flex justify-content-center">Create a new account.</h2>
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -139,10 +131,10 @@
                 <span asp-validation-for="Input.Username" class="text-danger"></span>
             </div>
 
-            <div class="form-floating">
-                <input asp-for="Input.ProfilePictureURL" class="form-control" placeholder="Profile Picture URL" />
-                <label asp-for="Input.ProfilePictureURL">Profile Picture URL</label>
-                <span asp-validation-for="Input.ProfilePictureURL" class="text-danger"></span>
+            <div class="mb-3">
+                <label asp-for="Input.ProfilePicture" class="form-label">Upload Profile Picture</label>
+                <input type="file" asp-for="Input.ProfilePicture" class="form-control" />
+                <span asp-validation-for="Input.ProfilePicture" class="text-danger"></span>
             </div>
 
             <div class="mb-3">
@@ -150,8 +142,6 @@
                 <textarea asp-for="Input.Description" class="form-control" placeholder="Tell us about yourself"></textarea>
                 <span asp-validation-for="Input.Description" class="text-danger"></span>
             </div>
-
-
 
             <div class="form-floating">
                 <p><strong>Gender (optional):</strong></p>
@@ -210,30 +200,9 @@
         </form>
     </div>
 
-
-
     <img src="/images/cloud.png" alt="Clouds Right" class="right-image">
 
 </div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        let birthDateInput = document.getElementById("birthDate");
-
-        birthDateInput.addEventListener("change", function () {
-            let inputDate = new Date(this.value); // Взима стойността на въведената дата
-            let today = new Date(); // Взима текущата дата
-            let minDate = new Date(); // Създаваме нова дата за минимално разрешената възраст
-            minDate.setFullYear(today.getFullYear() - 14); // Изчисляваме 14 години назад
-
-            if (inputDate > minDate) { // Ако въведената дата е по-голяма от допустимата
-                alert("You must be at least 14 years old to register.");
-                this.value = ""; // Изчиства полето
-            }
-        });
-    });
-</script>
-
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

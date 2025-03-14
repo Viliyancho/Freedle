@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 using Freedle.Data.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -114,8 +116,9 @@ namespace Freedle.Web.Areas.Identity.Pages.Account
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
 
-            [Display(Name = "Profile Picture URL")]
-            public string ProfilePictureURL { get; set; }
+            [Required]
+            [Display(Name = "Profile Picture")]
+            public IFormFile ProfilePicture { get; set; }
 
             [Display(Name = "Bio")]
             public string Description { get; set; }
@@ -144,19 +147,19 @@ namespace Freedle.Web.Areas.Identity.Pages.Account
         {
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
 
-                await _userStore.SetUserNameAsync(user, this.Input.Username, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, this.Input.Email, CancellationToken.None);
+                await _userStore.SetUserNameAsync(user, Input.Username, CancellationToken.None);
+                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
 
-                user.FirstName = this.Input.FirstName;
-                user.LastName = this.Input.LastName;
-                user.ProfilePictureURL = this.Input.ProfilePictureURL;
-                user.Description = this.Input.Description;
-                user.City = this.Input.City;
-                user.Country = this.Input.Country;
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
+                user.Description = Input.Description;
+                user.City = Input.City;
+                user.Country = Input.Country;
 
                 if (Input.Gender.HasValue)
                     user.Gender = Input.Gender;
@@ -164,7 +167,24 @@ namespace Freedle.Web.Areas.Identity.Pages.Account
                 if (Input.BirthDay.HasValue)
                     user.BirthDay = Input.BirthDay;
 
-                var result = await _userManager.CreateAsync(user, this.Input.Password);
+                // **Обработка на профилната снимка**
+                if (Input.ProfilePicture != null && Input.ProfilePicture.Length > 0)
+                {
+                    var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+                    Directory.CreateDirectory(uploadsFolder); // Създава директорията, ако не съществува
+
+                    var uniqueFileName = $"{Guid.NewGuid()}_{Path.GetFileName(Input.ProfilePicture.FileName)}";
+                    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await Input.ProfilePicture.CopyToAsync(stream);
+                    }
+
+                    user.ProfilePictureURL = $"/uploads/{uniqueFileName}"; // Запазва пътя за база данни
+                }
+
+                var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
@@ -179,12 +199,12 @@ namespace Freedle.Web.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(this.Input.Email, "Confirm your email",
+                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        return RedirectToPage("RegisterConfirmation", new { email = this.Input.Email, returnUrl = returnUrl });
+                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
                     }
                     else
                     {
@@ -192,15 +212,16 @@ namespace Freedle.Web.Areas.Identity.Pages.Account
                         return LocalRedirect(returnUrl);
                     }
                 }
+
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return Page();
         }
+
 
         private ApplicationUser CreateUser()
         {

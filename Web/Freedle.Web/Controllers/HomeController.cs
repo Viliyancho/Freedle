@@ -345,6 +345,7 @@
             }
 
             user.UserName = model.Username;
+            user.NormalizedUserName = model.Username.ToUpper();
             user.Description = model.Description;
 
             // Ако има нова снимка, качваме я и променяме URL

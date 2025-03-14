@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B90D1067-FE4C-400E-BA78-5413E30AB9ED}|Web\\Freedle.Web\\Freedle.Web.csproj|c:\\users\\admin\\documents\\sites\\freedle\\web\\freedle.web\\areas\\identity\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B90D1067-FE4C-400E-BA78-5413E30AB9ED}|Web\\Freedle.Web\\Freedle.Web.csproj|solutionrelative:web\\freedle.web\\areas\\identity\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{B90D1067-FE4C-400E-BA78-5413E30AB9ED}|Web\\Freedle.Web\\Freedle.Web.csproj|c:\\users\\admin\\documents\\sites\\freedle\\web\\freedle.web\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B90D1067-FE4C-400E-BA78-5413E30AB9ED}|Web\\Freedle.Web\\Freedle.Web.csproj|solutionrelative:web\\freedle.web\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B90D1067-FE4C-400E-BA78-5413E30AB9ED}|Web\\Freedle.Web\\Freedle.Web.csproj|c:\\users\\admin\\documents\\sites\\freedle\\web\\freedle.web\\areas\\identity\\pages\\account\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B90D1067-FE4C-400E-BA78-5413E30AB9ED}|Web\\Freedle.Web\\Freedle.Web.csproj|solutionrelative:web\\freedle.web\\areas\\identity\\pages\\account\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B90D1067-FE4C-400E-BA78-5413E30AB9ED}|Web\\Freedle.Web\\Freedle.Web.csproj|c:\\users\\admin\\documents\\sites\\freedle\\web\\freedle.web\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B90D1067-FE4C-400E-BA78-5413E30AB9ED}|Web\\Freedle.Web\\Freedle.Web.csproj|solutionrelative:web\\freedle.web\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B90D1067-FE4C-400E-BA78-5413E30AB9ED}|Web\\Freedle.Web\\Freedle.Web.csproj|c:\\users\\admin\\documents\\sites\\freedle\\web\\freedle.web\\areas\\identity\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B90D1067-FE4C-400E-BA78-5413E30AB9ED}|Web\\Freedle.Web\\Freedle.Web.csproj|solutionrelative:web\\freedle.web\\areas\\identity\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B90D1067-FE4C-400E-BA78-5413E30AB9ED}|Web\\Freedle.Web\\Freedle.Web.csproj|c:\\users\\admin\\documents\\sites\\freedle\\web\\freedle.web\\views\\home\\editprofile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -170,21 +170,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
-              "RelativeDocumentMoniker": "Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
-              "RelativeToolTip": "Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
-              "ViewState": "AgIAAHQAAAAAAAAAAAAAAHEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-14T20:50:55.975Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 4,
@@ -247,13 +234,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "Web\\Freedle.Web\\Controllers\\HomeController.cs",
               "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Controllers\\HomeController.cs",
               "RelativeToolTip": "Web\\Freedle.Web\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAFwCAAAAAAAAAAAAAHcBAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAEsBAAAAAAAAAAAAAFsBAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-10T16:37:48.701Z",
               "EditorCaption": ""
@@ -269,6 +256,19 @@
               "ViewState": "AgIAAF0AAAAAAAAAAAAUwGEAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-07T19:41:28.702Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "RelativeToolTip": "Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "ViewState": "AgIAAHQAAAAAAAAAAAAAAIYAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-14T20:50:55.975Z",
               "EditorCaption": ""
             },
             {

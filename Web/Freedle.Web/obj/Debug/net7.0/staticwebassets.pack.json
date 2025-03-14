@@ -177,6 +177,18 @@
       "PackagePath": "staticwebassets\\uploads\\26e94b8d-ca56-4ecc-abe9-f2500b38b693_Screenshot 2022-11-01 112120.png"
     },
     {
+      "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\uploads\\5785e0ae-680a-4197-b799-6b52cb047197_363869791_6899239176753809_5430365467076789730_n.jpg",
+      "PackagePath": "staticwebassets\\uploads\\5785e0ae-680a-4197-b799-6b52cb047197_363869791_6899239176753809_5430365467076789730_n.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\uploads\\6693de01-ac1c-42c9-aa4a-e6be53890669_363869791_6899239176753809_5430365467076789730_n.jpg",
+      "PackagePath": "staticwebassets\\uploads\\6693de01-ac1c-42c9-aa4a-e6be53890669_363869791_6899239176753809_5430365467076789730_n.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\uploads\\d2e286ad-a7e1-4d45-a71e-e050fdb0ef3d_363869791_6899239176753809_5430365467076789730_n.jpg",
+      "PackagePath": "staticwebassets\\uploads\\d2e286ad-a7e1-4d45-a71e-e050fdb0ef3d_363869791_6899239176753809_5430365467076789730_n.jpg"
+    },
+    {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Freedle.Web.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

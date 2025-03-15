@@ -645,6 +645,11 @@
         [HttpGet]
         public IActionResult Search()
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return Redirect("/Identity/Account/Login"); // Ако не е логнат, го пращаме към логин
+            }
+
             return View();
         }
 
@@ -656,8 +661,10 @@
                 return Json(new { users = new List<object>() });
             }
 
+            var currentUser = await userManager.GetUserAsync(User); // Взимаме логнатия потребител
+
             var users = await this.dbContext.Users
-                .Where(u => EF.Functions.Like(u.UserName, $"%{query}%")) // Case-insensitive LIKE
+                .Where(u => u.UserName.Contains(query) && (currentUser == null || u.Id != currentUser.Id)) // Филтрираме текущия потребител
                 .Select(u => new
                 {
                     id = u.Id,
@@ -665,6 +672,7 @@
                     profilePicture = u.ProfilePictureURL ?? "/images/default-avatar.png",
                 })
                 .ToListAsync();
+
 
             return Json(new { users });
         }

@@ -1,6 +1,7 @@
 ﻿namespace Freedle.Web.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.IO;
     using System.Linq;
@@ -603,10 +604,33 @@
             return this.Redirect("Views/Shared/Error");
         }
 
+        [HttpGet]
         public IActionResult Search()
         {
-            return this.View();
+            return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> SearchUsers(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                return Json(new { users = new List<object>() });
+            }
+
+            var users = await this.dbContext.Users
+                .Where(u => EF.Functions.Like(u.UserName, $"%{query}%")) // Case-insensitive LIKE
+                .Select(u => new
+                {
+                    id = u.Id,
+                    username = u.UserName,
+                    profilePicture = u.ProfilePictureURL ?? "/images/default-avatar.png",
+                })
+                .ToListAsync();
+
+            return Json(new { users });
+        }
+
 
         public IActionResult Messages()
         {

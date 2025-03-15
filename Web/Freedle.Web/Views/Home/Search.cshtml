@@ -1,6 +1,119 @@
 ﻿@{
-    this.ViewData["Title"] = "Search";
+    ViewData["Title"] = "Search";
 }
-<h1>@this.ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div class="search-container">
+    <h2>Search Users</h2>
+    <input type="text" id="searchInput" placeholder="Type to search..." autocomplete="off">
+    <div id="searchResults"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#searchInput").on("input", function () {
+            let query = $(this).val();
+            if (query.length < 1) {
+                $("#searchResults").html(""); // Изчистване, ако няма текст
+                return;
+            }
+
+            $.ajax({
+                url: "/Home/SearchUsers",
+                type: "GET",
+                data: { query: query },
+                success: function (response) {
+                    let resultsHtml = "";
+                    if (response.users.length === 0) {
+                        resultsHtml = "<p>No users found.</p>";
+                    } else {
+                        response.users.forEach(user => {
+                            resultsHtml += `
+                        <div class="user-result">
+                            <img src="${user.profilePicture}" alt="Profile Pic" class="profile-pic">
+                            <span>${user.username}</span>
+                        </div>
+                    `;
+                        });
+                    }
+                    $("#searchResults").html(resultsHtml);
+                    $("#searchResults .user-result").each(function (index) {
+                        $(this).css("opacity", "0").delay(100 * index).animate({ opacity: 1 }, 300);
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+
+<style>
+    /* Фон с градиент */
+    body {
+        background: linear-gradient(to bottom, #87CEEB, #B0C4DE); /* Sky Blue & Smoke Grey */
+        font-family: Arial, sans-serif;
+        color: #333;
+    }
+
+    /* Центриране на търсачката */
+    .search-container {
+        max-width: 400px;
+        margin: 50px auto;
+        text-align: center;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.8); /* Леко прозрачен фон */
+        border-radius: 15px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        margin-bottom: 15px;
+    }
+
+    /* Поле за търсене */
+    #searchInput {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 2px solid #87CEEB;
+        border-radius: 5px;
+        transition: 0.3s ease-in-out;
+    }
+
+    #searchInput:focus {
+        border-color: #4682B4;
+        outline: none;
+        box-shadow: 0px 0px 10px rgba(70, 130, 180, 0.5);
+    }
+
+    /* Резултати */
+    #searchResults {
+        margin-top: 10px;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .user-result {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        background: rgba(255, 255, 255, 0.7);
+        transition: all 0.3s ease-in-out;
+        opacity: 0;
+    }
+
+    .user-result:hover {
+        background: rgba(255, 255, 255, 0.9);
+        transform: scale(1.02);
+        cursor: pointer;
+    }
+
+    .profile-pic {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+        border: 2px solid #87CEEB;
+    }
+</style>

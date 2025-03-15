@@ -112,6 +112,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\1499a2cd-67c9-48a0-813c-7687595ee24e.jpg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\188ed182-8d5c-48d9-954e-ca21b84b60c2.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Freedle.Web</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Freedle.Web</BasePath>
+      <RelativePath>images/188ed182-8d5c-48d9-954e-ca21b84b60c2.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\188ed182-8d5c-48d9-954e-ca21b84b60c2.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\21a30d83-488e-413f-b453-9c138e2e05f1.png))">
       <SourceType>Package</SourceType>
       <SourceId>Freedle.Web</SourceId>
@@ -848,6 +864,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\6693de01-ac1c-42c9-aa4a-e6be53890669_363869791_6899239176753809_5430365467076789730_n.jpg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\abd70902-0a66-4620-8bcf-93d7027e8f1e_8_7fa64a42-96b5-4abc-b0c5-751e108414b1.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Freedle.Web</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Freedle.Web</BasePath>
+      <RelativePath>uploads/abd70902-0a66-4620-8bcf-93d7027e8f1e_8_7fa64a42-96b5-4abc-b0c5-751e108414b1.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\abd70902-0a66-4620-8bcf-93d7027e8f1e_8_7fa64a42-96b5-4abc-b0c5-751e108414b1.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\d2e286ad-a7e1-4d45-a71e-e050fdb0ef3d_363869791_6899239176753809_5430365467076789730_n.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>Freedle.Web</SourceId>
@@ -863,6 +895,22 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\d2e286ad-a7e1-4d45-a71e-e050fdb0ef3d_363869791_6899239176753809_5430365467076789730_n.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\d8b96ef1-1100-4e3b-92aa-e87daf9426b1_3fbf5e57-6352-4dbe-b6a9-861ba08c9e8f.a33f77df4e4bbf871a0d388a4cfbacc9.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Freedle.Web</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Freedle.Web</BasePath>
+      <RelativePath>uploads/d8b96ef1-1100-4e3b-92aa-e87daf9426b1_3fbf5e57-6352-4dbe-b6a9-861ba08c9e8f.a33f77df4e4bbf871a0d388a4cfbacc9.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\d8b96ef1-1100-4e3b-92aa-e87daf9426b1_3fbf5e57-6352-4dbe-b6a9-861ba08c9e8f.a33f77df4e4bbf871a0d388a4cfbacc9.jpeg))</OriginalItemSpec>
     </StaticWebAsset>
   </ItemGroup>
 </Project>

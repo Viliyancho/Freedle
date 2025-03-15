@@ -150,6 +150,30 @@ namespace Freedle.Web.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
+                if (Input.BirthDay.HasValue)
+                {
+                    var today = DateTime.Today;
+                    var age = today.Year - Input.BirthDay.Value.Year;
+
+                    if (Input.BirthDay.Value.Date > today.AddYears(-age))
+                    {
+                        age--; // Проверка дали рожденият ден вече е минал за текущата година
+                    }
+
+                    if (age < 14)
+                    {
+                        ModelState.AddModelError(string.Empty, "You must be at least 14 years old to register.");
+                        return Page();
+                    }
+                }
+
+                var existingUser = await _userManager.FindByEmailAsync(Input.Email);
+                if (existingUser != null)
+                {
+                    ModelState.AddModelError("Input.Email", "This email is already taken.");
+                    return Page();
+                }
+
                 var user = CreateUser();
 
                 await _userStore.SetUserNameAsync(user, Input.Username, CancellationToken.None);

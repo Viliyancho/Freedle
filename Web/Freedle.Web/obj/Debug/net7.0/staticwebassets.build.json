@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "bs93XBLZ4qXAPS9Q8Vw0w1spCcv012luT5Cj3JplqMU=",
+  "Hash": "6/4B9MSZL+XxIIKriwxScZQUs26mYixNpJSnJLCL3+o=",
   "Source": "Freedle.Web",
   "BasePath": "_content/Freedle.Web",
   "Mode": "Default",
@@ -1290,6 +1290,25 @@
       "OriginalItemSpec": "wwwroot\\images\\1499a2cd-67c9-48a0-813c-7687595ee24e.jpg"
     },
     {
+      "Identity": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\188ed182-8d5c-48d9-954e-ca21b84b60c2.jpg",
+      "SourceId": "Freedle.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\",
+      "BasePath": "_content/Freedle.Web",
+      "RelativePath": "images/188ed182-8d5c-48d9-954e-ca21b84b60c2.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\188ed182-8d5c-48d9-954e-ca21b84b60c2.jpg"
+    },
+    {
       "Identity": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\21a30d83-488e-413f-b453-9c138e2e05f1.png",
       "SourceId": "Freedle.Web",
       "SourceType": "Discovered",
@@ -2164,6 +2183,25 @@
       "OriginalItemSpec": "wwwroot\\uploads\\6693de01-ac1c-42c9-aa4a-e6be53890669_363869791_6899239176753809_5430365467076789730_n.jpg"
     },
     {
+      "Identity": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\uploads\\abd70902-0a66-4620-8bcf-93d7027e8f1e_8_7fa64a42-96b5-4abc-b0c5-751e108414b1.jpg",
+      "SourceId": "Freedle.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\",
+      "BasePath": "_content/Freedle.Web",
+      "RelativePath": "uploads/abd70902-0a66-4620-8bcf-93d7027e8f1e_8_7fa64a42-96b5-4abc-b0c5-751e108414b1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\abd70902-0a66-4620-8bcf-93d7027e8f1e_8_7fa64a42-96b5-4abc-b0c5-751e108414b1.jpg"
+    },
+    {
       "Identity": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\uploads\\d2e286ad-a7e1-4d45-a71e-e050fdb0ef3d_363869791_6899239176753809_5430365467076789730_n.jpg",
       "SourceId": "Freedle.Web",
       "SourceType": "Discovered",
@@ -2181,6 +2219,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\d2e286ad-a7e1-4d45-a71e-e050fdb0ef3d_363869791_6899239176753809_5430365467076789730_n.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\uploads\\d8b96ef1-1100-4e3b-92aa-e87daf9426b1_3fbf5e57-6352-4dbe-b6a9-861ba08c9e8f.a33f77df4e4bbf871a0d388a4cfbacc9.jpeg",
+      "SourceId": "Freedle.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\",
+      "BasePath": "_content/Freedle.Web",
+      "RelativePath": "uploads/d8b96ef1-1100-4e3b-92aa-e87daf9426b1_3fbf5e57-6352-4dbe-b6a9-861ba08c9e8f.a33f77df4e4bbf871a0d388a4cfbacc9.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\d8b96ef1-1100-4e3b-92aa-e87daf9426b1_3fbf5e57-6352-4dbe-b6a9-861ba08c9e8f.a33f77df4e4bbf871a0d388a4cfbacc9.jpeg"
     }
   ]
 }

@@ -29,7 +29,7 @@
                     } else {
                         response.users.forEach(user => {
                             resultsHtml += `
-                        <div class="user-result">
+                            <div class="user-result" data-userid="${user.id}">
                             <img src="${user.profilePicture}" alt="Profile Pic" class="profile-pic">
                             <span>${user.username}</span>
                         </div>
@@ -37,6 +37,20 @@
                         });
                     }
                     $("#searchResults").html(resultsHtml);
+
+                    // Добавяме клик събитие за отваряне на профил
+                    $(document).on("click", ".user-result", function () {
+                        let userId = $(this).attr("data-userid"); // Взимаме user ID
+                        console.log("Clicked User ID:", userId); // Дебъгване
+                        if (userId) {
+                            window.location.href = "/Home/UserProfile?id=" + userId; // Пренасочване
+                        } else {
+                            alert("User ID is missing!");
+                        }
+                    });
+
+
+
                     $("#searchResults .user-result").each(function (index) {
                         $(this).css("opacity", "0").delay(100 * index).animate({ opacity: 1 }, 300);
                     });

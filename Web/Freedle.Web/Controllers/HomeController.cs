@@ -158,6 +158,44 @@
             return RedirectToAction("Index", "Home"); // Презарежда страницата
         }
 
+        [HttpGet]
+        public async Task<IActionResult> UserProfile(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return NotFound();
+            }
+
+            var user = await dbContext.Users
+                .Where(u => u.Id == id)
+                .Select(u => new UserProfileViewModel
+                {
+                    ProfileUserId = u.Id,
+                    Username = u.UserName,
+                    FirstName = u.FirstName,
+                    LastName = u.LastName,
+                    Description = u.Description,
+                    ProfilePictureUrl = u.ProfilePictureURL ?? "/images/default-avatar.png",
+                    Gender = u.Gender,
+                    FollowerCount = u.Followers.Count,
+                    FollowingCount = u.Following.Count,
+                    Posts = u.Posts.Select(p => new PostViewModel
+                    {
+                        Id = p.Id,
+                        ImageUrl = p.ImageURL,
+                    }).ToList()
+                })
+                .FirstOrDefaultAsync();
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
+        }
+
+
         public IActionResult MessagesDemo()
         {
             return this.View();

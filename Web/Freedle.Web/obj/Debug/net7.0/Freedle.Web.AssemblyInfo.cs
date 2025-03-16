@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Freedle.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+75fdadc69a90f2b6fa127b881f2d8542be45a18a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4098a5c270567eff98de0d8985039b2482e6a525")]
 [assembly: System.Reflection.AssemblyProductAttribute("Freedle.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Freedle.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

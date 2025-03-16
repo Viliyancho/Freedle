@@ -9,7 +9,7 @@
     <title>@Model.Username's Profile</title>
     <style>
         body {
-            background: linear-gradient(to bottom, skyblue, smokegray);
+            background: linear-gradient(to bottom, skyblue, lightgray);
             font-family: Arial, sans-serif;
             text-align: center;
         }
@@ -51,6 +51,31 @@
         }
         .stats div {
             font-size: 16px;
+        }
+        .follow-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 16px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .follow {
+            background-color: #1da1f2;
+            color: white;
+        }
+        .follow:hover {
+            background-color: #0d8aec;
+        }
+        .unfollow {
+            background-color: #ff5757;
+            color: white;
+        }
+        .unfollow:hover {
+            background-color: #d94c4c;
         }
         .posts-container {
             width: 80%;
@@ -117,6 +142,15 @@
             <div><strong>@Model.FollowerCount</strong> Followers</div>
             <div><strong>@Model.FollowingCount</strong> Following</div>
         </div>
+
+        <form method="post" action="@Url.Action("ToggleFollow", "Home")">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="id" value="@Model.ProfileUserId" />
+            <button id="followBtn" class="follow-btn @(Model.IsFollowing ? "unfollow" : "follow")">
+                @(Model.IsFollowing ? "Unfollow" : "Follow")
+            </button>
+        </form>
+
     </div>
 
     <div class="posts-container">

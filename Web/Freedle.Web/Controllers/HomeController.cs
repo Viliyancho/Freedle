@@ -17,7 +17,6 @@
 
     public class HomeController : BaseController
     {
-
         private readonly ApplicationDbContext dbContext;
         private readonly UserManager<ApplicationUser> userManager;
 
@@ -26,7 +25,6 @@
             this.dbContext = dbContext;
             this.userManager = userManager;
         }
-
 
         public async Task<IActionResult> Index()
         {
@@ -166,6 +164,8 @@
                 return NotFound();
             }
 
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Взимаме логнатия потребител
+
             var user = await dbContext.Users
                 .Where(u => u.Id == id)
                 .Select(u => new UserProfileViewModel
@@ -183,7 +183,8 @@
                     {
                         Id = p.Id,
                         ImageUrl = p.ImageURL,
-                    }).ToList()
+                    }).ToList(),
+                    IsFollowing = u.Followers.Any(f => f.FollowerId == currentUserId),
                 })
                 .FirstOrDefaultAsync();
 
@@ -192,8 +193,52 @@
                 return NotFound();
             }
 
+
+            Console.WriteLine("ProfileUserId: " + user.ProfileUserId);
             return View(user);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ToggleFollow(string id)
+        {
+            Console.WriteLine("Received ID: " + id); // Логване на входния параметър
+
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (currentUserId == null || id == currentUserId)
+            {
+                return BadRequest();
+            }
+
+            var userToFollow = await dbContext.Users
+                .Include(u => u.Followers)
+                .FirstOrDefaultAsync(u => u.Id == id);
+
+            if (userToFollow == null)
+            {
+                return NotFound();
+            }
+
+            var existingFollow = await dbContext.UserFollowers
+                .FirstOrDefaultAsync(f => f.FollowerId == currentUserId && f.UserId == id);
+
+            if (existingFollow != null)
+            {
+                dbContext.UserFollowers.Remove(existingFollow); // Ако вече го следва -> Unfollow
+            }
+            else
+            {
+                dbContext.UserFollowers.Add(new UserFollower
+                {
+                    FollowerId = currentUserId,
+                    UserId = id,
+                });
+            }
+
+            await dbContext.SaveChangesAsync();
+            return RedirectToAction("UserProfile", new { id });
+        }
+
 
 
         public IActionResult MessagesDemo()

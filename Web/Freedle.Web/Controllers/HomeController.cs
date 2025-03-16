@@ -240,6 +240,83 @@
         }
 
 
+        public IActionResult FollowingList(string id)
+        {
+            var following = dbContext.UserFollowers
+                .Where(f => f.FollowerId == id)
+                .Select(f => new UserViewModel
+                {
+                    Id = f.UserId,
+                    Username = f.User.UserName,
+                    ProfilePictureUrl = f.User.ProfilePictureURL,
+                })
+                .ToList(); // Връща List<UserViewModel>
+
+            return View(following); // Подаваме правилния тип
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> FollowersList(string id)
+        {
+            var user = await dbContext.Users
+                .Include(u => u.Followers)
+                .FirstOrDefaultAsync(u => u.Id == id.ToString());
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var followers = user.Followers.ToList(); // Списък с последователите
+            return View(followers);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken] // CSRF защита
+        public async Task<IActionResult> Unfollow(string userId)
+        {
+            var currentUser = await userManager.GetUserAsync(User);
+            if (currentUser == null) return Unauthorized();
+
+            // Проверяваме дали userId е валиден
+            if (string.IsNullOrEmpty(userId)) return BadRequest("Invalid user ID");
+
+            // Търсим връзката за премахване
+            var followerEntry = await dbContext.UserFollowers
+                .FirstOrDefaultAsync(f => f.UserId == userId && f.FollowerId == currentUser.Id);
+
+            if (followerEntry != null)
+            {
+                dbContext.UserFollowers.Remove(followerEntry);
+                await dbContext.SaveChangesAsync();
+            }
+
+            return RedirectToAction("FollowingList", new { id = currentUser.Id });
+        }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveFollower(string userId)
+        {
+            var currentUser = await userManager.GetUserAsync(User);
+            if (currentUser == null) return Unauthorized();
+
+            // Намираме записа в таблицата UserFollower
+            var followerToRemove = await dbContext.UserFollowers
+                .FirstOrDefaultAsync(uf => uf.UserId == currentUser.Id && uf.FollowerId == userId);
+
+            if (followerToRemove == null) return NotFound();
+
+            // Премахваме го от контекста
+            dbContext.UserFollowers.Remove(followerToRemove);
+            await dbContext.SaveChangesAsync();
+
+            return RedirectToAction("FollowersList", new { id = currentUser.Id });
+        }
+
+
 
         public IActionResult MessagesDemo()
         {
@@ -353,6 +430,7 @@
                 }).ToList(),
                 FollowerCount = followerCount,
                 FollowingCount = followingCount,
+                ProfileUserId = currentUser.Id,
             };
 
             // Връщаме данните към изгледа (може да го използвате с изглед с име "MyProfile")

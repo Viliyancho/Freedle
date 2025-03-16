@@ -1,0 +1,32 @@
+﻿@model List<UserViewModel>
+
+<h2>Followers</h2>
+<ul class="user-list">
+    @foreach (var user in Model)
+    {
+        <li class="user-item">
+            <img class="profile-pic" src="@user.ProfilePictureUrl" alt="Profile Picture">
+            <span>@user.Username</span>
+            <form method="post" action="@Url.Action("RemoveFollower", "Home")">
+                <input type="hidden" name="userId" value="@user.Id">
+                <button type="submit" class="remove-follower-btn">Remove</button>
+            </form>
+        </li>
+    }
+</ul>
+
+<style>
+    .remove-follower-btn {
+        background-color: gray;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .remove-follower-btn:hover {
+        background-color: darkgray;
+    }
+</style>

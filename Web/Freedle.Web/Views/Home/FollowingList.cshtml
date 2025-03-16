@@ -1,0 +1,54 @@
+﻿@model List<UserViewModel>
+
+<h2>Following</h2>
+<ul class="user-list">
+    @foreach (var user in Model)
+    {
+        <li class="user-item">
+            <img class="profile-pic" src="@user.ProfilePictureUrl" alt="Profile Picture">
+            <span>@user.Username</span>
+            <form method="post" action="@Url.Action("Unfollow", "Home")">
+                @Html.AntiForgeryToken() <!-- CSRF защита -->
+                <input type="hidden" name="userId" value="@user.Id">
+                <button type="submit" class="unfollow-btn">Unfollow</button>
+            </form>
+        </li>
+    }
+</ul>
+
+<style>
+    .user-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .user-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+    }
+
+    .profile-pic {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 10px;
+    }
+
+    .unfollow-btn {
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .unfollow-btn:hover {
+        background-color: darkred;
+    }
+</style>

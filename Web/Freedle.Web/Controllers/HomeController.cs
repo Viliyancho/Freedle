@@ -239,7 +239,7 @@
             return RedirectToAction("UserProfile", new { id });
         }
 
-
+        [HttpGet]
         public IActionResult FollowingList(string id)
         {
             var following = dbContext.UserFollowers
@@ -261,16 +261,26 @@
         {
             var user = await dbContext.Users
                 .Include(u => u.Followers)
-                .FirstOrDefaultAsync(u => u.Id == id.ToString());
+                .ThenInclude(f => f.Follower) // Зареждаме детайлите на последователите
+                .FirstOrDefaultAsync(u => u.Id == id);
 
             if (user == null)
             {
                 return NotFound();
             }
 
-            var followers = user.Followers.ToList(); // Списък с последователите
+            var followers = user.Followers
+                .Select(f => new UserViewModel
+                {
+                    Id = f.Follower.Id,
+                    Username = f.Follower.UserName,
+                    ProfilePictureUrl = f.Follower.ProfilePictureURL,
+                })
+                .ToList();
+
             return View(followers);
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken] // CSRF защита
@@ -296,8 +306,8 @@
         }
 
 
-
         [HttpPost]
+        [ValidateAntiForgeryToken] // CSRF защита
         public async Task<IActionResult> RemoveFollower(string userId)
         {
             var currentUser = await userManager.GetUserAsync(User);

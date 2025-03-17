@@ -19,7 +19,7 @@
         }
 
     .card-header, .card-footer {
-        background: rgba(255, 255, 255, 0.9);
+        background: rgba(255, 255, 255, 0.9);д
         padding: 10px 15px;
         border-radius: 10px;
     }
@@ -63,7 +63,11 @@
         <img src="@Model.AuthorProfilePictureUrl" class="rounded-circle me-2" width="40" height="40" />
         <strong>@Model.AuthorName</strong>
         <span class="text-muted ms-auto">@Model.CreatedOn</span>
-        <button class="btn btn-danger btn-sm ms-2 delete-post" data-post-id="@Model.Id" title="Delete Post">🗑️</button>
+        @if (Model.AuthorId == User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value || User.IsInRole("Admin"))
+        {
+            <button class="btn btn-danger btn-sm ms-2 delete-post" data-post-id="@Model.Id" title="Delete Post">🗑️</button>
+        }
+
     </div>
 
     <div class="card-body d-flex flex-column align-items-center">
@@ -101,7 +105,13 @@
                     <img src="@comment.AuthorProfilePictureUrl" class="rounded-circle me-2" width="30" height="30" />
                     <strong>@comment.AuthorName</strong>
                 </div>
-                <button class="btn btn-danger btn-sm delete-comment" data-comment-id="@comment.Id">🗑️</button>
+                @if (comment.AuthorId == User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value
+               || User.IsInRole("Admin")
+               || Model.AuthorId == User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value)
+                {
+                    <button class="btn btn-danger btn-sm delete-comment" data-comment-id="@comment.Id">🗑️</button>
+                }
+
             </div>
             <p>@comment.CommentText</p>
             <span class="text-muted">@comment.PostedOn</span>
@@ -128,7 +138,13 @@
                     </div>
                 </div>
 
-                <button class="btn btn-danger btn-sm delete-reply" data-reply-id="@reply.Id">🗑️</button>
+                            @if (reply.AuthorId == User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value
+                           || User.IsInRole("Admin")
+                           || Model.AuthorId == User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value)
+                            {
+                                <button class="btn btn-danger btn-sm delete-reply" data-reply-id="@reply.Id">🗑️</button>
+                            }
+
             </div>
         }
     </div>

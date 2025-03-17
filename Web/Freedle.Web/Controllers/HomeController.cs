@@ -435,6 +435,7 @@
                 Comments = comments,
             };
 
+
             return this.View(postViewModel);
         }
 
@@ -681,6 +682,8 @@
 
                 dbContext.Comments.Remove(reply);
                 await dbContext.SaveChangesAsync();
+
+                
 
                 return Json(new { success = true });
             }

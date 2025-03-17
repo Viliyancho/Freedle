@@ -31,8 +31,19 @@
                 {
                     <div class="card mb-4 post-card">
                         <div class="card-header d-flex align-items-center">
-                            <img src="@post.AuthorProfilePictureUrl" class="rounded-circle me-2" width="40" height="40" />
-                            <strong>@post.AuthorName</strong>
+                            @{
+                                var currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+                                var isUserLoggedIn = User.Identity.IsAuthenticated;
+                                var isOwnPost = isUserLoggedIn && post.AuthorId == currentUserId;
+                                var profileUrl = isUserLoggedIn
+                                ? (isOwnPost ? Url.Action("MyProfile", "Home") : Url.Action("UserProfile", "Home", new { id = post.AuthorId }))
+                                : Url.Action("Login", "Account", new { area = "Identity" });
+                            }
+
+                            <a href="@profileUrl" class="d-flex align-items-center text-decoration-none text-dark">
+                                <img src="@post.AuthorProfilePictureUrl" class="rounded-circle me-2" width="40" height="40" />
+                                <strong>@post.AuthorName</strong>
+                            </a>
                             <span class="text-muted ms-auto">@post.CreatedOn</span>
                         </div>
 

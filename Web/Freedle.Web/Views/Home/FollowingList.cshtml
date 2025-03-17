@@ -6,7 +6,11 @@
     {
         <li class="user-item">
             <img class="profile-pic" src="@user.ProfilePictureUrl" alt="Profile Picture">
-            <span class="username">@user.Username</span>
+            <span class="username">
+                <a href="@Url.Action("UserProfile", "Home", new { id = user.Id })" class="profile-link">
+                    @user.Username
+                </a>
+            </span>
             <form method="post" action="@Url.Action("Unfollow", "Home")">
                 @Html.AntiForgeryToken() <!-- CSRF защита -->
                 <input type="hidden" name="userId" value="@user.Id">
@@ -103,4 +107,15 @@
             background-color: #0056b3;
             transform: scale(1.1);
         }
+
+    .profile-link {
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+    }
+
+        .profile-link:hover {
+            color: skyblue;
+        }
+
 </style>

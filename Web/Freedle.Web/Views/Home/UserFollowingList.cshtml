@@ -25,7 +25,9 @@
                     }
                     else
                     {
-                        @user.Username
+                            <a href="@Url.Action("UserProfile", "Home", new { id = user.Id })" class="profile-link">
+                                @user.Username
+                            </a>
                     }
                 </span>
 
@@ -158,5 +160,16 @@
             .unfollow-btn:hover {
                 background-color: #cc0000;
             }
+
+        .profile-link {
+            text-decoration: none; 
+            color: black; 
+            font-weight: bold;
+        }
+
+            .profile-link:hover {
+                color: skyblue;
+            }
+
     </style>
 </head>

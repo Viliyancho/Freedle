@@ -236,7 +236,7 @@
             }
 
             await dbContext.SaveChangesAsync();
-            return RedirectToAction("UserProfile", new { id });
+            return Redirect(Request.Headers["Referer"].ToString());
         }
 
         [HttpGet]
@@ -281,6 +281,50 @@
             return View(followers);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> UserFollowingList(string id)
+        {
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier); // ID на логнатия потребител
+
+            var following = await dbContext.UserFollowers
+                .Where(f => f.FollowerId == id)
+                .Include(f => f.User) // Включваме User, за да имаме данни за него
+                .Select(f => new UserViewModel
+                {
+                    Id = f.User.Id,
+                    Username = f.User.UserName,
+                    ProfilePictureUrl = f.User.ProfilePictureURL,
+                    IsFollowing = dbContext.UserFollowers.Any(uf => uf.FollowerId == currentUserId && uf.UserId == f.User.Id)
+                })
+                .ToListAsync(); // Изпълняваме заявката асинхронно
+
+            return View(following);
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> UserFollowersList(string id)
+        {
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier); // ID на логнатия потребител
+
+            var followers = await dbContext.UserFollowers
+                .Where(f => f.UserId == id) // Взимаме всички, които следват този user
+                .Include(f => f.Follower) // Включваме детайлите за последователя
+                .Select(f => new UserViewModel
+                {
+                    Id = f.Follower.Id,
+                    Username = f.Follower.UserName,
+                    ProfilePictureUrl = f.Follower.ProfilePictureURL,
+                    IsFollowing = dbContext.UserFollowers.Any(uf => uf.FollowerId == currentUserId && uf.UserId == f.Follower.Id) // Проверяваме дали логнатият потребител следва този последовател
+                })
+                .ToListAsync();
+
+            return View(followers);
+        }
+
+
+
+
 
         [HttpPost]
         [ValidateAntiForgeryToken] // CSRF защита
@@ -302,7 +346,7 @@
                 await dbContext.SaveChangesAsync();
             }
 
-            return RedirectToAction("FollowingList", new { id = currentUser.Id });
+            return Redirect(Request.Headers["Referer"].ToString());
         }
 
 

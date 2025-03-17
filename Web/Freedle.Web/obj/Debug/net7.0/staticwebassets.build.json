@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "j102zLB4g+SOFOTiXT2MQXvRABSvTzmew9UQzpAQit4=",
+  "Hash": "I4BbMtAHEXdQwzmMwjPhY/zVUyA4WlbPEAcJub2Rm4g=",
   "Source": "Freedle.Web",
   "BasePath": "_content/Freedle.Web",
   "Mode": "Default",
@@ -1290,6 +1290,25 @@
       "OriginalItemSpec": "wwwroot\\images\\1499a2cd-67c9-48a0-813c-7687595ee24e.jpg"
     },
     {
+      "Identity": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\15cf9c0c-3966-49f5-b699-97b5acebce2b.png",
+      "SourceId": "Freedle.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\",
+      "BasePath": "_content/Freedle.Web",
+      "RelativePath": "images/15cf9c0c-3966-49f5-b699-97b5acebce2b.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\15cf9c0c-3966-49f5-b699-97b5acebce2b.png"
+    },
+    {
       "Identity": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\188ed182-8d5c-48d9-954e-ca21b84b60c2.jpg",
       "SourceId": "Freedle.Web",
       "SourceType": "Discovered",
@@ -1632,6 +1651,25 @@
       "OriginalItemSpec": "wwwroot\\images\\8b916723-d191-4dd1-82e7-5a582dcf56df.png"
     },
     {
+      "Identity": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\8cf9af1d-ac05-43d7-9d46-14dc83e0bf05.jpg",
+      "SourceId": "Freedle.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\",
+      "BasePath": "_content/Freedle.Web",
+      "RelativePath": "images/8cf9af1d-ac05-43d7-9d46-14dc83e0bf05.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\8cf9af1d-ac05-43d7-9d46-14dc83e0bf05.jpg"
+    },
+    {
       "Identity": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\96a18c6d-9c2b-4b58-a1f4-5b4c870acda4.png",
       "SourceId": "Freedle.Web",
       "SourceType": "Discovered",
@@ -1668,6 +1706,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\9cc3ae7f-0d83-4790-9ebc-089e958df999.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\a44786a4-8eac-48b7-a7b7-fa2aba84e65d.jpg",
+      "SourceId": "Freedle.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\",
+      "BasePath": "_content/Freedle.Web",
+      "RelativePath": "images/a44786a4-8eac-48b7-a7b7-fa2aba84e65d.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\a44786a4-8eac-48b7-a7b7-fa2aba84e65d.jpg"
     },
     {
       "Identity": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\ae304793-7fdb-42d7-9fb1-a67711af5659.jpg",
@@ -1877,6 +1934,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\profile_pics\\70ab8e18-a679-4d45-92d3-43446354b972_462552805_539076969009171_4156775799107025084_n.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\profile_pics\\b94b951e-b299-4c1a-a50b-c2d06613d121_Screenshot 2022-11-01 103750.png",
+      "SourceId": "Freedle.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\",
+      "BasePath": "_content/Freedle.Web",
+      "RelativePath": "images/profile_pics/b94b951e-b299-4c1a-a50b-c2d06613d121_Screenshot 2022-11-01 103750.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\profile_pics\\b94b951e-b299-4c1a-a50b-c2d06613d121_Screenshot 2022-11-01 103750.png"
     },
     {
       "Identity": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\profile_pics\\c55faec4-9f70-409a-b445-2d2776296971_3fbf5e57-6352-4dbe-b6a9-861ba08c9e8f.a33f77df4e4bbf871a0d388a4cfbacc9.jpeg",

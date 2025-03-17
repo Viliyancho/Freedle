@@ -13,6 +13,7 @@
             font-family: Arial, sans-serif;
             text-align: center;
         }
+
         .profile-container {
             max-width: 700px;
             margin: 20px auto;
@@ -21,12 +22,14 @@
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
+
         .profile-pic {
             width: 120px;
             height: 120px;
             border-radius: 50%;
             object-fit: cover;
         }
+
         .username {
             font-size: 22px;
             font-weight: bold;
@@ -35,23 +38,39 @@
             justify-content: center;
             gap: 5px;
         }
+
         .fullname {
             font-size: 18px;
             color: gray;
         }
+
         .bio {
             margin-top: 10px;
             font-style: italic;
         }
+
         .stats {
             display: flex;
             justify-content: center;
             gap: 20px;
             margin-top: 10px;
         }
-        .stats div {
+
+        .stat-item {
             font-size: 16px;
+            padding: 8px 15px;
+            border: 1px solid gray;
+            border-radius: 5px;
+            text-decoration: none;
+            color: black;
+            background-color: white;
+            transition: background-color 0.2s ease;
         }
+
+            .stat-item:hover {
+                background-color: #f2f2f2;
+            }
+
         .follow-btn {
             display: inline-block;
             margin-top: 15px;
@@ -63,59 +82,24 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
+
         .follow {
             background-color: #1da1f2;
             color: white;
         }
-        .follow:hover {
-            background-color: #0d8aec;
-        }
+
+            .follow:hover {
+                background-color: #0d8aec;
+            }
+
         .unfollow {
             background-color: #ff5757;
             color: white;
         }
-        .unfollow:hover {
-            background-color: #d94c4c;
-        }
-        .posts-container {
-            width: 80%;
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .posts-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            max-height: 400px;
-            overflow-y: auto;
-            padding: 5px;
-        }
-        .post-item {
-            width: 100%;
-            padding-top: 90%;
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
-        }
-        .post-item img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.2s ease;
-        }
-        .post-item:hover img {
-            transform: scale(1.04);
-        }
-        .no-posts {
-            font-size: 24px;
-            font-weight: bold;
-            color: #555;
-        }
+
+            .unfollow:hover {
+                background-color: #d94c4c;
+            }
     </style>
 </head>
 <body>
@@ -138,9 +122,14 @@
         </div>
         <div class="fullname">@Model.FirstName @Model.LastName</div>
         <div class="bio">@Model.Description</div>
+
         <div class="stats">
-            <div><strong>@Model.FollowingCount</strong> Following</div>
-            <div><strong>@Model.FollowerCount</strong> Followers</div>
+            <a href="@Url.Action("UserFollowingList", "Home", new { id = Model.ProfileUserId })" class="stat-item">
+                <strong>@Model.FollowingCount</strong> Following
+            </a>
+            <a href="@Url.Action("UserFollowersList", "Home", new { id = Model.ProfileUserId })" class="stat-item">
+                <strong>@Model.FollowerCount</strong> Followers
+            </a>
         </div>
 
         <form method="post" action="@Url.Action("ToggleFollow", "Home")">
@@ -150,27 +139,6 @@
                 @(Model.IsFollowing ? "Unfollow" : "Follow")
             </button>
         </form>
-
-    </div>
-
-    <div class="posts-container">
-        @if (Model.Posts != null && Model.Posts.Any())
-        {
-            <div class="posts-grid">
-                @foreach (var post in Model.Posts)
-                {
-                    <div class="post-item">
-                        <a href="@Url.Action("PostDetails", "Home", new { id = post.Id })">
-                            <img src="@post.ImageUrl" alt="Post Image">
-                        </a>
-                    </div>
-                }
-            </div>
-        }
-        else
-        {
-            <div class="no-posts">📷 No posts yet</div>
-        }
     </div>
 </body>
 </html>

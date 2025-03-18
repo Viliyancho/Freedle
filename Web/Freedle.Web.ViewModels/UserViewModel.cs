@@ -14,6 +14,6 @@ namespace Freedle.Web.ViewModels
 
         public string ProfilePictureUrl { get; set; }
 
-        public bool IsFollowing { get; set; } // Само ако е за FollowingList
+        public bool IsFollowing { get; set; }
     }
 }

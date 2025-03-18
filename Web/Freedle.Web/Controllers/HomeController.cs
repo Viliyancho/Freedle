@@ -59,10 +59,9 @@
                 })
                 .ToList();
 
-            // Препоръчани потребители (случайни 5)
             var suggestedUsers = this.dbContext.Users
                 .Where(u => u.Id != currentUserId)
-                .OrderBy(r => Guid.NewGuid()) // Random
+                .OrderBy(r => Guid.NewGuid())
                 .Take(5)
                 .Select(u => new SuggestedUserViewModel
                 {
@@ -90,30 +89,29 @@
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (userId == null)
             {
-                return Unauthorized(); // Ако не е логнат, връщаме грешка
+                return Unauthorized();
             }
 
             var post = dbContext.Posts.FirstOrDefault(p => p.Id == postId);
             if (post == null)
             {
-                return NotFound(); // Постът не съществува
+                return NotFound();
             }
 
-            // Проверка дали текущият потребител е автор на поста или администратор
-            bool isAdmin = User.IsInRole("Admin"); // Ако имаш роля за админ
+            bool isAdmin = User.IsInRole("Admin");
             if (post.UserId != userId && !isAdmin)
             {
-                return Forbid(); // Забраняваме изтриването, ако не е негов
+                return Forbid();
             }
 
             dbContext.Comments.RemoveRange(post.Comments);
-            dbContext.SaveChanges(); // Запази промените преди да трием поста
+            dbContext.SaveChanges();
 
 
             dbContext.Posts.Remove(post);
             dbContext.SaveChanges();
 
-            return Ok(); // Връщаме 200 статус за успешна заявка
+            return Ok();
         }
 
 
@@ -124,37 +122,39 @@
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (userId == null)
             {
-                return this.Redirect("/Identity/Account/Login"); // Ако не е логнат, пращаме към логин
+                return Json(new { success = false, message = "Unauthorized" });
             }
 
             var post = this.dbContext.Posts.Include(p => p.Likes).FirstOrDefault(p => p.Id == postId);
             if (post == null)
             {
-                return this.NotFound();
+                return Json(new { success = false, message = "Post not found" });
             }
 
             var existingLike = this.dbContext.UserLikes.FirstOrDefault(l => l.PostId == postId && l.UserId == userId);
+            bool isLiked;
 
             if (existingLike != null)
             {
-                // Премахва лайка, ако вече е натиснат
                 post.Likes.Remove(existingLike);
                 this.dbContext.UserLikes.Remove(existingLike);
                 post.LikeCount--;
+                isLiked = false;
             }
             else
             {
-                // Добавя нов лайк
                 var like = new UserLike { PostId = postId, UserId = userId };
                 post.Likes.Add(like);
                 dbContext.UserLikes.Add(like);
                 post.LikeCount++;
+                isLiked = true;
             }
 
             dbContext.SaveChanges();
 
-            return RedirectToAction("Index", "Home"); // Презарежда страницата
+            return Json(new { success = true, likeCount = post.LikeCount, isLiked });
         }
+
 
         [HttpGet]
         public async Task<IActionResult> UserProfile(string id)
@@ -164,7 +164,7 @@
                 return NotFound();
             }
 
-            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Взимаме логнатия потребител
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             var user = await dbContext.Users
                 .Where(u => u.Id == id)
@@ -202,7 +202,7 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ToggleFollow(string id)
         {
-            Console.WriteLine("Received ID: " + id); // Логване на входния параметър
+            Console.WriteLine("Received ID: " + id);
 
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (currentUserId == null || id == currentUserId)
@@ -228,6 +228,8 @@
             }
             else
             {
+                // Ако не го следва - Follow
+
                 dbContext.UserFollowers.Add(new UserFollower
                 {
                     FollowerId = currentUserId,
@@ -250,9 +252,9 @@
                     Username = f.User.UserName,
                     ProfilePictureUrl = f.User.ProfilePictureURL,
                 })
-                .ToList(); // Връща List<UserViewModel>
+                .ToList();
 
-            return View(following); // Подаваме правилния тип
+            return View(following);
         }
 
 
@@ -261,7 +263,7 @@
         {
             var user = await dbContext.Users
                 .Include(u => u.Followers)
-                .ThenInclude(f => f.Follower) // Зареждаме детайлите на последователите
+                .ThenInclude(f => f.Follower)
                 .FirstOrDefaultAsync(u => u.Id == id);
 
             if (user == null)
@@ -284,7 +286,7 @@
         [HttpGet]
         public async Task<IActionResult> UserFollowingList(string id)
         {
-            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier); // ID на логнатия потребител
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             var following = await dbContext.UserFollowers
                 .Where(f => f.FollowerId == id)
@@ -296,7 +298,7 @@
                     ProfilePictureUrl = f.User.ProfilePictureURL,
                     IsFollowing = dbContext.UserFollowers.Any(uf => uf.FollowerId == currentUserId && uf.UserId == f.User.Id)
                 })
-                .ToListAsync(); // Изпълняваме заявката асинхронно
+                .ToListAsync();
 
             return View(following);
         }
@@ -305,11 +307,11 @@
         [HttpGet]
         public async Task<IActionResult> UserFollowersList(string id)
         {
-            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier); // ID на логнатия потребител
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             var followers = await dbContext.UserFollowers
-                .Where(f => f.UserId == id) // Взимаме всички, които следват този user
-                .Include(f => f.Follower) // Включваме детайлите за последователя
+                .Where(f => f.UserId == id)
+                .Include(f => f.Follower)
                 .Select(f => new UserViewModel
                 {
                     Id = f.Follower.Id,
@@ -327,16 +329,14 @@
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken] // CSRF защита
+        [ValidateAntiForgeryToken] 
         public async Task<IActionResult> Unfollow(string userId)
         {
             var currentUser = await userManager.GetUserAsync(User);
             if (currentUser == null) return Unauthorized();
 
-            // Проверяваме дали userId е валиден
             if (string.IsNullOrEmpty(userId)) return BadRequest("Invalid user ID");
 
-            // Търсим връзката за премахване
             var followerEntry = await dbContext.UserFollowers
                 .FirstOrDefaultAsync(f => f.UserId == userId && f.FollowerId == currentUser.Id);
 
@@ -351,7 +351,7 @@
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken] // CSRF защита
+        [ValidateAntiForgeryToken] 
         public async Task<IActionResult> RemoveFollower(string userId)
         {
             var currentUser = await userManager.GetUserAsync(User);
@@ -363,7 +363,7 @@
 
             if (followerToRemove == null) return NotFound();
 
-            // Премахваме го от контекста
+            // Премахваме го от базата
             dbContext.UserFollowers.Remove(followerToRemove);
             await dbContext.SaveChangesAsync();
 
@@ -446,7 +446,6 @@
     .Include(u => u.Posts) // Зареждаме постовете заедно с потребителя
     .FirstOrDefaultAsync(u => u.Id == this.userManager.GetUserId(User));
 
-            // Ако потребителят не е логнат, пренасочваме към страницата за вход
             if (currentUser == null)
             {
                 return this.Redirect("/Identity/Account/Login");
@@ -458,12 +457,10 @@
         .Where(f => f.UserId == currentUser.Id && f.UnfollowedDate == null)
         .Count();
 
-            // Броят на хората, които потребителят следва: броим колко потребители текущият потребител следва
             var followingCount = this.dbContext.UserFollowers
                 .Where(f => f.FollowerId == currentUser.Id && f.UnfollowedDate == null)
                 .Count();
 
-            // Вземаме допълнителна информация от потребителския профил (например, име, дата на раждане, пол и т.н.)
             var userProfileViewModel = new UserProfileViewModel
             {
                 Username = currentUser.UserName,
@@ -488,7 +485,6 @@
                 ProfileUserId = currentUser.Id,
             };
 
-            // Връщаме данните към изгледа (може да го използвате с изглед с име "MyProfile")
             return View(userProfileViewModel);
         }
 

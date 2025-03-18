@@ -26,8 +26,6 @@ namespace Freedle.Data.Models
             this.Following = new HashSet<UserFollower>();
         }
 
-        // Base Info
-
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -59,8 +57,6 @@ namespace Freedle.Data.Models
         public ICollection<Message> Messages { get; set; } = new HashSet<Message>();
 
         public ICollection<UserConversation> UserConversations { get; set; } = new HashSet<UserConversation>();
-
-        // Audit info
         public DateTime CreatedOn { get; set; }
 
         public DateTime? ModifiedOn { get; set; }

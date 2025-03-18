@@ -18,6 +18,6 @@
 
         public Conversation Conversation { get; set; }
 
-        public bool HasReadAllMessages { get; set; } = false; // Статус за прочетено съобщение
+        public bool HasReadAllMessages { get; set; } = false; // Статус за прочетено последно съобщение
     }
 }

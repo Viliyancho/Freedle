@@ -7,7 +7,7 @@
 <head>
     <style>
         body {
-            background: linear-gradient(to bottom, skyblue, lightgray); /*Ледено синьо към буреносно сиво*/
+            background: linear-gradient(to bottom, skyblue, lightgray);
             font-family: Arial, sans-serif;
         }
     </style>
@@ -58,16 +58,15 @@
 
                         <div class="card-footer d-flex justify-content-between align-items-center">
                             <div class="d-flex align-items-center gap-2">
-                                <form method="post" action="@Url.Action("ToggleLike", "Home")">
-                                    @Html.AntiForgeryToken()
-                                    <input type="hidden" name="postId" value="@post.Id" />
-                                    <button type="submit" class="btn @(post.IsLikedByCurrentUser ? "btn-primary" : "btn-outline-primary") btn-sm">
-                                        👍 <span class="like-count">@post.LikeCount</span>
-                                    </button>
-                                </form>
-                                <a href="#" class="btn btn-outline-secondary btn-sm comment-btn" data-url="@Url.Action("PostDetails", "Home", new { id = post.Id })">💬 Comments</a>
+                                <button class="btn like-btn @(post.IsLikedByCurrentUser ? "btn-primary" : "btn-outline-primary") btn-sm"
+                                        data-post-id="@post.Id">
+                                    👍 <span class="like-count">@post.LikeCount</span>
+                                </button>
+                                <a href="#" class="btn btn-outline-secondary btn-sm comment-btn"
+                                   data-url="@Url.Action("PostDetails", "Home", new { id = post.Id })">💬 Comments</a>
                             </div>
                         </div>
+
                     </div>
                 }
             }
@@ -84,7 +83,6 @@
     </div>
 </div>
 
-<!-- Anti-Forgery Token -->
 @Html.AntiForgeryToken()
 
 
@@ -92,15 +90,43 @@
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".comment-btn").forEach(button => {
             button.addEventListener("click", function (event) {
-                event.preventDefault(); // Спира стандартния линк
+                event.preventDefault();
 
                 let isAuthenticated = @Json.Serialize(User.Identity.IsAuthenticated);
 
                 if (isAuthenticated) {
                     window.location.href = this.dataset.url; // Пренасочване към PostDetails
                 } else {
-                    window.location.href = "/Identity/Account/Login"; // Пренасочване към Login
+                    window.location.href = "/Identity/Account/Login";
                 }
+            });
+        });
+
+        document.querySelectorAll(".like-btn").forEach(button => {
+            button.addEventListener("click", function () {
+                let postId = this.getAttribute("data-post-id");
+                let likeButton = this;
+                let likeCountSpan = this.querySelector(".like-count");
+
+                fetch('@Url.Action("ToggleLike", "Home")', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                        "RequestVerificationToken": document.querySelector('input[name="__RequestVerificationToken"]').value
+                    },
+                    body: "postId=" + postId
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            likeCountSpan.textContent = data.likeCount;
+                            likeButton.classList.toggle("btn-primary", data.isLiked);
+                            likeButton.classList.toggle("btn-outline-primary", !data.isLiked);
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .catch(error => console.error("Error:", error));
             });
         });
     });

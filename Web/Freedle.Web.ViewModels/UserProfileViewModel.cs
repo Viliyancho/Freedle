@@ -32,7 +32,7 @@ namespace Freedle.Web.ViewModels
 
         public int FollowingCount { get; set; }
 
-        public bool IsFollowing { get; set; } // Дали текущият потребител следва този акаунт
+        public bool IsFollowing { get; set; }
 
 
         public string CurrentUserId { get; set; }

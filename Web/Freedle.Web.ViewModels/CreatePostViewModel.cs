@@ -18,6 +18,6 @@ namespace Freedle.Web.ViewModels
 
         [Display(Name = "Add a photo")]
         [NotMapped]
-        public IFormFile ImageURL { get; set; } // Отговаря на Posts - Title
+        public IFormFile ImageURL { get; set; }
     }
 }

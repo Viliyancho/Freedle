@@ -9,25 +9,22 @@
         <div class="col-md-6">
             <h2 class="text-center">Create a New Post</h2>
 
-            <!-- Формата за създаване на пост -->
+            <!-- Форма за създаване на пост -->
             <form asp-action="CreatePost" method="post" enctype="multipart/form-data">
                 @Html.AntiForgeryToken()
 
-                <!-- Image Upload -->
                 <div class="form-group text-center">
                     <label asp-for="ImageURL" class="control-label">Add a photo</label>
                     <input type="file" asp-for="ImageURL" class="form-control mx-auto" style="width: 80%;" />
                     <span asp-validation-for="ImageURL" class="text-danger"></span>
                 </div>
 
-                <!-- Content Input -->
                 <div class="form-group text-center">
                     <label asp-for="Content" class="control-label">Add content...</label>
                     <textarea asp-for="Content" class="form-control mx-auto" rows="5" style="width: 80%;"></textarea>
                     <span asp-validation-for="Content" class="text-danger"></span>
                 </div>
 
-                <!-- Submit Button -->
                 <div class="form-group text-center">
                     <button type="submit" class="btn btn-primary create-post-btn">Create Post</button>
                 </div>

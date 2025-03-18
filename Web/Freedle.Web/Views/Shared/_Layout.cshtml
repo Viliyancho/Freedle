@@ -62,23 +62,23 @@
 
     <!-- Код за hover ефект -->
     <script>
-        document.addEventListener("DOMContentLoaded", function () { //Изчаква всички HTML елементи да бъдат заредени, след което изпълнява функцията
+        document.addEventListener("DOMContentLoaded", function () { 
             const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
 
             navLinks.forEach(link => {
                 link.addEventListener("mouseover", function () {
                     this.style.color = "SkyBlue";
-                    this.style.fontSize = "1.5rem"; // Увеличаваме размера на шрифта
+                    this.style.fontSize = "1.5rem";
                     this.style.fontWeight = "bold";
-                    this.style.transform = "scale(1.2)"; // Правим го по-голямо
-                    this.style.transition = "all 0.2s ease-in-out"; // Добавяме плавност
+                    this.style.transform = "scale(1.2)";
+                    this.style.transition = "all 0.2s ease-in-out";
                 });
 
                 link.addEventListener("mouseout", function () {
                     this.style.color = "";
                     this.style.fontSize = "";
                     this.style.fontWeight = "400";
-                    this.style.transform = "scale(1)"; // Връща нормалния размер
+                    this.style.transform = "scale(1)";
                 });
             });
         });

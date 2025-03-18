@@ -6,7 +6,7 @@
 
     // Поставяме текущия потребител (ако е в списъка) най-отгоре
     var sortedUsers = Model
-        .OrderByDescending(u => u.Id == currentUserId) // Аз първи, останалите след мен
+        .OrderByDescending(u => u.Id == currentUserId)
         .ToList();
 }
 

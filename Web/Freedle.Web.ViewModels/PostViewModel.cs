@@ -13,7 +13,7 @@ namespace Freedle.Web.ViewModels
 
         public string Content { get; set; }
 
-        public string ImageUrl { get; set; } // Снимка на поста
+        public string ImageUrl { get; set; }
 
         public string CreatedOn { get; set; }
 

@@ -81,16 +81,14 @@
 
     <div class="card-footer d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center gap-2">
-            <form method="post" action="@Url.Action("ToggleLike", "Home")">
-                @Html.AntiForgeryToken()
-                <input type="hidden" name="postId" value="@Model.Id" />
-                <button type="submit" class="btn @(Model.IsLikedByCurrentUser ? "btn-primary" : "btn-outline-primary") btn-sm">
-                    👍 <span class="like-count">@Model.LikeCount</span>
-                </button>
-            </form>
+            <button class="btn like-btn @(Model.IsLikedByCurrentUser ? "btn-primary" : "btn-outline-primary") btn-sm"
+                    data-post-id="@Model.Id">
+                👍 <span class="like-count">@Model.LikeCount</span>
+            </button>
             <a href="#comments-section" class="btn btn-outline-secondary btn-sm">💬 Comments</a>
         </div>
     </div>
+
 </div>
 
 <h4 id="comments-section">Comments</h4>
@@ -168,7 +166,6 @@ else
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        // Показване/скриване на формата за отговори
         document.querySelectorAll(".reply-button").forEach(button => {
             button.addEventListener("click", function () {
                 let replyForm = document.getElementById("reply-form-" + this.dataset.commentId);
@@ -181,7 +178,6 @@ else
                 if (confirm("Are you sure you want to delete this post?")) {
                     let token = document.querySelector('input[name="__RequestVerificationToken"]').value;
 
-                    // Изпращаме POST заявка за изтриване на поста
                     fetch("@Url.Action("DeletePost", "Home")", {
                         method: "POST",
                         headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -189,18 +185,17 @@ else
                     })
                         .then(response => {
                             if (response.ok) {
-                                location.href = "/Home/Index"; // Пренасочваме към началната страница след успешно изтриване
+                                location.href = "/Home/Index";
                             } else {
-                                response.text().then(text => alert("Error: " + text)); // Ако има грешка, показваме съобщение
+                                response.text().then(text => alert("Error: " + text));
                             }
                         })
-                        .catch(error => console.error("Fetch error:", error)); // Ако има грешка със заявката
+                        .catch(error => console.error("Fetch error:", error));
                 }
             });
         });
 
 
-        // Изтриване на коментар
         document.querySelectorAll(".delete-comment").forEach(button => {
             button.addEventListener("click", function () {
                 if (confirm("Are you sure you want to delete this comment?")) {
@@ -216,7 +211,7 @@ else
                         .then(response => response.json())
                         .then(data => {
                             if (data.success) {
-                                location.reload(); // Презарежда страницата след успешно изтриване
+                                location.reload(); // Презареждаме страницата след успешно изтриване
                             } else {
                                 alert("Error deleting comment.");
                             }
@@ -245,7 +240,7 @@ else
                         .then(response => response.json())
                         .then(data => {
                             if (data.success) {
-                                location.reload(); // Презарежда страницата след успешно изтриване
+                                location.reload(); // Презареждаме страницата след успешно изтриване
                             } else {
                                 alert("Error deleting reply.");
                             }
@@ -263,7 +258,7 @@ else
             button.addEventListener("click", function () {
                 let commentId = this.dataset.commentId;
                 let replyText = document.querySelector(`#reply-form-${commentId} textarea`).value.trim();
-                let postId = document.querySelector("input[name='postId']").value; // Взимаме postId от hidden полето
+                let postId = document.querySelector("input[name='postId']").value; 
 
                 if (!replyText) {
                     alert("Reply cannot be empty!");
@@ -279,7 +274,7 @@ else
                     },
                     body: `commentId=${commentId}&postId=${postId}&replyText=${encodeURIComponent(replyText)}&__RequestVerificationToken=${token}`
                 })
-                    .then(response => response.json()) // Очакваме JSON
+                    .then(response => response.json())
                     .then(data => {
                         if (data.success) {
                             location.reload(); // Презареждаме, ако всичко е ОК
@@ -294,5 +289,32 @@ else
             });
         });
 
+        document.querySelectorAll(".like-btn").forEach(button => {
+            button.addEventListener("click", function () {
+                let postId = this.getAttribute("data-post-id");
+                let likeButton = this;
+                let likeCountSpan = this.querySelector(".like-count");
+
+                fetch('@Url.Action("ToggleLike", "Home")', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                        "RequestVerificationToken": document.querySelector('input[name="__RequestVerificationToken"]').value
+                    },
+                    body: "postId=" + postId
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            likeCountSpan.textContent = data.likeCount;
+                            likeButton.classList.toggle("btn-primary", data.isLiked);
+                            likeButton.classList.toggle("btn-outline-primary", !data.isLiked);
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .catch(error => console.error("Error:", error));
+            });
+        });
     });
 </script>

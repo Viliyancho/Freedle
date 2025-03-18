@@ -68,15 +68,15 @@
         .posts-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr); /* 3 поста в ред */
-            gap: 8px; /* Намаляваме разстоянието */
-            max-height: 400px; /* По-нисък лимит за скрол */
+            gap: 8px;
+            max-height: 400px;
             overflow-y: auto;
             padding: 5px;
         }
 
         .post-item {
             width: 100%;
-            padding-top: 90%; /* Малко по-компактни */
+            padding-top: 90%;
             position: relative;
             border-radius: 8px;
             overflow: hidden;
@@ -89,12 +89,12 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
-                object-fit: cover; /* Запазваме квадрата, но изрязва изображението */
+                object-fit: cover;
                 transition: transform 0.2s ease;
             }
 
             .post-item:hover img {
-                transform: scale(1.04); /* По-лек zoom ефект */
+                transform: scale(1.04);
             }
 
         .no-posts {
@@ -104,8 +104,8 @@
         }
 
         .create-post-btn {
-            display: inline-block; /* Запазваме бутона да е в реда */
-            padding: 12px 24px; /* Увеличаваме малко размерите на бутона */
+            display: inline-block;
+            padding: 12px 24px; /* Увеличаване малко на размерите на бутона */
             font-size: 18px;
             background-color: green;
             color: white;
@@ -113,7 +113,7 @@
             border-radius: 5px;
             text-decoration: none;
             cursor: pointer;
-            transition: all 0.3s ease; /* За плавен преход */
+            transition: all 0.3s ease;
         }
 
             .create-post-btn:hover {

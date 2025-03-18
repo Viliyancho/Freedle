@@ -2,69 +2,17 @@
 @model List<UserViewModel>
 
 @{
-    ViewData["Title"] = "Following List";
+    ViewData["Title"] = "Liked-By List";
     var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-    // Поставяме текущия потребител (ако е в списъка) най-отгоре
-    var sortedUsers = Model
-        .OrderByDescending(u => u.Id == currentUserId) 
-        .ToList();
-
+    var sortedUsers = Model.OrderByDescending(u => u.Id == currentUserId).ToList();
 }
-
-<body>
-<div class="container">
-    <h2 class="title following-title">Following</h2>
-    <ul class="user-list">
-        @foreach (var user in sortedUsers)
-        {
-            <li class="user-item">
-                <img class="profile-pic" src="@user.ProfilePictureUrl" alt="Profile Picture">
-                <span class="username">
-                    @if (user.Id == currentUserId)
-                    {
-                        <strong>(You) @user.Username</strong>
-                    }
-                    else
-                    {
-                            <a href="@Url.Action("UserProfile", "Home", new { id = user.Id })" class="profile-link">
-                                @user.Username
-                            </a>
-                    }
-                </span>
-
-                @if (user.Id != currentUserId)
-                {
-                    if (user.IsFollowing)
-                    {
-                        <form method="post" action="@Url.Action("Unfollow", "Home")">
-                            @Html.AntiForgeryToken()
-                            <input type="hidden" name="userId" value="@user.Id">
-                            <button type="submit" class="unfollow-btn">Unfollow</button>
-                        </form>
-                    }
-                    else
-                    {
-                        <form method="post" action="@Url.Action("ToggleFollow", "Home")">
-                            @Html.AntiForgeryToken()
-                            <input type="hidden" name="id" value="@user.Id">
-                            <button type="submit" class="follow-btn">Follow</button>
-                        </form>
-                    }
-                }
-            </li>
-        }
-    </ul>
-</div>
-</body>
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Following List</title>
+    <title>Liked By List</title>
     <style>
         body {
             background: linear-gradient(to bottom, skyblue, lightgray);
@@ -83,11 +31,11 @@
             padding-bottom: 10px;
         }
 
-        .following-title::after {
+        .liked-title::after {
             content: "";
             width: 80px;
             height: 4px;
-            background-color: #007bff;
+            background-color: yellow;
             position: absolute;
             left: 50%;
             bottom: 0;
@@ -135,6 +83,16 @@
             margin-right: 15px;
         }
 
+        .profile-link {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+            .profile-link:hover {
+                color: skyblue;
+            }
+
         .follow-btn, .unfollow-btn {
             padding: 8px 15px;
             font-size: 14px;
@@ -162,16 +120,52 @@
             .unfollow-btn:hover {
                 background-color: #cc0000;
             }
-
-        .profile-link {
-            text-decoration: none; 
-            color: black; 
-            font-weight: bold;
-        }
-
-            .profile-link:hover {
-                color: skyblue;
-            }
-
     </style>
 </head>
+<body>
+    <div class="container">
+        <h2 class="title liked-title">LIKED BY</h2>
+        <ul class="user-list">
+            @foreach (var user in sortedUsers)
+            {
+                <li class="user-item">
+                    <img class="profile-pic" src="@user.ProfilePictureUrl" alt="Profile Picture">
+                    <span class="username">
+                        @if (user.Id == currentUserId)
+                        {
+                            <strong>(You) @user.Username</strong>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("UserProfile", "Home", new { id = user.Id })" class="profile-link">
+                                @user.Username
+                            </a>
+                        }
+                    </span>
+
+                    @if (user.Id != currentUserId)
+                    {
+                        if (user.IsFollowing)
+                        {
+                            <form method="post" action="@Url.Action("Unfollow", "Home")">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="userId" value="@user.Id">
+                                <button type="submit" class="unfollow-btn">Unfollow</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <form method="post" action="@Url.Action("ToggleFollow", "Home")">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@user.Id">
+                                <button type="submit" class="follow-btn">Follow</button>
+                            </form>
+                        }
+                    }
+                </li>
+            }
+
+        </ul>
+    </div>
+</body>
+</html>

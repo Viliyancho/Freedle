@@ -1,7 +1,7 @@
 ﻿@model NewsFeedViewModel
 
 @{
-    ViewData["Title"] = "For you - Freedle";
+    ViewData["Title"] = "For you";
 }
 
 <head>
@@ -10,6 +10,16 @@
             background: linear-gradient(to bottom, skyblue, lightgray);
             font-family: Arial, sans-serif;
         }
+
+        .liked-by-link {
+            color: black;
+            text-decoration: none; 
+        }
+
+            .liked-by-link:hover {
+                color: darkgray; 
+            }
+
     </style>
 </head>
 
@@ -63,9 +73,22 @@
                                     👍 <span class="like-count">@post.LikeCount</span>
                                 </button>
                                 <a href="#" class="btn btn-outline-secondary btn-sm comment-btn"
-                                   data-url="@Url.Action("PostDetails", "Home", new { id = post.Id })">💬 Comments</a>
+                                   data-url="@Url.Action("PostDetails", "Home", new { id = post.Id })">
+                                    💬 Comments
+                                </a>
                             </div>
+
+                            @if (post.LikeCount > 0)
+                            {
+                                <a href="@Url.Action("LikedByList", "Home", new { postId = post.Id })"
+                                   class="liked-by-link ms-auto text-dark text-decoration-none"
+                                   data-post-id="@post.Id">
+                                    Liked by 👁️ (@post.LikeCount)
+                                </a>
+                            }
+
                         </div>
+
 
                     </div>
                 }
@@ -107,6 +130,7 @@
                 let postId = this.getAttribute("data-post-id");
                 let likeButton = this;
                 let likeCountSpan = this.querySelector(".like-count");
+                let likedByLink = document.querySelector(`.liked-by-link[data-post-id="${postId}"]`);
 
                 fetch('@Url.Action("ToggleLike", "Home")', {
                     method: "POST",
@@ -122,6 +146,21 @@
                             likeCountSpan.textContent = data.likeCount;
                             likeButton.classList.toggle("btn-primary", data.isLiked);
                             likeButton.classList.toggle("btn-outline-primary", !data.isLiked);
+
+                            if (data.likeCount > 0) {
+                                if (!likedByLink) {
+                                    likedByLink = document.createElement("a");
+                                    likedByLink.className = "liked-by-link ms-auto text-dark text-decoration-none";
+                                    likedByLink.setAttribute("data-post-id", postId);
+                                    likedByLink.href = `@Url.Action("LikedByList", "Home")?postId=${postId}`;
+                                    likeButton.closest(".card-footer").appendChild(likedByLink);
+                                }
+                                likedByLink.innerHTML = `Liked by 👁️ (${data.likeCount})`;
+                            } else {
+                                if (likedByLink) {
+                                    likedByLink.remove();
+                                }
+                            }
                         } else {
                             alert(data.message);
                         }
@@ -129,5 +168,6 @@
                     .catch(error => console.error("Error:", error));
             });
         });
+
     });
 </script>

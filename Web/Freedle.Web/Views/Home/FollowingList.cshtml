@@ -1,5 +1,9 @@
 ﻿@model List<UserViewModel>
 
+    @{
+    ViewData["Title"] = "Following List";
+    }
+
 <h2 class="title following-title">Following</h2>
 <ul class="user-list">
     @foreach (var user in Model)

@@ -2,6 +2,8 @@
 @model List<UserViewModel>
 
 @{
+    ViewData["Title"] = "Followers List";
+
     var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
     // Поставяме текущия потребител (ако е в списъка) най-отгоре

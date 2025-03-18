@@ -10,6 +10,7 @@
     using Freedle.Data;
     using Freedle.Data.Models;
     using Freedle.Web.ViewModels;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
@@ -154,6 +155,47 @@
 
             return Json(new { success = true, likeCount = post.LikeCount, isLiked });
         }
+
+        [Authorize] // Само влезли потребители могат да видят кой е харесал публикацията
+        public IActionResult LikedByList(int postId)
+        {
+            if (postId <= 0) 
+            {
+                return BadRequest("Invalid post ID");
+            }
+
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var likedUsers = dbContext.UserLikes
+                .Where(l => l.PostId == postId)
+                .Include(l => l.User)
+                .Select(l => new UserViewModel
+                {
+                    Id = l.User.Id,
+                    Username = l.User.UserName,
+                    ProfilePictureUrl = l.User.ProfilePictureURL,
+                })
+                .ToList();
+
+            if (likedUsers == null || !likedUsers.Any())
+            {
+                return NotFound("No likes found for this post.");
+            }
+
+            var followingIds = dbContext.UserFollowers
+        .Where(f => f.FollowerId == currentUserId)
+        .Select(f => f.UserId)
+        .ToHashSet();
+
+            foreach (var user in likedUsers)
+            {
+                user.IsFollowing = followingIds.Contains(user.Id);
+            }
+
+            return View("LikedByList", likedUsers);
+        }
+
+
 
 
         [HttpGet]
@@ -387,6 +429,7 @@
                 .Include(p => p.User)
                 .Include(p => p.Comments)
                 .ThenInclude(c => c.Author)
+                .Include(p => p.Likes)
                 .FirstOrDefaultAsync(p => p.Id == id);
 
             if (post == null)

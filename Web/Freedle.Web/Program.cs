@@ -13,6 +13,7 @@ namespace Freedle.Web
     using Freedle.Services.Data;
     using Freedle.Services.Mapping;
     using Freedle.Services.Messaging;
+    using Freedle.Web.Hubs;
     using Freedle.Web.ViewModels;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Http;
@@ -60,6 +61,8 @@ namespace Freedle.Web
                 }).AddRazorRuntimeCompilation();
             services.AddRazorPages();
             services.AddDatabaseDeveloperPageExceptionFilter();
+            services.AddSignalR();
+
 
             services.AddSingleton(configuration);
 
@@ -108,6 +111,8 @@ namespace Freedle.Web
             app.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
             app.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
+            app.MapHub<ChatHub>("/chatHub");
+
         }
     }
 }

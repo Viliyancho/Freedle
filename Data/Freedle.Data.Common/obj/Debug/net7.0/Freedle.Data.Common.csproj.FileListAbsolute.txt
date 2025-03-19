@@ -21,3 +21,4 @@ C:\Users\Admin\Documents\Sites\Freedle\Freedle\Data\Freedle.Data.Common\obj\Debu
 C:\Users\Admin\Documents\Sites\Freedle\Freedle\Data\Freedle.Data.Common\obj\Debug\net7.0\refint\Freedle.Data.Common.dll
 C:\Users\Admin\Documents\Sites\Freedle\Freedle\Data\Freedle.Data.Common\obj\Debug\net7.0\Freedle.Data.Common.pdb
 C:\Users\Admin\Documents\Sites\Freedle\Freedle\Data\Freedle.Data.Common\obj\Debug\net7.0\ref\Freedle.Data.Common.dll
+C:\Users\Admin\Documents\Sites\Freedle\Data\Freedle.Data.Common\obj\Debug\net7.0\Freedle.Data.Common.sourcelink.json

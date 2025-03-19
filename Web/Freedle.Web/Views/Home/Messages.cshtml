@@ -1,67 +1,85 @@
-﻿@{
-    ViewData["Title"] = "Messages";
+﻿@using Freedle.Web.ViewModels
+@model MessagesViewModel
+
+@{
+    ViewData["Title"] = "Съобщения";
 }
 
-<style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f5f5f5;
-        color: #333;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        text-align: center;
-    }
+<h2>Съобщения</h2>
 
-    .container {
-        width: 90%;
-        max-width: 800px;
-        background-color: white;
-        padding: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .info-message {
-        background-color: #fff3cd;
-        color: #856404;
-        padding: 1.5rem;
-        border-radius: 8px;
-        font-size: 1.1rem;
-        line-height: 1.6;
-        text-align: justify;
-    }
-
-    .demo-link {
-        display: inline-block;
-        margin-top: 1.5rem;
-        font-size: 1.2rem;
-        color: #d9534f;
-        font-weight: bold;
-        text-decoration: underline;
-        cursor: pointer;
-    }
-</style>
-
-<div class="container">
-    <div class="info-message">
-        <p>
-            The messaging feature in this application is still under development. Our goal is to create a seamless,
-            secure, and intuitive messaging system that allows users to communicate in real time.
-        </p>
-        <p>
-            In the future, we plan to introduce private conversations, message notifications, group chats,
-            and media sharing. Our development team is actively working on these features to ensure a smooth
-            and efficient messaging experience for all users.
-        </p>
-        <p>
-            We appreciate your patience and support as we continue improving this application. Stay tuned for
-            upcoming updates and enhancements!
-        </p>
+<div style="display: flex;">
+    <!-- Листа с разговорите -->
+    <div style="width: 30%; border-right: 1px solid #ccc; padding-right: 10px;">
+        <h3>Вашите разговори</h3>
+        <ul>
+            @foreach (var conversation in Model.Conversations)
+            {
+                <li>
+                    <a href="#" onclick="loadChat('@conversation.Id', '@conversation.OtherUserName'); return false;">
+                        @conversation.OtherUserName
+                    </a>
+                </li>
+            }
+        </ul>
     </div>
 
-    <a href="/Home/MessagesDemo" class="demo-link">
-        See how the DEMO version of our messaging page will look
-    </a>
+    <!-- Чатът -->
+    <div style="width: 70%; padding-left: 20px;">
+        <h3 id="chatHeader">Изберете разговор</h3>
+        <ul id="messagesList"></ul>
+
+        <input type="text" id="messageInput" placeholder="Вашето съобщение" style="display:none;" />
+        <button id="sendButton" style="display:none;">Изпрати</button>
+    </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+<script>
+    var currentConversationId = null;
+    var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+
+    connection.start().catch(err => console.error(err.toString()));
+
+    function loadChat(conversationId, userName) {
+        currentConversationId = conversationId;
+
+        // Променяме заглавието на чата
+        document.getElementById("chatHeader").innerText = "Чат с " + userName;
+
+        // Показваме полетата за писане
+        document.getElementById("messageInput").style.display = "block";
+        document.getElementById("sendButton").style.display = "block";
+
+        // Изчистваме старите съобщения
+        document.getElementById("messagesList").innerHTML = "";
+
+        // Зареждаме съобщенията чрез AJAX
+        fetch(`/Home/GetMessages?conversationId=${conversationId}`)
+            .then(response => response.json())
+            .then(messages => {
+                messages.forEach(msg => {
+                    var li = document.createElement("li");
+                    li.textContent = `${msg.senderName}: ${msg.content}`;
+                    document.getElementById("messagesList").appendChild(li);
+                });
+
+                // Присъединяваме се към SignalR групата
+                connection.invoke("JoinConversation", conversationId);
+            })
+            .catch(err => console.error(err));
+    }
+
+    connection.on("ReceiveMessage", function (user, message) {
+        var li = document.createElement("li");
+        li.textContent = `${user}: ${message}`;
+        document.getElementById("messagesList").appendChild(li);
+    });
+
+    document.getElementById("sendButton").addEventListener("click", function () {
+        var message = document.getElementById("messageInput").value;
+        if (currentConversationId) {
+            connection.invoke("SendMessage", currentConversationId, "@Model.CurrentUserId", message)
+                .catch(err => console.error(err.toString()));
+        }
+    });
+</script>

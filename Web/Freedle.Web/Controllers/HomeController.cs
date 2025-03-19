@@ -9,10 +9,12 @@
     using System.Threading.Tasks;
     using Freedle.Data;
     using Freedle.Data.Models;
+    using Freedle.Web.Hubs;
     using Freedle.Web.ViewModels;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.SignalR;
     using Microsoft.EntityFrameworkCore;
     using SendGrid.Helpers.Mail;
 
@@ -20,11 +22,13 @@
     {
         private readonly ApplicationDbContext dbContext;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IHubContext<ChatHub> hubContext;
 
-        public HomeController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager)
+        public HomeController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, IHubContext<ChatHub> hubContext)
         {
             this.dbContext = dbContext;
             this.userManager = userManager;
+            this.hubContext = hubContext;
         }
 
         public async Task<IActionResult> Index()
@@ -897,10 +901,116 @@
         }
 
 
-        public IActionResult Messages()
+        public async Task<IActionResult> Messages(int? conversationId)
         {
-            return this.View();
+            var currentUser = await userManager.GetUserAsync(User);
+            if (currentUser == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            // 1️⃣ Взимаме всички разговори, които потребителят има
+            var conversations = await dbContext.Conversations
+                .Where(c => c.User1Id == currentUser.Id || c.User2Id == currentUser.Id)
+                .Select(c => new ConversationViewModel
+                {
+                    Id = c.Id,
+                    OtherUserId = c.User1Id == currentUser.Id ? c.User2Id : c.User1Id,
+                    OtherUserName = c.User1Id == currentUser.Id ? c.User2.UserName : c.User1.UserName
+                })
+                .ToListAsync();
+
+            // 2️⃣ Взимаме всички последвани потребители (които все още нямат чат)
+            var followedUsers = await dbContext.UserFollowers
+                .Where(f => f.FollowerId == currentUser.Id && f.UnfollowedDate == null)
+                .Select(f => new
+                {
+                    f.User.Id,
+                    f.User.UserName
+                })
+                .ToListAsync();
+
+            foreach (var followedUser in followedUsers)
+            {
+                if (!conversations.Any(c => c.OtherUserId == followedUser.Id))
+                {
+                    conversations.Add(new ConversationViewModel
+                    {
+                        Id = 0, // Нова чат стая (още несъздадена)
+                        OtherUserId = followedUser.Id,
+                        OtherUserName = followedUser.UserName
+                    });
+                }
+            }
+
+            // 3️⃣ Взимаме съобщенията, ако е избран разговор
+            var messages = conversationId.HasValue
+                ? await dbContext.Messages
+                    .Where(m => m.ConversationId == conversationId.Value)
+                    .OrderBy(m => m.SentOn)
+                    .Select(m => new MessageViewModel
+                    {
+                        SenderId = m.SenderId,
+                        SenderName = m.Sender.UserName,
+                        Content = m.Content,
+                        SentOn = m.SentOn.ToString("g")
+                    })
+                    .ToListAsync()
+                : new List<MessageViewModel>();
+
+            var viewModel = new MessagesViewModel
+            {
+                CurrentUserId = currentUser.Id,
+                Conversations = conversations,
+                SelectedConversationId = conversationId,
+                Messages = messages
+            };
+
+            return View(viewModel);
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> SendMessage(int conversationId, string message)
+        {
+            var sender = await userManager.GetUserAsync(User);
+            if (sender == null) return Unauthorized();
+
+            var conversation = await dbContext.Conversations.FindAsync(conversationId);
+            if (conversation == null) return NotFound();
+
+            var newMessage = new Message
+            {
+                SenderId = sender.Id,
+                ConversationId = conversationId,
+                Content = message
+            };
+
+            dbContext.Messages.Add(newMessage);
+            await dbContext.SaveChangesAsync();
+
+            await hubContext.Clients.Group(conversationId.ToString())
+                .SendAsync("ReceiveMessage", sender.UserName, message);
+
+            return Ok();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetMessages(int conversationId)
+        {
+            var messages = await dbContext.Messages
+                .Where(m => m.ConversationId == conversationId)
+                .OrderBy(m => m.SentOn)
+                .Select(m => new
+                {
+                    SenderName = m.Sender.UserName,
+                    Content = m.Content
+                })
+                .ToListAsync();
+
+            return Json(messages);
+        }
+
 
         public IActionResult Privacy()
         {

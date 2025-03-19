@@ -1,0 +1,140 @@
+﻿﻿@{
+    ViewData["Title"] = "MessagesDemo";
+}
+
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+    }
+
+    .header {
+        background-color: #87CEEB;
+        color: white;
+        padding: 1rem;
+        text-align: center;
+        font-size: 1.5rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .messages-container {
+        margin: 2rem auto;
+        padding: 1rem;
+        width: 90%;
+        max-width: 600px;
+    }
+
+    .chat-card {
+        display: flex;
+        align-items: center;
+        background-color: white;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+        .chat-card:last-child {
+            margin-bottom: 0;
+        }
+
+    .avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #d3d3d3;
+        margin-right: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: white;
+    }
+
+    .chat-details {
+        flex: 1;
+    }
+
+    .chat-name {
+        font-weight: bold;
+        margin: 0;
+        font-size: 1rem;
+    }
+
+    .last-message {
+        margin: 0.3rem 0 0;
+        font-size: 0.9rem;
+        color: gray;
+    }
+
+    .empty-message {
+        text-align: center;
+        color: gray;
+        font-size: 1.2rem;
+        margin-top: 2rem;
+    }
+</style>
+
+<div class="header">
+    Messages
+</div>
+<div class="messages-container">
+    <div class="chat-card">
+        <div class="avatar">A</div>
+        <div class="chat-details">
+            <p class="chat-name">Alice</p>
+            <p class="last-message">Hey, how are you? 😊</p>
+        </div>
+    </div>
+
+    <div class="chat-card">
+        <div class="avatar">B</div>
+        <div class="chat-details">
+            <p class="chat-name">Bob</p>
+            <p class="last-message">Can you send me that playlist you were talking about? 🎵</p>
+        </div>
+    </div>
+
+    <div class="chat-card">
+        <div class="avatar">C</div>
+        <div class="chat-details">
+            <p class="chat-name">Chris</p>
+            <p class="last-message">Are we still on for tomorrow? </p>
+        </div>
+    </div>
+
+    <div class="chat-card">
+        <div class="avatar">D</div>
+        <div class="chat-details">
+            <p class="chat-name">Daniela</p>
+            <p class="last-message">Guess what? I have some exciting news to share! 😍</p>
+        </div>
+    </div>
+
+    <div class="chat-card">
+        <div class="avatar">E</div>
+        <div class="chat-details">
+            <p class="chat-name">Emma</p>
+            <p class="last-message">Broo, did you watch the game last night? Crazy ending! 🏀🔥</p>
+        </div>
+    </div>
+
+    <div class="empty-message" style="display: none;">
+        No chats yet. Start a conversation!
+    </div>
+</div>
+
+<script>
+    const container = document.querySelector('.container');
+    const chatCards = document.querySelectorAll('.chat-card');
+    const emptyMessage = document.querySelector('.empty-message');
+
+    if (chatCards.length === 0) {
+        emptyMessage.style.display = 'block';
+    } else {
+        emptyMessage.style.display = 'none';
+    }
+</script>

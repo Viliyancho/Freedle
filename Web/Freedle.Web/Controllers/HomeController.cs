@@ -163,7 +163,7 @@
         [Authorize] // Само влезли потребители могат да видят кой е харесал публикацията
         public IActionResult LikedByList(int postId)
         {
-            if (postId <= 0) 
+            if (postId <= 0)
             {
                 return BadRequest("Invalid post ID");
             }
@@ -375,7 +375,7 @@
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken] 
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Unfollow(string userId)
         {
             var currentUser = await userManager.GetUserAsync(User);
@@ -397,7 +397,7 @@
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken] 
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> RemoveFollower(string userId)
         {
             var currentUser = await userManager.GetUserAsync(User);
@@ -726,7 +726,7 @@
                 dbContext.Comments.Remove(reply);
                 await dbContext.SaveChangesAsync();
 
-                
+
 
                 return Json(new { success = true });
             }
@@ -906,12 +906,47 @@
             var currentUser = await userManager.GetUserAsync(User);
             if (currentUser == null)
             {
-                return RedirectToAction("Login", "Account");
+                return Redirect("/Identity/Account/Login");
             }
 
-            // 1️⃣ Взимаме всички разговори, които потребителят има
+
+
+            // Намираме потребителите, с които има взаимно следване
+            var mutualFollowers = await dbContext.UserFollowers
+                .Where(f => f.FollowerId == currentUser.Id && f.UnfollowedDate == null)
+                .Select(f => f.UserId)
+                .Intersect(
+                    dbContext.UserFollowers
+                        .Where(f => f.UserId == currentUser.Id && f.UnfollowedDate == null)
+                        .Select(f => f.FollowerId)
+                )
+                .ToListAsync();
+
+            var hasConversations = await dbContext.Conversations.AnyAsync(c =>
+    c.User1Id == currentUser.Id || c.User2Id == currentUser.Id);
+            Console.WriteLine($"🔍 Проверка за разговори: {hasConversations}");
+
+
+            if (!hasConversations)
+            {
+                Console.WriteLine("🚀 Създаваме нов разговор...");
+                var newConversation = new Conversation
+                {
+                    User1Id = currentUser.Id,
+                    User2Id = mutualFollowers.First(), // Вземаме първия взаимно следван
+                    CreatedOn = DateTime.UtcNow
+                };
+
+                dbContext.Conversations.Add(newConversation);
+                await dbContext.SaveChangesAsync();
+                Console.WriteLine($"✅ Създаден нов разговор с ID: {newConversation.Id}");
+            }
+
+
+            // Взимаме разговорите само с взаимно следваните потребители
             var conversations = await dbContext.Conversations
-                .Where(c => c.User1Id == currentUser.Id || c.User2Id == currentUser.Id)
+                .Where(c => (c.User1Id == currentUser.Id && mutualFollowers.Contains(c.User2Id)) ||
+                            (c.User2Id == currentUser.Id && mutualFollowers.Contains(c.User1Id)))
                 .Select(c => new ConversationViewModel
                 {
                     Id = c.Id,
@@ -920,97 +955,195 @@
                 })
                 .ToListAsync();
 
-            // 2️⃣ Взимаме всички последвани потребители (които все още нямат чат)
-            var followedUsers = await dbContext.UserFollowers
-                .Where(f => f.FollowerId == currentUser.Id && f.UnfollowedDate == null)
-                .Select(f => new
-                {
-                    f.User.Id,
-                    f.User.UserName
-                })
-                .ToListAsync();
+            // Взимаме взаимно следваните потребители, които още нямат разговор
+            var conversationUserIds = await dbContext.Conversations
+    .Where(c => c.User1Id == currentUser.Id || c.User2Id == currentUser.Id)
+    .Select(c => c.User1Id == currentUser.Id ? c.User2Id : c.User1Id)
+    .ToListAsync();
 
-            foreach (var followedUser in followedUsers)
+            var followedUsers = await dbContext.Users
+    .Where(u => mutualFollowers.Contains(u.Id) &&
+                !dbContext.Conversations.Any(c =>
+                    (c.User1Id == currentUser.Id && c.User2Id == u.Id) ||
+                    (c.User2Id == currentUser.Id && c.User1Id == u.Id)))
+    .Select(u => new UserViewModel
+    {
+        Id = u.Id,
+        Username = u.UserName,
+        ProfilePictureUrl = u.ProfilePictureURL,
+        IsFollowing = true
+    })
+    .ToListAsync();
+
+
+
+            // Взимаме съобщенията само ако разговорът съществува
+            List<MessageViewModel> messages = new();
+            if (conversationId.HasValue && conversations.Any(c => c.Id == conversationId.Value))
             {
-                if (!conversations.Any(c => c.OtherUserId == followedUser.Id))
-                {
-                    conversations.Add(new ConversationViewModel
-                    {
-                        Id = 0, // Нова чат стая (още несъздадена)
-                        OtherUserId = followedUser.Id,
-                        OtherUserName = followedUser.UserName
-                    });
-                }
-            }
-
-            // 3️⃣ Взимаме съобщенията, ако е избран разговор
-            var messages = conversationId.HasValue
-                ? await dbContext.Messages
+                messages = await dbContext.Messages
                     .Where(m => m.ConversationId == conversationId.Value)
                     .OrderBy(m => m.SentOn)
                     .Select(m => new MessageViewModel
                     {
+                        ConversationId = m.ConversationId,
                         SenderId = m.SenderId,
                         SenderName = m.Sender.UserName,
                         Content = m.Content,
-                        SentOn = m.SentOn.ToString("g")
+                        SentOn = m.SentOn,
                     })
-                    .ToListAsync()
-                : new List<MessageViewModel>();
+                    .ToListAsync();
+            }
 
             var viewModel = new MessagesViewModel
             {
                 CurrentUserId = currentUser.Id,
+                CurrentUserName = currentUser.UserName,
                 Conversations = conversations,
-                SelectedConversationId = conversationId,
-                Messages = messages
+                FollowedUsers = followedUsers,
+                SelectedConversationId = conversationId ?? 0,
+                Messages = messages,
             };
+
+            Console.WriteLine("🔹 Взаимни последователи:");
+            foreach (var id in mutualFollowers)
+            {
+                Console.WriteLine($"➡ {id}");
+            }
+
+            Console.WriteLine("🔹 Потребители с разговор:");
+            foreach (var id in conversationUserIds)
+            {
+                Console.WriteLine($"➡ {id}");
+            }
+
+            Console.WriteLine("🔹 Потребители без разговор:");
+            foreach (var user in followedUsers)
+            {
+                Console.WriteLine($"➡ {user.Username} ({user.Id})");
+            }
+
 
             return View(viewModel);
         }
 
 
-        [HttpPost]
-        public async Task<IActionResult> SendMessage(int conversationId, string message)
-        {
-            var sender = await userManager.GetUserAsync(User);
-            if (sender == null) return Unauthorized();
 
-            var conversation = await dbContext.Conversations.FindAsync(conversationId);
-            if (conversation == null) return NotFound();
+
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SendMessage([FromBody] MessageViewModel messageModel)
+        {
+            if (messageModel == null || string.IsNullOrEmpty(messageModel.Content))
+            {
+                return BadRequest(new { message = "Съобщението не може да бъде празно!" });
+            }
+
+            if (messageModel.ConversationId <= 0)
+            {
+                return BadRequest(new { message = "Невалиден разговор!" });
+            }
+
+
+            var sender = await userManager.GetUserAsync(User);
+            if (sender == null)
+            {
+                return Unauthorized(new { message = "Не сте влезли в системата!" });
+            }
+
+            var conversation = await dbContext.Conversations.FindAsync(messageModel.ConversationId);
+            if (conversation == null)
+            {
+                return NotFound(new { message = "Разговорът не беше намерен!" });
+            }
 
             var newMessage = new Message
             {
                 SenderId = sender.Id,
-                ConversationId = conversationId,
-                Content = message
+                ConversationId = messageModel.ConversationId,
+                Content = messageModel.Content,
+                SentOn = DateTime.UtcNow,
             };
 
             dbContext.Messages.Add(newMessage);
             await dbContext.SaveChangesAsync();
 
-            await hubContext.Clients.Group(conversationId.ToString())
-                .SendAsync("ReceiveMessage", sender.UserName, message);
+            // Изпращане на съобщението чрез SignalR
+            await hubContext.Clients.Group(messageModel.ConversationId.ToString())
+                .SendAsync("ReceiveMessage", sender.UserName, messageModel.Content);
 
-            return Ok();
+            return Ok(new { message = "Съобщението беше изпратено успешно!" });
         }
+
 
         [HttpGet]
         public async Task<IActionResult> GetMessages(int conversationId)
         {
+            if (conversationId <= 0)
+            {
+                return BadRequest(new { message = "Невалиден разговор!" });
+            }
+
             var messages = await dbContext.Messages
                 .Where(m => m.ConversationId == conversationId)
                 .OrderBy(m => m.SentOn)
                 .Select(m => new
                 {
+                    SenderId = m.SenderId,  // За проверка кой е текущият потребител
                     SenderName = m.Sender.UserName,
-                    Content = m.Content
+                    Content = m.Content,
+                    MessageSenderProfilePictureURL = string.IsNullOrEmpty(m.Sender.ProfilePictureURL)
+                        ? "/images/default-avatar.jpg"
+                        : m.Sender.ProfilePictureURL, // Ако няма снимка -> слагаме placeholder
+                    SentOn = m.SentOn.ToString("g"),
                 })
                 .ToListAsync();
 
             return Json(messages);
         }
 
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateConversation([FromBody] dynamic data)
+        {
+            var currentUser = await userManager.GetUserAsync(User);
+            if (currentUser == null)
+            {
+                return Unauthorized(new { message = "Не сте влезли в системата!" });
+            }
+
+            string userId = data?.userId;
+            if (string.IsNullOrEmpty(userId))
+            {
+                return BadRequest(new { message = "Невалиден потребител!" });
+            }
+
+            var existingConversation = await dbContext.Conversations
+                .FirstOrDefaultAsync(c =>
+                    (c.User1Id == currentUser.Id && c.User2Id == userId) ||
+                    (c.User1Id == userId && c.User2Id == currentUser.Id));
+
+            if (existingConversation != null)
+            {
+                return Json(new { conversationId = existingConversation.Id });
+            }
+
+            var newConversation = new Conversation
+            {
+                User1Id = currentUser.Id,
+                User2Id = userId,
+                CreatedOn = DateTime.UtcNow,
+            };
+
+            dbContext.Conversations.Add(newConversation);
+            await dbContext.SaveChangesAsync();
+
+            return Json(new { conversationId = newConversation.Id });
+        }
 
         public IActionResult Privacy()
         {

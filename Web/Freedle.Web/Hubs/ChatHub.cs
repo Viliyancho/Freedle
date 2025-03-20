@@ -10,9 +10,9 @@ namespace Freedle.Web.Hubs
             await Groups.AddToGroupAsync(Context.ConnectionId, conversationId);
         }
 
-        public async Task SendMessage(string conversationId, string user, string message)
+        public async Task SendMessage(string conversationId, string senderName, string message)
         {
-            await Clients.Group(conversationId).SendAsync("ReceiveMessage", user, message);
+            await Clients.Group(conversationId).SendAsync("ReceiveMessage", senderName, message);
         }
     }
 }

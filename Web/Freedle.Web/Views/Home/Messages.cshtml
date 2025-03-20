@@ -6,16 +6,16 @@
 }
 
 <h2>Съобщения</h2>
+<input type="hidden" id="csrfToken" value="@Html.AntiForgeryToken()" />
 
-<div style="display: flex;">
-    <!-- Листа с разговорите -->
-    <div style="width: 30%; border-right: 1px solid #ccc; padding-right: 10px;">
+<div class="chat-container">
+    <div class="chat-list">
         <h3>Вашите разговори</h3>
         <ul>
             @foreach (var conversation in Model.Conversations)
             {
                 <li>
-                    <a href="#" onclick="loadChat('@conversation.Id', '@conversation.OtherUserName'); return false;">
+                    <a href="#" onclick="event.preventDefault(); loadChat(@conversation.Id, '@conversation.OtherUserName');">
                         @conversation.OtherUserName
                     </a>
                 </li>
@@ -23,63 +23,287 @@
         </ul>
     </div>
 
-    <!-- Чатът -->
-    <div style="width: 70%; padding-left: 20px;">
-        <h3 id="chatHeader">Изберете разговор</h3>
-        <ul id="messagesList"></ul>
-
-        <input type="text" id="messageInput" placeholder="Вашето съобщение" style="display:none;" />
-        <button id="sendButton" style="display:none;">Изпрати</button>
+    <div class="chat-box">
+        <div class="chat-header">
+            <h3 id="chatHeader">Изберете разговор</h3>
+        </div>
+        <div class="chat-messages">
+            <ul id="messagesList"></ul>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="messageInput" placeholder="Вашето съобщение" disabled />
+            <button id="sendButton" disabled>Изпрати</button>
+        </div>
     </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
-<script>
-    var currentConversationId = null;
-    var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
-
-    connection.start().catch(err => console.error(err.toString()));
-
-    function loadChat(conversationId, userName) {
-        currentConversationId = conversationId;
-
-        // Променяме заглавието на чата
-        document.getElementById("chatHeader").innerText = "Чат с " + userName;
-
-        // Показваме полетата за писане
-        document.getElementById("messageInput").style.display = "block";
-        document.getElementById("sendButton").style.display = "block";
-
-        // Изчистваме старите съобщения
-        document.getElementById("messagesList").innerHTML = "";
-
-        // Зареждаме съобщенията чрез AJAX
-        fetch(`/Home/GetMessages?conversationId=${conversationId}`)
-            .then(response => response.json())
-            .then(messages => {
-                messages.forEach(msg => {
-                    var li = document.createElement("li");
-                    li.textContent = `${msg.senderName}: ${msg.content}`;
-                    document.getElementById("messagesList").appendChild(li);
-                });
-
-                // Присъединяваме се към SignalR групата
-                connection.invoke("JoinConversation", conversationId);
-            })
-            .catch(err => console.error(err));
+<style>
+    .chat-container {
+        display: flex;
+        height: 80vh;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        overflow: hidden;
     }
 
-    connection.on("ReceiveMessage", function (user, message) {
+    .chat-list {
+        width: 30%;
+        background: #f5f5f5;
+        padding: 15px;
+        border-right: 1px solid #ccc;
+        overflow-y: auto;
+    }
+
+        .chat-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .chat-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .chat-list a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            display: block;
+        }
+
+            .chat-list a:hover {
+                color: #007bff;
+            }
+
+    .chat-box {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .chat-header {
+        font-size: 18px;
+        font-weight: bold;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .chat-messages {
+        flex-grow: 1;
+        overflow-y: auto;
+        padding: 10px;
+        background: #fff;
+    }
+
+    .chat-input {
+        display: flex;
+        gap: 10px;
+        padding-top: 10px;
+    }
+
+        .chat-input input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .chat-input button {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .chat-input button:disabled {
+                background: #ccc;
+                cursor: not-allowed;
+            }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+<script>
+    var currentConversationId = "@Model.SelectedConversationId" || null;
+    var currentUserName = "@Model.CurrentUserName";
+    var sendMessageUrl = "@Url.Action("SendMessage", "Home")";
+    var messagesUrl = "@Url.Action("Messages", "Home")";
+
+    var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+
+    connection.start()
+        .then(() => console.log("✅ SignalR стартиран успешно!"))
+        .catch(err => console.error("❌ Грешка при стартиране на SignalR:", err));
+
+    function loadChat(conversationId, userName) {
+        console.log("🔵 Зареждане на чат с ID:", conversationId, "и потребител:", userName);
+        currentConversationId = conversationId;
+        document.getElementById("chatHeader").innerText = "Чат с " + userName;
+        document.getElementById("messageInput").disabled = false;
+        document.getElementById("sendButton").disabled = false;
+        loadMessages(conversationId);
+    }
+
+    function loadMessages(conversationId) {
+
+        fetch(`/Home/GetMessages?conversationId=${conversationId}`)
+            .then(response => {
+                return response.json();
+            })
+            .then(messages => {
+                console.log("Получени съобщения (парснат JSON):", messages); // За проверка ако се наложи
+
+                if (!Array.isArray(messages)) {
+                    console.error("❌ [ERROR] Получените данни не са масив!", messages);
+                    return;
+                }
+
+                let messagesList = document.getElementById("messagesList");
+
+                if (!messagesList) {
+                    console.error("❌ [ERROR] messagesList НЕ е намерен в DOM!");
+                    return;
+                }
+
+
+                // Изчистваме предишните съобщения
+                messagesList.innerHTML = "";
+                console.log("Списъкът със съобщения беше изчистен!");
+
+                // 🔥 Проверяваме дали масивът е празен
+                if (messages.length === 0) {
+                    console.warn("Няма съобщения за показване!");
+                }
+
+                messages.forEach((msg, index) => {
+
+                    let senderName = msg.senderName || "Анонимен";
+                    let content = msg.content || "(Празно съобщение)";
+                    let profilePicture = msg.messageSenderProfilePictureURL?.trim() !== ""
+                        ? msg.messageSenderProfilePictureURL
+                        : "/images/default-avatar.jpg";
+
+                    
+                    // ✅ Проверяваме дали стойностите са ОК
+                    if (!senderName || !content) {
+                        console.warn("Невалидни данни в съобщението!", { senderName, content });
+                    }
+
+                    // ❗ Логваме какво точно подаваме на функцията addMessageToChat
+                    console.log("📩 [ADD MESSAGE] Изпращане към addMessageToChat:", {
+                        senderName,
+                        content,
+                        profilePicture
+                    });
+
+                    addMessageToChat(senderName, content, profilePicture);
+                });
+
+
+                // Скрол надолу при нови съобщения
+                messagesList.scrollTop = messagesList.scrollHeight;
+            })
+            .catch(err => console.error("ГРЕШКА при зареждане на съобщенията:", err));
+    }
+
+
+
+
+    function addMessageToChat(user, message, profilePictureUrl) {
+        let messagesList = document.getElementById("messagesList");
+        if (!messagesList) {
+            console.error("❌ messagesList не е намерен!");
+            return;
+        }
+
+        let li = document.createElement("li");
+        li.style.display = "flex";
+        li.style.alignItems = "center";
+        li.style.marginBottom = "10px";
+
+        let img = document.createElement("img");
+        img.src = profilePictureUrl;
+        img.alt = user;
+        img.style.width = "40px";
+        img.style.height = "40px";
+        img.style.borderRadius = "50%";
+        img.style.marginRight = "10px";
+
+        let messageDiv = document.createElement("div");
+        messageDiv.innerHTML = `<strong>${user}</strong><br>${message}`;
+        messageDiv.style.background = "#f1f1f1";
+        messageDiv.style.padding = "10px";
+        messageDiv.style.borderRadius = "10px";
+        messageDiv.style.maxWidth = "60%";
+
+        li.appendChild(img);
+        li.appendChild(messageDiv);
+        messagesList.appendChild(li);
+
+        // Автоматично скролване надолу
+        messagesList.scrollTop = messagesList.scrollHeight;
+    }
+
+
+
+
+
+    connection.on("ReceiveMessage", function (user, message, profilePictureUrl) {
+    console.log("📩 [SignalR] Получено съобщение:", { user, message, profilePictureUrl });
+
+    if (!profilePictureUrl || profilePictureUrl.trim() === "") {
+        profilePictureUrl = "/images/default-avatar.jpg"; // 🔹 Ако липсва, ползваме default снимка
+    }
+
+    addMessageToChat(user, message, profilePictureUrl);
+});
+
+
+    document.getElementById("sendButton").addEventListener("click", function () {
+        var messageContent = document.getElementById("messageInput").value.trim();
+        if (!currentConversationId || !messageContent) {
+            alert("⚠️ Няма избран разговор или празно съобщение!");
+            return;
+        }
+
+        var message = {
+            conversationId: currentConversationId,
+            content: messageContent
+        };
+
+        // Вземане на CSRF токен
+        let tokenElement = document.querySelector('input[name="__RequestVerificationToken"]');
+        let token = tokenElement ? tokenElement.value : "";
+
+        fetch(sendMessageUrl, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'RequestVerificationToken': token  // 🛠️ Добавяне на CSRF токен
+            },
+            body: JSON.stringify(message)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => { throw new Error(err.message || "⚠️ Грешка при изпращане!"); });
+                }
+                return response.json();
+            })
+            .then(() => {
+                document.getElementById("messageInput").value = "";
+                connection.invoke("SendMessage", currentConversationId, currentUserName, messageContent)
+                    .catch(err => console.error("❌ Грешка при SignalR изпращане:", err));
+            })
+            .catch(error => console.error("❌ Грешка при изпращане:", error));
+    });
+
+
+    function addMessageToChat(user, message) {
         var li = document.createElement("li");
         li.textContent = `${user}: ${message}`;
         document.getElementById("messagesList").appendChild(li);
-    });
-
-    document.getElementById("sendButton").addEventListener("click", function () {
-        var message = document.getElementById("messageInput").value;
-        if (currentConversationId) {
-            connection.invoke("SendMessage", currentConversationId, "@Model.CurrentUserId", message)
-                .catch(err => console.error(err.toString()));
-        }
-    });
+    }
 </script>

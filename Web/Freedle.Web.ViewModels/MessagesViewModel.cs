@@ -10,6 +10,10 @@
     {
         public string CurrentUserId { get; set; }
 
+        public string CurrentUserName { get; set; }
+
+        public List<UserViewModel> FollowedUsers { get; set; } = new();
+
         public List<ConversationViewModel> Conversations { get; set; } = new();
 
         public int? SelectedConversationId { get; set; }

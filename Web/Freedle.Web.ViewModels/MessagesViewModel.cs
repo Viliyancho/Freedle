@@ -12,6 +12,8 @@
 
         public string CurrentUserName { get; set; }
 
+        public string CurrentUserProfilePicture { get; set; }
+
         public List<UserViewModel> FollowedUsers { get; set; } = new();
 
         public List<ConversationViewModel> Conversations { get; set; } = new();

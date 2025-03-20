@@ -128,6 +128,7 @@
 <script>
     var currentConversationId = "@Model.SelectedConversationId" || null;
     var currentUserName = "@Model.CurrentUserName";
+    var currentUserProfilePicture = "@Model.CurrentUserProfilePicture" || "/images/default-avatar.jpg";
     var sendMessageUrl = "@Url.Action("SendMessage", "Home")";
     var messagesUrl = "@Url.Action("Messages", "Home")";
 
@@ -144,72 +145,42 @@
         document.getElementById("messageInput").disabled = false;
         document.getElementById("sendButton").disabled = false;
         loadMessages(conversationId);
+
+        // 🔥 Присъединяване към SignalR група за този разговор
+        connection.invoke("JoinConversation", conversationId)
+            .catch(err => console.error("❌ Грешка при присъединяване към разговора:", err));
     }
 
     function loadMessages(conversationId) {
-
         fetch(`/Home/GetMessages?conversationId=${conversationId}`)
-            .then(response => {
-                return response.json();
-            })
+            .then(response => response.json())
             .then(messages => {
-                console.log("Получени съобщения (парснат JSON):", messages); // За проверка ако се наложи
-
+                console.log("📨 Получени съобщения:", messages);
                 if (!Array.isArray(messages)) {
                     console.error("❌ [ERROR] Получените данни не са масив!", messages);
                     return;
                 }
 
                 let messagesList = document.getElementById("messagesList");
-
                 if (!messagesList) {
                     console.error("❌ [ERROR] messagesList НЕ е намерен в DOM!");
                     return;
                 }
 
+                messagesList.innerHTML = ""; // Изчистване на предишните съобщения
 
-                // Изчистваме предишните съобщения
-                messagesList.innerHTML = "";
-                console.log("Списъкът със съобщения беше изчистен!");
-
-                // 🔥 Проверяваме дали масивът е празен
-                if (messages.length === 0) {
-                    console.warn("Няма съобщения за показване!");
-                }
-
-                messages.forEach((msg, index) => {
-
+                messages.forEach(msg => {
                     let senderName = msg.senderName || "Анонимен";
                     let content = msg.content || "(Празно съобщение)";
-                    let profilePicture = msg.messageSenderProfilePictureURL?.trim() !== ""
-                        ? msg.messageSenderProfilePictureURL
-                        : "/images/default-avatar.jpg";
-
-                    
-                    // ✅ Проверяваме дали стойностите са ОК
-                    if (!senderName || !content) {
-                        console.warn("Невалидни данни в съобщението!", { senderName, content });
-                    }
-
-                    // ❗ Логваме какво точно подаваме на функцията addMessageToChat
-                    console.log("📩 [ADD MESSAGE] Изпращане към addMessageToChat:", {
-                        senderName,
-                        content,
-                        profilePicture
-                    });
-
+                    let profilePicture = msg.messageSenderProfilePictureURL?.trim() || "/images/default-avatar.jpg";
                     addMessageToChat(senderName, content, profilePicture);
                 });
 
-
-                // Скрол надолу при нови съобщения
+                // Скрол надолу при зареждане на съобщенията
                 messagesList.scrollTop = messagesList.scrollHeight;
             })
-            .catch(err => console.error("ГРЕШКА при зареждане на съобщенията:", err));
+            .catch(err => console.error("❌ ГРЕШКА при зареждане на съобщенията:", err));
     }
-
-
-
 
     function addMessageToChat(user, message, profilePictureUrl) {
         let messagesList = document.getElementById("messagesList");
@@ -242,24 +213,14 @@
         li.appendChild(messageDiv);
         messagesList.appendChild(li);
 
-        // Автоматично скролване надолу
+        // Автоматично скролване надолу при ново съобщение
         messagesList.scrollTop = messagesList.scrollHeight;
     }
 
-
-
-
-
+    // 📡 Получаване на съобщения в реално време чрез SignalR
     connection.on("ReceiveMessage", function (user, message, profilePictureUrl) {
-    console.log("📩 [SignalR] Получено съобщение:", { user, message, profilePictureUrl });
-
-    if (!profilePictureUrl || profilePictureUrl.trim() === "") {
-        profilePictureUrl = "/images/default-avatar.jpg"; // 🔹 Ако липсва, ползваме default снимка
-    }
-
-    addMessageToChat(user, message, profilePictureUrl);
-});
-
+        addMessageToChat(user, message, profilePictureUrl);
+    });
 
     document.getElementById("sendButton").addEventListener("click", function () {
         var messageContent = document.getElementById("messageInput").value.trim();
@@ -282,7 +243,7 @@
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'RequestVerificationToken': token  // 🛠️ Добавяне на CSRF токен
+                'RequestVerificationToken': token
             },
             body: JSON.stringify(message)
         })
@@ -294,16 +255,17 @@
             })
             .then(() => {
                 document.getElementById("messageInput").value = "";
-                connection.invoke("SendMessage", currentConversationId, currentUserName, messageContent)
+
+                // 🔥 Добавяне на съобщението веднага в UI, без да чакаме SignalR
+                addMessageToChat(currentUserName, messageContent, currentUserProfilePicture);
+
+               
+
+                // Изпращане през SignalR
+                connection.invoke("SendMessage", currentConversationId, currentUserName, messageContent, currentUserProfilePicture)
                     .catch(err => console.error("❌ Грешка при SignalR изпращане:", err));
             })
             .catch(error => console.error("❌ Грешка при изпращане:", error));
     });
 
-
-    function addMessageToChat(user, message) {
-        var li = document.createElement("li");
-        li.textContent = `${user}: ${message}`;
-        document.getElementById("messagesList").appendChild(li);
-    }
 </script>

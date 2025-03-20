@@ -909,7 +909,9 @@
                 return Redirect("/Identity/Account/Login");
             }
 
-
+            string profilePictureUrl = string.IsNullOrEmpty(currentUser.ProfilePictureURL)
+        ? "/images/default-avatar.jpg" // Ако няма качена снимка, използваме стандартната
+        : currentUser.ProfilePictureURL;
 
             // Намираме потребителите, с които има взаимно следване
             var mutualFollowers = await dbContext.UserFollowers
@@ -922,28 +924,39 @@
                 )
                 .ToListAsync();
 
-            var hasConversations = await dbContext.Conversations.AnyAsync(c =>
-    c.User1Id == currentUser.Id || c.User2Id == currentUser.Id);
-            Console.WriteLine($"🔍 Проверка за разговори: {hasConversations}");
+            // Взимаме всички потребители, с които текущият потребител вече има разговор
+            var conversationUserIds = await dbContext.Conversations
+                .Where(c => c.User1Id == currentUser.Id || c.User2Id == currentUser.Id)
+                .Select(c => c.User1Id == currentUser.Id ? c.User2Id : c.User1Id)
+                .ToListAsync();
 
+            Console.WriteLine($"📌 Проверка: {conversationUserIds.Count} активни разговора, {mutualFollowers.Count} взаимни последователи.");
 
-            if (!hasConversations)
+            // Обхождаме всички взаимно следвани и създаваме разговори, ако няма
+            var newConversations = new List<Conversation>();
+
+            foreach (var followerId in mutualFollowers)
             {
-                Console.WriteLine("🚀 Създаваме нов разговор...");
-                var newConversation = new Conversation
+                if (!conversationUserIds.Contains(followerId)) // Ако няма разговор с този потребител
                 {
-                    User1Id = currentUser.Id,
-                    User2Id = mutualFollowers.First(), // Вземаме първия взаимно следван
-                    CreatedOn = DateTime.UtcNow
-                };
-
-                dbContext.Conversations.Add(newConversation);
-                await dbContext.SaveChangesAsync();
-                Console.WriteLine($"✅ Създаден нов разговор с ID: {newConversation.Id}");
+                    Console.WriteLine($"🚀 Създаваме нов разговор с {followerId}...");
+                    newConversations.Add(new Conversation
+                    {
+                        User1Id = currentUser.Id,
+                        User2Id = followerId,
+                        CreatedOn = DateTime.UtcNow
+                    });
+                }
             }
 
+            if (newConversations.Any())
+            {
+                dbContext.Conversations.AddRange(newConversations);
+                await dbContext.SaveChangesAsync();
+                Console.WriteLine($"✅ {newConversations.Count} нови разговора са създадени.");
+            }
 
-            // Взимаме разговорите само с взаимно следваните потребители
+            // Взимаме всички разговори на текущия потребител само с взаимно следваните потребители
             var conversations = await dbContext.Conversations
                 .Where(c => (c.User1Id == currentUser.Id && mutualFollowers.Contains(c.User2Id)) ||
                             (c.User2Id == currentUser.Id && mutualFollowers.Contains(c.User1Id)))
@@ -956,26 +969,19 @@
                 .ToListAsync();
 
             // Взимаме взаимно следваните потребители, които още нямат разговор
-            var conversationUserIds = await dbContext.Conversations
-    .Where(c => c.User1Id == currentUser.Id || c.User2Id == currentUser.Id)
-    .Select(c => c.User1Id == currentUser.Id ? c.User2Id : c.User1Id)
-    .ToListAsync();
-
             var followedUsers = await dbContext.Users
-    .Where(u => mutualFollowers.Contains(u.Id) &&
-                !dbContext.Conversations.Any(c =>
-                    (c.User1Id == currentUser.Id && c.User2Id == u.Id) ||
-                    (c.User2Id == currentUser.Id && c.User1Id == u.Id)))
-    .Select(u => new UserViewModel
-    {
-        Id = u.Id,
-        Username = u.UserName,
-        ProfilePictureUrl = u.ProfilePictureURL,
-        IsFollowing = true
-    })
-    .ToListAsync();
-
-
+                .Where(u => mutualFollowers.Contains(u.Id) &&
+                            !dbContext.Conversations.Any(c =>
+                                (c.User1Id == currentUser.Id && c.User2Id == u.Id) ||
+                                (c.User2Id == currentUser.Id && c.User1Id == u.Id)))
+                .Select(u => new UserViewModel
+                {
+                    Id = u.Id,
+                    Username = u.UserName,
+                    ProfilePictureUrl = u.ProfilePictureURL,
+                    IsFollowing = true
+                })
+                .ToListAsync();
 
             // Взимаме съобщенията само ако разговорът съществува
             List<MessageViewModel> messages = new();
@@ -999,6 +1005,7 @@
             {
                 CurrentUserId = currentUser.Id,
                 CurrentUserName = currentUser.UserName,
+                CurrentUserProfilePicture = profilePictureUrl,
                 Conversations = conversations,
                 FollowedUsers = followedUsers,
                 SelectedConversationId = conversationId ?? 0,
@@ -1023,9 +1030,9 @@
                 Console.WriteLine($"➡ {user.Username} ({user.Id})");
             }
 
-
             return View(viewModel);
         }
+
 
 
 
@@ -1060,6 +1067,12 @@
                 return NotFound(new { message = "Разговорът не беше намерен!" });
             }
 
+            string profilePictureUrl = sender.ProfilePictureURL;
+            if (string.IsNullOrWhiteSpace(profilePictureUrl))
+            {
+                profilePictureUrl = "/images/default-avatar.jpg"; // Дефолтна снимка, ако няма
+            }
+
             var newMessage = new Message
             {
                 SenderId = sender.Id,
@@ -1073,7 +1086,7 @@
 
             // Изпращане на съобщението чрез SignalR
             await hubContext.Clients.Group(messageModel.ConversationId.ToString())
-                .SendAsync("ReceiveMessage", sender.UserName, messageModel.Content);
+                .SendAsync("ReceiveMessage", sender.UserName, messageModel.Content, profilePictureUrl);
 
             return Ok(new { message = "Съобщението беше изпратено успешно!" });
         }

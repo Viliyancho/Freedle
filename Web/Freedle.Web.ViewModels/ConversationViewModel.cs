@@ -13,5 +13,8 @@
             public string OtherUserId { get; set; }
 
             public string OtherUserName { get; set; }
+
+            public string OtherUserProfilePicture { get; set; }
+
     }
 }

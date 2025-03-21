@@ -2,21 +2,23 @@
 @model MessagesViewModel
 
 @{
-    ViewData["Title"] = "Съобщения";
+    ViewData["Title"] = "Messages";
 }
 
-<h2>Съобщения</h2>
-<input type="hidden" id="csrfToken" value="@Html.AntiForgeryToken()" />
+<h2 class="title">Messages</h2>
+@Html.AntiForgeryToken()
+<input type="hidden" id="csrfToken" value="" />
 
 <div class="chat-container">
     <div class="chat-list">
-        <h3>Вашите разговори</h3>
+        <h3>Your Conversations</h3>
         <ul>
             @foreach (var conversation in Model.Conversations)
             {
                 <li>
                     <a href="#" onclick="event.preventDefault(); loadChat(@conversation.Id, '@conversation.OtherUserName');">
-                        @conversation.OtherUserName
+                        <img src="@conversation.OtherUserProfilePicture" class="profile-img" alt="Profile Picture">
+                        <span class="username">@conversation.OtherUserName</span>
                     </a>
                 </li>
             }
@@ -25,33 +27,50 @@
 
     <div class="chat-box">
         <div class="chat-header">
-            <h3 id="chatHeader">Изберете разговор</h3>
+            <h3 id="chatHeader">Select a conversation</h3>
         </div>
         <div class="chat-messages">
             <ul id="messagesList"></ul>
         </div>
         <div class="chat-input">
-            <input type="text" id="messageInput" placeholder="Вашето съобщение" disabled />
-            <button id="sendButton" disabled>Изпрати</button>
+            <input type="text" id="messageInput" placeholder="Type your message..." disabled />
+            <button id="sendButton" disabled>Send</button>
         </div>
     </div>
 </div>
 
 <style>
+    body {
+        background: linear-gradient(to bottom, skyblue, lightgray);
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+
+    .title {
+        font-size: 36px;
+        font-weight: bold;
+        text-transform: uppercase;
+        background: linear-gradient(to right, #007bff, #00c6ff);
+        -webkit-background-clip: text;
+        color: transparent;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
     .chat-container {
         display: flex;
         height: 80vh;
-        border: 1px solid #ccc;
         border-radius: 10px;
         overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     .chat-list {
         width: 30%;
-        background: #f5f5f5;
+        background: linear-gradient(to bottom, skyblue, lightgrey);
         padding: 15px;
-        border-right: 1px solid #ccc;
+        border-right: 2px solid transparent;
         overflow-y: auto;
+        border-radius: 10px 10px 10px 0; /* Закръгляне на горен и долен десен ъгъл */
     }
 
         .chat-list ul {
@@ -60,40 +79,69 @@
         }
 
         .chat-list li {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
+            padding: 12px;
+            margin: 5px 0;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.7);
+            transition: transform 0.3s, background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .chat-list a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-            display: block;
-        }
-
-            .chat-list a:hover {
-                color: #007bff;
+            .chat-list li:hover {
+                background: rgba(200, 200, 200, 0.9);
+                transform: scale(1.05);
             }
+
+            /* Направи цялото поле линк */
+            .chat-list li a {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                width: 100%; /* Целият контейнер е кликваем */
+                text-decoration: none;
+                color: inherit;
+            }
+
+    .profile-img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: none;
+    }
+
+    .username {
+        font-weight: bold;
+        color: #333;
+    }
+
+    
 
     .chat-box {
         width: 70%;
         display: flex;
         flex-direction: column;
         padding: 15px;
+        background: white;
+        backdrop-filter: blur(5px);
+        border-radius: 10px;
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
     .chat-header {
-        font-size: 18px;
+        font-size: 20px;
         font-weight: bold;
         padding-bottom: 10px;
         border-bottom: 1px solid #ddd;
+        text-align: center;
     }
 
     .chat-messages {
         flex-grow: 1;
         overflow-y: auto;
         padding: 10px;
-        background: #fff;
     }
 
     .chat-input {
@@ -107,7 +155,12 @@
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            transition: box-shadow 0.3s;
         }
+
+            .chat-input input:focus {
+                box-shadow: 0 0 5px #007bff;
+            }
 
         .chat-input button {
             background: #007bff;
@@ -116,7 +169,12 @@
             padding: 10px 15px;
             border-radius: 5px;
             cursor: pointer;
+            transition: background 0.3s;
         }
+
+            .chat-input button:hover:not(:disabled) {
+                background: #0056b3;
+            }
 
             .chat-input button:disabled {
                 background: #ccc;
@@ -124,8 +182,10 @@
             }
 </style>
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
 <script>
+
     var currentConversationId = "@Model.SelectedConversationId" || null;
     var currentUserName = "@Model.CurrentUserName";
     var currentUserProfilePicture = "@Model.CurrentUserProfilePicture" || "/images/default-avatar.jpg";
@@ -135,18 +195,17 @@
     var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
 
     connection.start()
-        .then(() => console.log("✅ SignalR стартиран успешно!"))
-        .catch(err => console.error("❌ Грешка при стартиране на SignalR:", err));
+        .then(() => console.log("SignalR стартиран успешно!"))
+        .catch(err => console.error("Грешка при стартиране на SignalR:", err));
 
     function loadChat(conversationId, userName) {
-        console.log("🔵 Зареждане на чат с ID:", conversationId, "и потребител:", userName);
         currentConversationId = conversationId;
-        document.getElementById("chatHeader").innerText = "Чат с " + userName;
+        document.getElementById("chatHeader").innerText = "Chat with " + userName;
         document.getElementById("messageInput").disabled = false;
         document.getElementById("sendButton").disabled = false;
         loadMessages(conversationId);
 
-        // 🔥 Присъединяване към SignalR група за този разговор
+        // Присъединяване към SignalR група за този разговор
         connection.invoke("JoinConversation", conversationId)
             .catch(err => console.error("❌ Грешка при присъединяване към разговора:", err));
     }
@@ -155,19 +214,19 @@
         fetch(`/Home/GetMessages?conversationId=${conversationId}`)
             .then(response => response.json())
             .then(messages => {
-                console.log("📨 Получени съобщения:", messages);
+                console.log("Получени съобщения:", messages);
                 if (!Array.isArray(messages)) {
-                    console.error("❌ [ERROR] Получените данни не са масив!", messages);
+                    console.error("Получените данни не са масив!", messages);
                     return;
                 }
 
                 let messagesList = document.getElementById("messagesList");
                 if (!messagesList) {
-                    console.error("❌ [ERROR] messagesList НЕ е намерен в DOM!");
+                    console.error("messagesList НЕ е намерен в DOM!");
                     return;
                 }
 
-                messagesList.innerHTML = ""; // Изчистване на предишните съобщения
+                messagesList.innerHTML = "";
 
                 messages.forEach(msg => {
                     let senderName = msg.senderName || "Анонимен";
@@ -176,23 +235,29 @@
                     addMessageToChat(senderName, content, profilePicture);
                 });
 
-                // Скрол надолу при зареждане на съобщенията
-                messagesList.scrollTop = messagesList.scrollHeight;
+                setTimeout(() => {
+                    let messagesContainer = document.querySelector(".chat-messages");
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }, 100);
+
             })
-            .catch(err => console.error("❌ ГРЕШКА при зареждане на съобщенията:", err));
+            .catch(err => console.error("Грешка при зареждане на съобщенията:", err));
     }
 
     function addMessageToChat(user, message, profilePictureUrl) {
         let messagesList = document.getElementById("messagesList");
         if (!messagesList) {
-            console.error("❌ messagesList не е намерен!");
+            console.error("messagesList не е намерен!");
             return;
         }
+
+        let isCurrentUser = user === currentUserName;
 
         let li = document.createElement("li");
         li.style.display = "flex";
         li.style.alignItems = "center";
         li.style.marginBottom = "10px";
+        li.style.justifyContent = isCurrentUser ? "flex-end" : "flex-start";
 
         let img = document.createElement("img");
         img.src = profilePictureUrl;
@@ -200,24 +265,42 @@
         img.style.width = "40px";
         img.style.height = "40px";
         img.style.borderRadius = "50%";
-        img.style.marginRight = "10px";
+        img.style.margin = isCurrentUser ? "0 0 0 10px" : "0 10px 0 0";
 
         let messageDiv = document.createElement("div");
         messageDiv.innerHTML = `<strong>${user}</strong><br>${message}`;
-        messageDiv.style.background = "#f1f1f1";
         messageDiv.style.padding = "10px";
         messageDiv.style.borderRadius = "10px";
         messageDiv.style.maxWidth = "60%";
+        messageDiv.style.wordWrap = "break-word";
+        messageDiv.style.textAlign = isCurrentUser ? "right" : "left";
 
-        li.appendChild(img);
-        li.appendChild(messageDiv);
+        if (isCurrentUser) {
+            messageDiv.style.background = "#F5F5F5";
+            messageDiv.style.alignSelf = "flex-end"; 
+        } else {
+            messageDiv.style.background = "#E3F2FD";
+        }
+
+        if (isCurrentUser) {
+            li.appendChild(messageDiv);
+            li.appendChild(img);
+        } else {
+            li.appendChild(img);
+            li.appendChild(messageDiv);
+        }
+
         messagesList.appendChild(li);
 
-        // Автоматично скролване надолу при ново съобщение
-        messagesList.scrollTop = messagesList.scrollHeight;
+        setTimeout(() => {
+            let messagesContainer = document.querySelector(".chat-messages");
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }, 100);
+
     }
 
-    // 📡 Получаване на съобщения в реално време чрез SignalR
+
+    // Получаване на съобщения в реално време чрез SignalR
     connection.on("ReceiveMessage", function (user, message, profilePictureUrl) {
         addMessageToChat(user, message, profilePictureUrl);
     });
@@ -225,7 +308,7 @@
     document.getElementById("sendButton").addEventListener("click", function () {
         var messageContent = document.getElementById("messageInput").value.trim();
         if (!currentConversationId || !messageContent) {
-            alert("⚠️ Няма избран разговор или празно съобщение!");
+            alert("Няма избран разговор или празно съобщение!");
             return;
         }
 
@@ -234,7 +317,6 @@
             content: messageContent
         };
 
-        // Вземане на CSRF токен
         let tokenElement = document.querySelector('input[name="__RequestVerificationToken"]');
         let token = tokenElement ? tokenElement.value : "";
 
@@ -249,23 +331,29 @@
         })
             .then(response => {
                 if (!response.ok) {
-                    return response.json().then(err => { throw new Error(err.message || "⚠️ Грешка при изпращане!"); });
+                    return response.json().then(err => { throw new Error(err.message || "Грешка при изпращане!"); });
                 }
                 return response.json();
             })
             .then(() => {
                 document.getElementById("messageInput").value = "";
 
-                // 🔥 Добавяне на съобщението веднага в UI, без да чакаме SignalR
+                // Добавяне на съобщението веднага в UI, без да чакаме SignalR
                 addMessageToChat(currentUserName, messageContent, currentUserProfilePicture);
 
                
 
-                // Изпращане през SignalR
                 connection.invoke("SendMessage", currentConversationId, currentUserName, messageContent, currentUserProfilePicture)
                     .catch(err => console.error("❌ Грешка при SignalR изпращане:", err));
             })
             .catch(error => console.error("❌ Грешка при изпращане:", error));
+    });
+
+    document.getElementById("messageInput").addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("sendButton").click();
+        }
     });
 
 </script>

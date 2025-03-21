@@ -490,7 +490,7 @@
         public async Task<IActionResult> MyProfile()
         {
             var currentUser = await this.userManager.Users
-    .Include(u => u.Posts) // Зареждаме постовете заедно с потребителя
+    .Include(u => u.Posts) 
     .FirstOrDefaultAsync(u => u.Id == this.userManager.GetUserId(User));
 
             if (currentUser == null)
@@ -804,7 +804,6 @@
 
 
 
-        // GET метод, който показва формата за създаване на пост
         public IActionResult CreatePost()
         {
             return this.View();
@@ -824,14 +823,12 @@
 
                 string imagePath = null;
 
-                // Проверяваме дали потребителят е качил файл
                 if (model.ImageURL != null && model.ImageURL.Length > 0)
                 {
                     // Генерираме уникално име за файла
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(model.ImageURL.FileName);
                     string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
 
-                    // Създаваме директорията ако не съществува
                     if (!Directory.Exists(uploadsFolder))
                     {
                         Directory.CreateDirectory(uploadsFolder);
@@ -884,7 +881,7 @@
                 return Json(new { users = new List<object>() });
             }
 
-            var currentUser = await userManager.GetUserAsync(User); // Взимаме логнатия потребител
+            var currentUser = await userManager.GetUserAsync(User);
 
             var users = await this.dbContext.Users
                 .Where(u => u.UserName.Contains(query) && (currentUser == null || u.Id != currentUser.Id)) // Филтрираме текущия потребител
@@ -910,10 +907,9 @@
             }
 
             string profilePictureUrl = string.IsNullOrEmpty(currentUser.ProfilePictureURL)
-        ? "/images/default-avatar.jpg" // Ако няма качена снимка, използваме стандартната
+        ? "/images/default-avatar.jpg" 
         : currentUser.ProfilePictureURL;
 
-            // Намираме потребителите, с които има взаимно следване
             var mutualFollowers = await dbContext.UserFollowers
                 .Where(f => f.FollowerId == currentUser.Id && f.UnfollowedDate == null)
                 .Select(f => f.UserId)
@@ -924,7 +920,6 @@
                 )
                 .ToListAsync();
 
-            // Взимаме всички потребители, с които текущият потребител вече има разговор
             var conversationUserIds = await dbContext.Conversations
                 .Where(c => c.User1Id == currentUser.Id || c.User2Id == currentUser.Id)
                 .Select(c => c.User1Id == currentUser.Id ? c.User2Id : c.User1Id)
@@ -932,12 +927,11 @@
 
             Console.WriteLine($"📌 Проверка: {conversationUserIds.Count} активни разговора, {mutualFollowers.Count} взаимни последователи.");
 
-            // Обхождаме всички взаимно следвани и създаваме разговори, ако няма
             var newConversations = new List<Conversation>();
 
             foreach (var followerId in mutualFollowers)
             {
-                if (!conversationUserIds.Contains(followerId)) // Ако няма разговор с този потребител
+                if (!conversationUserIds.Contains(followerId)) 
                 {
                     Console.WriteLine($"🚀 Създаваме нов разговор с {followerId}...");
                     newConversations.Add(new Conversation
@@ -956,7 +950,6 @@
                 Console.WriteLine($"✅ {newConversations.Count} нови разговора са създадени.");
             }
 
-            // Взимаме всички разговори на текущия потребител само с взаимно следваните потребители
             var conversations = await dbContext.Conversations
                 .Where(c => (c.User1Id == currentUser.Id && mutualFollowers.Contains(c.User2Id)) ||
                             (c.User2Id == currentUser.Id && mutualFollowers.Contains(c.User1Id)))
@@ -964,11 +957,11 @@
                 {
                     Id = c.Id,
                     OtherUserId = c.User1Id == currentUser.Id ? c.User2Id : c.User1Id,
-                    OtherUserName = c.User1Id == currentUser.Id ? c.User2.UserName : c.User1.UserName
+                    OtherUserName = c.User1Id == currentUser.Id ? c.User2.UserName : c.User1.UserName,
+                    OtherUserProfilePicture = c.User1Id == currentUser.Id ? c.User2.ProfilePictureURL : c.User1.ProfilePictureURL,
                 })
                 .ToListAsync();
 
-            // Взимаме взаимно следваните потребители, които още нямат разговор
             var followedUsers = await dbContext.Users
                 .Where(u => mutualFollowers.Contains(u.Id) &&
                             !dbContext.Conversations.Any(c =>
@@ -983,7 +976,6 @@
                 })
                 .ToListAsync();
 
-            // Взимаме съобщенията само ако разговорът съществува
             List<MessageViewModel> messages = new();
             if (conversationId.HasValue && conversations.Any(c => c.Id == conversationId.Value))
             {
@@ -1011,24 +1003,6 @@
                 SelectedConversationId = conversationId ?? 0,
                 Messages = messages,
             };
-
-            Console.WriteLine("🔹 Взаимни последователи:");
-            foreach (var id in mutualFollowers)
-            {
-                Console.WriteLine($"➡ {id}");
-            }
-
-            Console.WriteLine("🔹 Потребители с разговор:");
-            foreach (var id in conversationUserIds)
-            {
-                Console.WriteLine($"➡ {id}");
-            }
-
-            Console.WriteLine("🔹 Потребители без разговор:");
-            foreach (var user in followedUsers)
-            {
-                Console.WriteLine($"➡ {user.Username} ({user.Id})");
-            }
 
             return View(viewModel);
         }
@@ -1070,7 +1044,7 @@
             string profilePictureUrl = sender.ProfilePictureURL;
             if (string.IsNullOrWhiteSpace(profilePictureUrl))
             {
-                profilePictureUrl = "/images/default-avatar.jpg"; // Дефолтна снимка, ако няма
+                profilePictureUrl = "/images/default-avatar.jpg";
             }
 
             var newMessage = new Message
@@ -1105,12 +1079,12 @@
                 .OrderBy(m => m.SentOn)
                 .Select(m => new
                 {
-                    SenderId = m.SenderId,  // За проверка кой е текущият потребител
+                    SenderId = m.SenderId,
                     SenderName = m.Sender.UserName,
                     Content = m.Content,
                     MessageSenderProfilePictureURL = string.IsNullOrEmpty(m.Sender.ProfilePictureURL)
                         ? "/images/default-avatar.jpg"
-                        : m.Sender.ProfilePictureURL, // Ако няма снимка -> слагаме placeholder
+                        : m.Sender.ProfilePictureURL,
                     SentOn = m.SentOn.ToString("g"),
                 })
                 .ToListAsync();

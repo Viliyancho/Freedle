@@ -13,7 +13,7 @@
     }
 
     h1 {
-        color: skyblue;
+        color: white;
         font-weight: bold;
         text-align: center;
         margin-bottom: 0em;
@@ -61,28 +61,6 @@
         margin-top: 3em;
     }
 
-    .left-image, .right-image {
-        position: absolute;
-        width: 150px;
-        opacity: 0.8;
-        z-index: 0;
-    }
-
-    .left-image {
-        position: absolute;
-        width: 22em;
-        opacity: 0.8;
-        left: -0.5em;
-        top: 5.5em;
-    }
-
-    .right-image {
-        position: absolute;
-        width: 22em;
-        opacity: 0.8;
-        right: -0.5em;
-        top: 5.5em;
-    }
 
     #registerForm {
         max-height: 325px;
@@ -95,6 +73,24 @@
             overflow: auto;
         }
 
+    .left-image, .right-image {
+        position: absolute;
+        width: 30em;
+        opacity: 0.9;
+        z-index: 0;
+    }
+
+    .left-image {
+        left: -3em;
+        top: 1em;
+    }
+
+    .right-image {
+        right: -3em;
+        top: 1em;
+    }
+
+
 </style>
 
 <h1>@ViewData["Title"]</h1>
@@ -105,7 +101,9 @@
 
 <div class="form-container">
 
-    <img src="/images/cloud.png" alt="Clouds Left" class="left-image">
+    <img src="~/images/leftIdentity.png" alt="Left Identity" class="left-image">
+    <img src="~/images/rightIdentity.png" alt="Right Identity" class="right-image">
+
 
     <div class="col-md-4">
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
@@ -199,8 +197,6 @@
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
         </form>
     </div>
-
-    <img src="/images/cloud.png" alt="Clouds Right" class="right-image">
 
 </div>
 

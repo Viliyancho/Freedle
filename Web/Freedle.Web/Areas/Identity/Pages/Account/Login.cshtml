@@ -13,7 +13,7 @@
     }
 
     h1 {
-        color: skyblue;
+        color: white;
         font-weight: bold;
         text-align: center;
         margin-bottom: 0em;
@@ -77,33 +77,27 @@
 
     .left-image, .right-image {
         position: absolute;
-        width: 150px;
-        opacity: 0.8;
+        width: 30em;
+        opacity: 0.9;
         z-index: 0;
     }
 
-
     .left-image {
-        position: absolute;
-        width: 23em;
-        opacity: 0.8;
-        left: 6em;
-        top: 15em;
+        left: 3em;
+        top: 10em;
     }
 
     .right-image {
-        position: absolute;
-        width: 23em;
-        opacity: 0.8;
-        right: 6em;
-        top: 15em;
+        right: 3em;
+        top: 10em;
     }
 </style>
 
 <h1>@ViewData["Title"]</h1>
 <div class="row">
 
-    <img src="/images/cloud.png" alt="Clouds Left" class="left-image">
+    <img src="~/images/leftIdentity.png" alt="Left Identity" class="left-image">
+    <img src="~/images/rightIdentity.png" alt="Right Identity" class="right-image">
 
     <div class="col-md-4">
         <section>
@@ -154,7 +148,6 @@
         </section>
     </div>
 
-    <img src="/images/cloud.png" alt="Clouds Right" class="right-image">
 
 </div>
 

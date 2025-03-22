@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "I4BbMtAHEXdQwzmMwjPhY/zVUyA4WlbPEAcJub2Rm4g=",
+  "Hash": "DMgdkIivbcY9iyOU9l8qo5CXOgN3CoJ8E+pkdydxtGM=",
   "Source": "Freedle.Web",
   "BasePath": "_content/Freedle.Web",
   "Mode": "Default",
@@ -1879,6 +1879,25 @@
       "OriginalItemSpec": "wwwroot\\images\\e99cd251-d472-48e2-9944-15a422c562b6.jpg"
     },
     {
+      "Identity": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\leftIdentity.png",
+      "SourceId": "Freedle.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\",
+      "BasePath": "_content/Freedle.Web",
+      "RelativePath": "images/leftIdentity.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\leftIdentity.png"
+    },
+    {
       "Identity": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\profile_pics\\10467494-66f3-4565-b1c4-819e07749c7f_363869791_6899239176753809_5430365467076789730_n.jpg",
       "SourceId": "Freedle.Web",
       "SourceType": "Discovered",
@@ -1991,6 +2010,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\profile_pics\\d88a44f9-f3dc-4495-81dd-956af42d563f_3fbf5e57-6352-4dbe-b6a9-861ba08c9e8f.a33f77df4e4bbf871a0d388a4cfbacc9.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\rightIdentity.png",
+      "SourceId": "Freedle.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\",
+      "BasePath": "_content/Freedle.Web",
+      "RelativePath": "images/rightIdentity.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\rightIdentity.png"
     },
     {
       "Identity": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\js\\site.js",

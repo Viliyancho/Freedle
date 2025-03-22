@@ -232,7 +232,8 @@
                     let senderName = msg.senderName || "Анонимен";
                     let content = msg.content || "(Празно съобщение)";
                     let profilePicture = msg.messageSenderProfilePictureURL?.trim() || "/images/default-avatar.jpg";
-                    addMessageToChat(senderName, content, profilePicture);
+                    let sentOn = msg.sentOn || new Date().toISOString();
+                    addMessageToChat(senderName, content, profilePicture, sentOn);
                 });
 
                 setTimeout(() => {
@@ -244,7 +245,7 @@
             .catch(err => console.error("Грешка при зареждане на съобщенията:", err));
     }
 
-    function addMessageToChat(user, message, profilePictureUrl) {
+    function addMessageToChat(user, message, profilePictureUrl, sentOn) {
         let messagesList = document.getElementById("messagesList");
         if (!messagesList) {
             console.error("messagesList не е намерен!");
@@ -255,49 +256,100 @@
 
         let li = document.createElement("li");
         li.style.display = "flex";
-        li.style.alignItems = "center";
+        li.style.flexDirection = "column";
+        li.style.alignItems = isCurrentUser ? "flex-end" : "flex-start";
         li.style.marginBottom = "10px";
-        li.style.justifyContent = isCurrentUser ? "flex-end" : "flex-start";
+        li.style.width = "100%";
 
+        // Форматиране на датата
+        let sentDate = sentOn ? new Date(sentOn) : new Date();
+        let formattedDate = sentDate.toLocaleString("bg-BG", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+
+        // Контейнер за време и съобщение
+        let messageContainer = document.createElement("div");
+        messageContainer.style.display = "flex";
+        messageContainer.style.flexDirection = "column";
+        messageContainer.style.alignItems = isCurrentUser ? "flex-end" : "flex-start";
+        messageContainer.style.maxWidth = "60%";
+
+        // Времето на съобщението
+        let timeDiv = document.createElement("div");
+        timeDiv.innerText = formattedDate;
+        timeDiv.style.fontSize = "12px";
+        timeDiv.style.color = "gray";
+        timeDiv.style.marginBottom = "3px";
+        timeDiv.style.textAlign = "center";
+
+        // Контейнер за съобщението и профилната снимка
+        let messageWrapper = document.createElement("div");
+        messageWrapper.style.display = "flex";
+        messageWrapper.style.alignItems = "center";
+        messageWrapper.style.gap = "8px";
+
+        // Профилна снимка
         let img = document.createElement("img");
         img.src = profilePictureUrl;
         img.alt = user;
-        img.style.width = "40px";
-        img.style.height = "40px";
+        img.style.width = "35px";
+        img.style.height = "35px";
         img.style.borderRadius = "50%";
-        img.style.margin = isCurrentUser ? "0 0 0 10px" : "0 10px 0 0";
+
+        // Текстова част (име + съобщение)
+        let textContainer = document.createElement("div");
+        textContainer.style.display = "flex";
+        textContainer.style.flexDirection = "column";
+
+        // Име на потребителя
+        let nameDiv = document.createElement("strong");
+        nameDiv.innerText = user;
+        nameDiv.style.fontSize = "14px";
+        nameDiv.style.marginBottom = "2px";
 
         let messageDiv = document.createElement("div");
-        messageDiv.innerHTML = `<strong>${user}</strong><br>${message}`;
+        messageDiv.innerText = message;
         messageDiv.style.padding = "10px";
         messageDiv.style.borderRadius = "10px";
-        messageDiv.style.maxWidth = "60%";
         messageDiv.style.wordWrap = "break-word";
-        messageDiv.style.textAlign = isCurrentUser ? "right" : "left";
+        messageDiv.style.whiteSpace = "pre-wrap";
+        messageDiv.style.overflowWrap = "break-word";
+        messageDiv.style.background = isCurrentUser ? "#F5F5F5" : "#E3F2FD";
+        messageDiv.style.textAlign = "left";
+        messageDiv.style.display = "block"; // Позволява пренасянето на думите
+        messageDiv.style.width = "auto"; // Автоматично настройва ширината
+        messageDiv.style.maxWidth = "100%"; // Ограничение на ширината, за да не се разпъва целия екран
+        messageDiv.style.wordBreak = "break-word";
+
+        // Подреждане на елементите
+        messageContainer.appendChild(timeDiv); // Времето над съобщението
+        textContainer.appendChild(nameDiv);
+        textContainer.appendChild(messageDiv);
 
         if (isCurrentUser) {
-            messageDiv.style.background = "#F5F5F5";
-            messageDiv.style.alignSelf = "flex-end"; 
+            messageWrapper.appendChild(textContainer);
+            messageWrapper.appendChild(img);
         } else {
-            messageDiv.style.background = "#E3F2FD";
+            messageWrapper.appendChild(img);
+            messageWrapper.appendChild(textContainer);
         }
 
-        if (isCurrentUser) {
-            li.appendChild(messageDiv);
-            li.appendChild(img);
-        } else {
-            li.appendChild(img);
-            li.appendChild(messageDiv);
-        }
-
+        messageContainer.appendChild(messageWrapper);
+        li.appendChild(messageContainer);
         messagesList.appendChild(li);
 
+        // Автоматично скролиране надолу
         setTimeout(() => {
             let messagesContainer = document.querySelector(".chat-messages");
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }, 100);
-
     }
+
+
 
 
     // Получаване на съобщения в реално време чрез SignalR

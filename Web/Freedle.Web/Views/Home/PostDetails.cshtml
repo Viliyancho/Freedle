@@ -19,8 +19,8 @@
         }
 
     .card-header, .card-footer {
-        background: rgba(255, 255, 255, 0.9);д
-        padding: 10px 15px;
+        background: rgba(255, 255, 255, 0.9);
+        д padding: 10px 15px;
         border-radius: 10px;
     }
 
@@ -67,7 +67,6 @@
         {
             <button class="btn btn-danger btn-sm ms-2 delete-post" data-post-id="@Model.Id" title="Delete Post">🗑️</button>
         }
-
     </div>
 
     <div class="card-body d-flex flex-column align-items-center">
@@ -87,6 +86,14 @@
             </button>
             <a href="#comments-section" class="btn btn-outline-secondary btn-sm">💬 Comments</a>
         </div>
+        @if (Model.LikeCount > 0)
+        {
+            <a href="@Url.Action("LikedByList", "Home", new { postId = Model.Id })"
+               class="liked-by-link ms-auto text-dark text-decoration-none"
+               data-post-id="@Model.Id">
+                Liked by 👁️ (@Model.LikeCount)
+            </a>
+        }
     </div>
 
 </div>
@@ -121,20 +128,20 @@
             </div>
 
             @if (comment.Replies.Any())
-{
-    <div class="mt-3 ms-4">
-        @foreach (var reply in comment.Replies)
-        {
-            <div class="reply d-flex justify-content-between align-items-start">
-                <div class="d-flex">
-                    <span class="text-primary me-2">➥</span>
-                    <div>
-                        <img src="@reply.AuthorProfilePictureUrl" class="rounded-circle me-2" width="25" height="25" />
-                        <strong>@reply.AuthorName</strong>
-                        <p>@reply.CommentText</p>
-                        <span class="text-muted">@reply.PostedOn</span>
-                    </div>
-                </div>
+            {
+                <div class="mt-3 ms-4">
+                    @foreach (var reply in comment.Replies)
+                    {
+                        <div class="reply d-flex justify-content-between align-items-start">
+                            <div class="d-flex">
+                                <span class="text-primary me-2">➥</span>
+                                <div>
+                                    <img src="@reply.AuthorProfilePictureUrl" class="rounded-circle me-2" width="25" height="25" />
+                                    <strong>@reply.AuthorName</strong>
+                                    <p>@reply.CommentText</p>
+                                    <span class="text-muted">@reply.PostedOn</span>
+                                </div>
+                            </div>
 
                             @if (reply.AuthorId == User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value
                            || User.IsInRole("Admin")
@@ -143,10 +150,10 @@
                                 <button class="btn btn-danger btn-sm delete-reply" data-reply-id="@reply.Id">🗑️</button>
                             }
 
-            </div>
-        }
-    </div>
-}
+                        </div>
+                    }
+                </div>
+            }
 
 
         </div>
@@ -258,7 +265,7 @@ else
             button.addEventListener("click", function () {
                 let commentId = this.dataset.commentId;
                 let replyText = document.querySelector(`#reply-form-${commentId} textarea`).value.trim();
-                let postId = document.querySelector("input[name='postId']").value; 
+                let postId = document.querySelector("input[name='postId']").value;
 
                 if (!replyText) {
                     alert("Reply cannot be empty!");
@@ -294,6 +301,7 @@ else
                 let postId = this.getAttribute("data-post-id");
                 let likeButton = this;
                 let likeCountSpan = this.querySelector(".like-count");
+                let likedByLink = document.querySelector(`.liked-by-link[data-post-id="${postId}"]`);
 
                 fetch('@Url.Action("ToggleLike", "Home")', {
                     method: "POST",
@@ -306,9 +314,28 @@ else
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
+                            // Обновяване на броя на харесванията
                             likeCountSpan.textContent = data.likeCount;
+
+                            // Промяна на стила на бутона
                             likeButton.classList.toggle("btn-primary", data.isLiked);
                             likeButton.classList.toggle("btn-outline-primary", !data.isLiked);
+
+                            // Управление на "Liked by" линка
+                            if (data.likeCount > 0) {
+                                if (!likedByLink) {
+                                    likedByLink = document.createElement("a");
+                                    likedByLink.className = "liked-by-link ms-auto text-dark text-decoration-none";
+                                    likedByLink.setAttribute("data-post-id", postId);
+                                    likedByLink.href = `@Url.Action("LikedByList", "Home")?postId=${postId}`;
+                                    likeButton.closest(".card-footer").appendChild(likedByLink);
+                                }
+                                likedByLink.innerHTML = `Liked by 👁️ (${data.likeCount})`;
+                            } else {
+                                if (likedByLink) {
+                                    likedByLink.remove();
+                                }
+                            }
                         } else {
                             alert(data.message);
                         }
@@ -316,5 +343,6 @@ else
                     .catch(error => console.error("Error:", error));
             });
         });
+
     });
 </script>

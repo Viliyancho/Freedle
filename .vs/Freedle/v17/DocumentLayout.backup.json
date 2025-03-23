@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B90D1067-FE4C-400E-BA78-5413E30AB9ED}|Web\\Freedle.Web\\Freedle.Web.csproj|c:\\users\\admin\\documents\\sites\\freedle\\web\\freedle.web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B90D1067-FE4C-400E-BA78-5413E30AB9ED}|Web\\Freedle.Web\\Freedle.Web.csproj|solutionrelative:web\\freedle.web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B90D1067-FE4C-400E-BA78-5413E30AB9ED}|Web\\Freedle.Web\\Freedle.Web.csproj|c:\\users\\admin\\documents\\sites\\freedle\\web\\freedle.web\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B90D1067-FE4C-400E-BA78-5413E30AB9ED}|Web\\Freedle.Web\\Freedle.Web.csproj|solutionrelative:web\\freedle.web\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -129,10 +133,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B90D1067-FE4C-400E-BA78-5413E30AB9ED}|Web\\Freedle.Web\\Freedle.Web.csproj|c:\\users\\admin\\documents\\sites\\freedle\\web\\freedle.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B90D1067-FE4C-400E-BA78-5413E30AB9ED}|Web\\Freedle.Web\\Freedle.Web.csproj|solutionrelative:web\\freedle.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B90D1067-FE4C-400E-BA78-5413E30AB9ED}|Web\\Freedle.Web\\Freedle.Web.csproj|c:\\users\\admin\\documents\\sites\\freedle\\web\\freedle.web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B90D1067-FE4C-400E-BA78-5413E30AB9ED}|Web\\Freedle.Web\\Freedle.Web.csproj|solutionrelative:web\\freedle.web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B90D1067-FE4C-400E-BA78-5413E30AB9ED}|Web\\Freedle.Web\\Freedle.Web.csproj|c:\\users\\admin\\documents\\sites\\freedle\\web\\freedle.web\\views\\home\\userprofile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -274,19 +274,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Message.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models\\Message.cs",
-              "RelativeDocumentMoniker": "Data\\Freedle.Data.Models\\Message.cs",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models\\Message.cs",
-              "RelativeToolTip": "Data\\Freedle.Data.Models\\Message.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T15:40:03.835Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "Gender.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models\\Gender.cs",
               "RelativeDocumentMoniker": "Data\\Freedle.Data.Models\\Gender.cs",
@@ -294,12 +281,11 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\Gender.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T15:14:50.419Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-08T15:14:50.419Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Conversation.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models\\Conversation.cs",
               "RelativeDocumentMoniker": "Data\\Freedle.Data.Models\\Conversation.cs",
@@ -307,12 +293,11 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\Conversation.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T15:39:27.277Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-08T15:39:27.277Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Comment.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models\\Comment.cs",
               "RelativeDocumentMoniker": "Data\\Freedle.Data.Models\\Comment.cs",
@@ -320,12 +305,11 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\Comment.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAgwBQAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T15:14:02.001Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-08T15:14:02.001Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ApplicationUser.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models\\ApplicationUser.cs",
               "RelativeDocumentMoniker": "Data\\Freedle.Data.Models\\ApplicationUser.cs",
@@ -333,38 +317,61 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\ApplicationUser.cs",
               "ViewState": "AgIAADsAAAAAAAAAAAAAwD8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T15:48:42.336Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-08T15:48:42.336Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\Freedle.Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Data\\Freedle.Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAALoAAAAAAAAAAAAYwIQAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T15:23:28.159Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "Data\\Freedle.Data\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data\\ApplicationDbContext.cs*",
-              "RelativeToolTip": "Data\\Freedle.Data\\ApplicationDbContext.cs*",
-              "ViewState": "AgIAALoAAAAAAAAAAAAYwIQAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T15:23:28.159Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "Web\\Freedle.Web\\Controllers\\HomeController.cs",
               "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Controllers\\HomeController.cs",
               "RelativeToolTip": "Web\\Freedle.Web\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAABAAAAAAAAAAAwwCsAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAH4EAAAAAAAAAAAqwI0EAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-10T16:37:48.701Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Web\\Freedle.Web\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Web\\Freedle.Web\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-07T19:15:19.665Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 7,
+              "Title": "Message.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models\\Message.cs",
+              "RelativeDocumentMoniker": "Data\\Freedle.Data.Models\\Message.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models\\Message.cs",
+              "RelativeToolTip": "Data\\Freedle.Data.Models\\Message.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T15:40:03.835Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "Page.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models\\Page.cs",
               "RelativeDocumentMoniker": "Data\\Freedle.Data.Models\\Page.cs",
@@ -372,12 +379,11 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\Page.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwBkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T17:15:59.712Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-08T17:15:59.712Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Post.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models\\Post.cs",
               "RelativeDocumentMoniker": "Data\\Freedle.Data.Models\\Post.cs",
@@ -385,12 +391,11 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\Post.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T17:16:24.352Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-08T17:16:24.352Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "PostReport.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models\\PostReport.cs",
               "RelativeDocumentMoniker": "Data\\Freedle.Data.Models\\PostReport.cs",
@@ -398,12 +403,11 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\PostReport.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T17:17:15.571Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-08T17:17:15.571Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "ReportReason.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models\\ReportReason.cs",
               "RelativeDocumentMoniker": "Data\\Freedle.Data.Models\\ReportReason.cs",
@@ -411,12 +415,11 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\ReportReason.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T15:17:45.585Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-08T15:17:45.585Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "UserConversation.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models\\UserConversation.cs",
               "RelativeDocumentMoniker": "Data\\Freedle.Data.Models\\UserConversation.cs",
@@ -424,12 +427,11 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\UserConversation.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T15:41:34.217Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-08T15:41:34.217Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "UserFollower.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models\\UserFollower.cs",
               "RelativeDocumentMoniker": "Data\\Freedle.Data.Models\\UserFollower.cs",
@@ -437,12 +439,11 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\UserFollower.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T15:18:35.705Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-08T15:18:35.705Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "UserLike.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Data\\Freedle.Data.Models\\UserLike.cs",
               "RelativeDocumentMoniker": "Data\\Freedle.Data.Models\\UserLike.cs",
@@ -450,12 +451,11 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\UserLike.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T15:22:09.364Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-08T15:22:09.364Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "_ManageNav.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Manage\\_ManageNav.cshtml",
               "RelativeDocumentMoniker": "Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Manage\\_ManageNav.cshtml",
@@ -463,12 +463,11 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Manage\\_ManageNav.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-23T14:03:05.369Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-23T14:03:05.369Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "ChangePassword.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml",
               "RelativeDocumentMoniker": "Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml",
@@ -476,12 +475,11 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml",
               "ViewState": "AgIAADAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-23T14:32:49.901Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-23T14:32:49.901Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "Email.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Manage\\Email.cshtml",
               "RelativeDocumentMoniker": "Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Manage\\Email.cshtml",
@@ -489,12 +487,11 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Manage\\Email.cshtml",
               "ViewState": "AgIAAEIAAAAAAAAAAAAAABMAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-23T14:01:09.648Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-23T14:01:09.648Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml",
               "RelativeDocumentMoniker": "Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml",
@@ -502,12 +499,11 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml",
               "ViewState": "AgIAAEUAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-23T14:04:51.027Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-23T14:04:51.027Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "Login.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
@@ -515,12 +511,11 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
               "ViewState": "AgIAAJsAAAAAAAAAAAAAAE0AAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-14T20:50:55.975Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-14T20:50:55.975Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "Register.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
               "RelativeDocumentMoniker": "Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
@@ -528,12 +523,11 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
               "ViewState": "AgIAAMkAAAAAAAAAAAAAAGcAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-10T16:15:06.626Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-10T16:15:06.626Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "UserViewModel.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web.ViewModels\\UserViewModel.cs",
               "RelativeDocumentMoniker": "Web\\Freedle.Web.ViewModels\\UserViewModel.cs",
@@ -541,12 +535,11 @@
               "RelativeToolTip": "Web\\Freedle.Web.ViewModels\\UserViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-16T17:52:05.815Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-16T17:52:05.815Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "UserProfileViewModel.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web.ViewModels\\UserProfileViewModel.cs",
               "RelativeDocumentMoniker": "Web\\Freedle.Web.ViewModels\\UserProfileViewModel.cs",
@@ -554,12 +547,11 @@
               "RelativeToolTip": "Web\\Freedle.Web.ViewModels\\UserProfileViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T16:39:14.479Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-10T16:39:14.479Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "SuggestedUserViewModel.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web.ViewModels\\SuggestedUserViewModel.cs",
               "RelativeDocumentMoniker": "Web\\Freedle.Web.ViewModels\\SuggestedUserViewModel.cs",
@@ -567,12 +559,11 @@
               "RelativeToolTip": "Web\\Freedle.Web.ViewModels\\SuggestedUserViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T16:58:42.705Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-10T16:58:42.705Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "PostViewModel.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web.ViewModels\\PostViewModel.cs",
               "RelativeDocumentMoniker": "Web\\Freedle.Web.ViewModels\\PostViewModel.cs",
@@ -580,12 +571,11 @@
               "RelativeToolTip": "Web\\Freedle.Web.ViewModels\\PostViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T17:01:26.936Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-10T17:01:26.936Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "NewsFeedViewModel.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web.ViewModels\\NewsFeedViewModel.cs",
               "RelativeDocumentMoniker": "Web\\Freedle.Web.ViewModels\\NewsFeedViewModel.cs",
@@ -593,12 +583,11 @@
               "RelativeToolTip": "Web\\Freedle.Web.ViewModels\\NewsFeedViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T16:59:44.08Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-10T16:59:44.08Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "MessageViewModel.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web.ViewModels\\MessageViewModel.cs",
               "RelativeDocumentMoniker": "Web\\Freedle.Web.ViewModels\\MessageViewModel.cs",
@@ -606,12 +595,11 @@
               "RelativeToolTip": "Web\\Freedle.Web.ViewModels\\MessageViewModel.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAA5wBAAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T10:51:29.353Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-19T10:51:29.353Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "MessagesViewModel.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web.ViewModels\\MessagesViewModel.cs",
               "RelativeDocumentMoniker": "Web\\Freedle.Web.ViewModels\\MessagesViewModel.cs",
@@ -619,12 +607,11 @@
               "RelativeToolTip": "Web\\Freedle.Web.ViewModels\\MessagesViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T10:52:54.881Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-19T10:52:54.881Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "EditMyProfileViewModel.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web.ViewModels\\EditMyProfileViewModel.cs",
               "RelativeDocumentMoniker": "Web\\Freedle.Web.ViewModels\\EditMyProfileViewModel.cs",
@@ -632,12 +619,11 @@
               "RelativeToolTip": "Web\\Freedle.Web.ViewModels\\EditMyProfileViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-14T19:25:36.366Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-14T19:25:36.366Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "CreatePostViewModel.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web.ViewModels\\CreatePostViewModel.cs",
               "RelativeDocumentMoniker": "Web\\Freedle.Web.ViewModels\\CreatePostViewModel.cs",
@@ -645,12 +631,11 @@
               "RelativeToolTip": "Web\\Freedle.Web.ViewModels\\CreatePostViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T20:18:09.538Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-11T20:18:09.538Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "ConversationViewModel.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web.ViewModels\\ConversationViewModel.cs",
               "RelativeDocumentMoniker": "Web\\Freedle.Web.ViewModels\\ConversationViewModel.cs",
@@ -658,12 +643,11 @@
               "RelativeToolTip": "Web\\Freedle.Web.ViewModels\\ConversationViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T10:51:53.361Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-19T10:51:53.361Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "CommentViewModel.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web.ViewModels\\CommentViewModel.cs",
               "RelativeDocumentMoniker": "Web\\Freedle.Web.ViewModels\\CommentViewModel.cs",
@@ -671,12 +655,11 @@
               "RelativeToolTip": "Web\\Freedle.Web.ViewModels\\CommentViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-13T11:38:17.464Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-13T11:38:17.464Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 32,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Program.cs",
               "RelativeDocumentMoniker": "Web\\Freedle.Web\\Program.cs",
@@ -684,21 +667,7 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Program.cs",
               "ViewState": "AgIAAHUAAAAAAAAAAAAAABwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-18T21:54:39.485Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "Web\\Freedle.Web\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "Web\\Freedle.Web\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF4AAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-07T19:15:19.665Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-18T21:54:39.485Z"
             },
             {
               "$type": "Document",
@@ -710,8 +679,7 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\UserProfile.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-15T13:13:41.889Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-15T13:13:41.889Z"
             },
             {
               "$type": "Document",
@@ -723,8 +691,7 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\UserFollowingList.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-17T12:08:40.609Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-17T12:08:40.609Z"
             },
             {
               "$type": "Document",
@@ -736,8 +703,7 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\UserFollowersList.cshtml",
               "ViewState": "AgIAAGwAAAAAAAAAAAAAAAQAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-17T12:08:24.251Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-17T12:08:24.251Z"
             },
             {
               "$type": "Document",
@@ -749,8 +715,7 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\Search.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-15T12:41:15.107Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-15T12:41:15.107Z"
             },
             {
               "$type": "Document",
@@ -762,8 +727,7 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\Privacy.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAEYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-16T16:19:38.454Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-16T16:19:38.454Z"
             },
             {
               "$type": "Document",
@@ -771,12 +735,11 @@
               "Title": "PostDetails.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Views\\Home\\PostDetails.cshtml",
               "RelativeDocumentMoniker": "Web\\Freedle.Web\\Views\\Home\\PostDetails.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Views\\Home\\PostDetails.cshtml*",
-              "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\PostDetails.cshtml*",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Views\\Home\\PostDetails.cshtml",
+              "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\PostDetails.cshtml",
               "ViewState": "AgIAAC8BAAAAAAAAAAAAAEEBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-11T23:18:44.659Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-11T23:18:44.659Z"
             },
             {
               "$type": "Document",
@@ -784,12 +747,11 @@
               "Title": "MyProfile.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Views\\Home\\MyProfile.cshtml",
               "RelativeDocumentMoniker": "Web\\Freedle.Web\\Views\\Home\\MyProfile.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Views\\Home\\MyProfile.cshtml*",
-              "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\MyProfile.cshtml*",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Views\\Home\\MyProfile.cshtml",
+              "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\MyProfile.cshtml",
               "ViewState": "AgIAAOEAAAAAAAAAAAAAAEYAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-10T16:52:04.129Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-10T16:52:04.129Z"
             },
             {
               "$type": "Document",
@@ -801,8 +763,7 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\\uFEFFMessagesDemo.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAG0AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-18T22:36:19.945Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-18T22:36:19.945Z"
             },
             {
               "$type": "Document",
@@ -814,8 +775,7 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\Messages.cshtml",
               "ViewState": "AgIAAMUBAAAAAAAAAAAAANQAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-18T22:06:10.363Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-18T22:06:10.363Z"
             },
             {
               "$type": "Document",
@@ -827,8 +787,7 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\LikedByList.cshtml",
               "ViewState": "AgIAAKsAAAAAAAAAAAAAAAUAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-18T20:23:25.693Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-18T20:23:25.693Z"
             },
             {
               "$type": "Document",
@@ -840,8 +799,7 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAHkAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-11T20:31:49.405Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-11T20:31:49.405Z"
             },
             {
               "$type": "Document",
@@ -849,12 +807,11 @@
               "Title": "FollowingList.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Views\\Home\\FollowingList.cshtml",
               "RelativeDocumentMoniker": "Web\\Freedle.Web\\Views\\Home\\FollowingList.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Views\\Home\\FollowingList.cshtml*",
-              "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\FollowingList.cshtml*",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Views\\Home\\FollowingList.cshtml",
+              "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\FollowingList.cshtml",
               "ViewState": "AgIAAAgAAAAAAAAAAAAAABIAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-16T17:43:35.055Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-16T17:43:35.055Z"
             },
             {
               "$type": "Document",
@@ -862,12 +819,11 @@
               "Title": "FollowersList.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Views\\Home\\FollowersList.cshtml",
               "RelativeDocumentMoniker": "Web\\Freedle.Web\\Views\\Home\\FollowersList.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Views\\Home\\FollowersList.cshtml*",
-              "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\FollowersList.cshtml*",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Views\\Home\\FollowersList.cshtml",
+              "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\FollowersList.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-16T17:44:08.109Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-16T17:44:08.109Z"
             },
             {
               "$type": "Document",
@@ -879,8 +835,7 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\EditProfile.cshtml",
               "ViewState": "AgIAAIoAAAAAAAAAAAAAAAcAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-14T19:28:00.717Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-14T19:28:00.717Z"
             },
             {
               "$type": "Document",
@@ -888,12 +843,11 @@
               "Title": "CreatePost.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Views\\Home\\CreatePost.cshtml",
               "RelativeDocumentMoniker": "Web\\Freedle.Web\\Views\\Home\\CreatePost.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Views\\Home\\CreatePost.cshtml*",
-              "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\CreatePost.cshtml*",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Views\\Home\\CreatePost.cshtml",
+              "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\CreatePost.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-10T17:55:40.623Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-10T17:55:40.623Z"
             },
             {
               "$type": "Document",

@@ -157,6 +157,10 @@
       "PackagePath": "staticwebassets\\images\\leftIdentity.png"
     },
     {
+      "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\logo.png",
+      "PackagePath": "staticwebassets\\images\\logo.png"
+    },
+    {
       "Id": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\profile_pics\\10467494-66f3-4565-b1c4-819e07749c7f_363869791_6899239176753809_5430365467076789730_n.jpg",
       "PackagePath": "staticwebassets\\images\\profile_pics\\10467494-66f3-4565-b1c4-819e07749c7f_363869791_6899239176753809_5430365467076789730_n.jpg"
     },

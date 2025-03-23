@@ -290,7 +290,7 @@
         let textContainer = document.createElement("div");
         textContainer.style.display = "flex";
         textContainer.style.flexDirection = "column";
-        textContainer.style.alignItems = "flex-end"; // Центриране на времето
+        textContainer.style.alignItems = isCurrentUser ? "flex-end" : "flex-start"; 
 
         let timeDiv = document.createElement("div");
         timeDiv.innerText = formattedDate;

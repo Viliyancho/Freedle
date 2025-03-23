@@ -246,8 +246,7 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Controllers\\HomeController.cs",
               "ViewState": "AgIAABUEAAAAAAAAAAAewB8EAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T16:37:48.701Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-10T16:37:48.701Z"
             },
             {
               "$type": "Document",
@@ -259,8 +258,7 @@
               "RelativeToolTip": "Web\\Freedle.Web.ViewModels\\MessageViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T10:51:29.353Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-19T10:51:29.353Z"
             },
             {
               "$type": "Document",
@@ -270,7 +268,7 @@
               "RelativeDocumentMoniker": "Web\\Freedle.Web\\Views\\Home\\Messages.cshtml",
               "ToolTip": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\Views\\Home\\Messages.cshtml",
               "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\Messages.cshtml",
-              "ViewState": "AgIAAG8BAAAAAAAAAAAmwIIBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABIBAAAAAAAAAAAmwCIBAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-03-18T22:06:10.363Z",
               "EditorCaption": ""
@@ -285,8 +283,7 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\LikedByList.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-18T20:23:25.693Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-18T20:23:25.693Z"
             },
             {
               "$type": "Document",
@@ -298,8 +295,7 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Controllers\\BaseController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T21:15:10.349Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-11T21:15:10.349Z"
             },
             {
               "$type": "Document",
@@ -311,8 +307,7 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Views\\Home\\\uFEFFMessagesDemo.cshtml",
               "ViewState": "AgIAAGYAAAAAAAAAAAAAAG0AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-18T22:36:19.945Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-18T22:36:19.945Z"
             },
             {
               "$type": "Document",
@@ -324,8 +319,7 @@
               "RelativeToolTip": "Web\\Freedle.Web\\Program.cs",
               "ViewState": "AgIAABsAAAAAAAAAAIAzwCwAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-18T21:54:39.485Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-18T21:54:39.485Z"
             },
             {
               "$type": "Document",
@@ -349,8 +343,7 @@
               "RelativeToolTip": "Data\\Freedle.Data\\ApplicationDbContext.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAASwBkAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T15:23:28.159Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-08T15:23:28.159Z"
             },
             {
               "$type": "Document",
@@ -362,8 +355,7 @@
               "RelativeToolTip": "Data\\Freedle.Data.Models\\Conversation.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAASwBUAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T15:39:27.277Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-08T15:39:27.277Z"
             },
             {
               "$type": "Document",

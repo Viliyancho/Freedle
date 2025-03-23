@@ -263,7 +263,7 @@
         li.style.alignItems = isCurrentUser ? "flex-end" : "flex-start";
         li.style.marginBottom = "10px";
         li.style.width = "100%";
-        li.setAttribute("data-message-id", messageId); // Запази ID-то на съобщението
+        li.setAttribute("data-message-id", messageId);
 
         let sentDate = sentOn ? new Date(sentOn) : new Date();
         let formattedDate = sentDate.toLocaleString("bg-BG", {
@@ -326,6 +326,8 @@
         if (isCurrentUser) {
             let deleteButton = document.createElement("button");
             deleteButton.innerHTML = "🗑️"; // 🗑️
+            deleteButton.classList.add("delete-button"); // ЗАДЪЛЖИТЕЛНО!
+            deleteButton.setAttribute("data-message-id", messageId); // Запазване на ID-
             deleteButton.style.background = "red";
             deleteButton.style.color = "white";
             deleteButton.style.border = "none";
@@ -335,6 +337,7 @@
             deleteButton.style.cursor = "pointer";
             deleteButton.style.position = "relative";
             deleteButton.style.top = "22px";
+
 
             deleteButton.addEventListener("click", function () {
                 deleteMessage(messageId, li);
@@ -363,9 +366,11 @@
 
 
 
+
+
     // Получаване на съобщения в реално време чрез SignalR
-    connection.on("ReceiveMessage", function (user, message, profilePictureUrl) {
-        addMessageToChat(user, message, profilePictureUrl);
+    connection.on("ReceiveMessage", function (user, message, profilePictureUrl, messageId) {
+        addMessageToChat(user, message, profilePictureUrl, new Date().toISOString(), messageId);
     });
 
     document.getElementById("sendButton").addEventListener("click", function () {
@@ -398,11 +403,12 @@
                 }
                 return response.json();
             })
-            .then(() => {
+            .then((data) => {  
                 document.getElementById("messageInput").value = "";
 
                 // Добавяне на съобщението веднага в UI, без да чакаме SignalR
-                addMessageToChat(currentUserName, messageContent, currentUserProfilePicture);
+
+                addMessageToChat(currentUserName, messageContent, currentUserProfilePicture, new Date().toISOString(), data.messageId);
 
                
 
@@ -438,6 +444,8 @@
             })
             .catch(error => console.error("❌ Грешка при изтриване:", error));
     }
+
+
 
 
 

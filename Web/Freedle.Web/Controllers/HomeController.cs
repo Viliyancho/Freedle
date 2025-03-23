@@ -1060,9 +1060,10 @@
 
             // Изпращане на съобщението чрез SignalR
             await hubContext.Clients.Group(messageModel.ConversationId.ToString())
-                .SendAsync("ReceiveMessage", sender.UserName, messageModel.Content, profilePictureUrl);
+                .SendAsync("ReceiveMessage", sender.UserName, messageModel.Content, profilePictureUrl, newMessage.Id);
 
-            return Ok(new { message = "Съобщението беше изпратено успешно!" });
+            return Ok(new { messageId = newMessage.Id, message = "Съобщението беше изпратено успешно!" });
+
         }
 
         [HttpPost]

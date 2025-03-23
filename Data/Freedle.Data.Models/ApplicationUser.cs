@@ -57,11 +57,11 @@ namespace Freedle.Data.Models
         public ICollection<Message> Messages { get; set; } = new HashSet<Message>();
 
         public ICollection<UserConversation> UserConversations { get; set; } = new HashSet<UserConversation>();
+
         public DateTime CreatedOn { get; set; }
 
         public DateTime? ModifiedOn { get; set; }
 
-        // Deletable entity
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }

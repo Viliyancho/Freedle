@@ -207,7 +207,7 @@
         document.getElementById("sendButton").disabled = false;
         loadMessages(conversationId);
 
-        // Присъединяване към SignalR група за този разговор
+        // Присъединяване към SignalR група за този conversation
         connection.invoke("JoinConversation", conversationId)
             .catch(err => console.error("Грешка при присъединяване към разговора:", err));
     }
@@ -325,9 +325,9 @@
 
         if (isCurrentUser) {
             let deleteButton = document.createElement("button");
-            deleteButton.innerHTML = "🗑️"; // 🗑️
-            deleteButton.classList.add("delete-button"); // ЗАДЪЛЖИТЕЛНО!
-            deleteButton.setAttribute("data-message-id", messageId); // Запазване на ID-
+            deleteButton.innerHTML = "🗑️";
+            deleteButton.classList.add("delete-button");
+            deleteButton.setAttribute("data-message-id", messageId);
             deleteButton.style.background = "red";
             deleteButton.style.color = "white";
             deleteButton.style.border = "none";
@@ -420,7 +420,6 @@
 
 
     function deleteMessage(messageId, messageElement) {
-        console.log("ID на съобщението:", messageId); // Проверка дали ID-то е валидно
         if (!confirm("Сигурен ли си, че искаш да изтриеш това съобщение?")) return;
 
         let tokenElement = document.querySelector('input[name="__RequestVerificationToken"]');

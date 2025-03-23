@@ -40,7 +40,7 @@
             var posts = this.dbContext.Posts
                 .Where(p => !p.IsDeleted)
                 .OrderByDescending(p => p.CreatedOn)
-                .Take(20)
+                .Take(30)
                 .Select(p => new PostViewModel
                 {
                     Id = p.Id,
@@ -403,13 +403,11 @@
             var currentUser = await userManager.GetUserAsync(User);
             if (currentUser == null) return Unauthorized();
 
-            // Намираме записа в таблицата UserFollower
             var followerToRemove = await dbContext.UserFollowers
                 .FirstOrDefaultAsync(uf => uf.UserId == currentUser.Id && uf.FollowerId == userId);
 
             if (followerToRemove == null) return NotFound();
 
-            // Премахваме го от базата
             dbContext.UserFollowers.Remove(followerToRemove);
             await dbContext.SaveChangesAsync();
 
@@ -453,7 +451,7 @@
             PostAuthorId = c.Post.UserId,
             PostAuthorName = c.Post.User.UserName,
             PostedOn = c.PostedOn.ToString("yyyy-MM-dd HH:mm"),
-            Replies = post.Comments // Намираме риплеите за този коментар
+            Replies = post.Comments
                 .Where(r => r.ParentCommentId == c.Id)
                 .Select(r => new CommentViewModel
                 {
@@ -561,13 +559,13 @@
             var newComment = new Comment
             {
                 PostId = postId,
-                AuthorId = user.Id, // Връзка с потребителя
+                AuthorId = user.Id,
                 CommentText = commentText.Trim(), // Премахване на празни символи
                 PostedOn = DateTime.UtcNow,
             };
 
             post.Comments.Add(newComment);
-            await this.dbContext.SaveChangesAsync(); // Асинхронно записване
+            await this.dbContext.SaveChangesAsync();
 
             return RedirectToAction("PostDetails", new { id = postId });
         }
@@ -637,7 +635,6 @@
             }
             catch (Exception ex)
             {
-                // Логване на грешката (ако имаш логер)
                 Console.WriteLine($"Error updating profile: {ex.Message}");
                 return StatusCode(500, new { message = "Error updating profile", error = ex.Message });
             }
@@ -671,7 +668,7 @@
 
             var newReply = new Comment
             {
-                PostId = postId, // Свързваме риплея с публикацията
+                PostId = postId,
                 AuthorId = user.Id,
                 CommentText = replyText.Trim(),
                 ParentCommentId = commentId,
@@ -752,7 +749,7 @@
                 }
 
                 var comment = await dbContext.Comments
-                    .Include(c => c.Replies) // Зареждаме всички отговори на коментара
+                    .Include(c => c.Replies) // Зареждаме всички replies на коментара
                     .FirstOrDefaultAsync(c => c.Id == commentId);
                 if (comment == null)
                 {
@@ -773,22 +770,20 @@
                     return Json(new { success = false, message = "User not authenticated" });
                 }
 
-                // Проверяваме дали потребителят е администратор, автор на коментара или автор на поста
                 if (!User.IsInRole("Admin") && comment.AuthorId != currentUserId && post.UserId != currentUserId)
                 {
                     return Json(new { success = false, message = "Permission denied" });
                 }
 
-                // Премахваме всички отговори на коментара
+                // Първо премахваме всички отговори на коментара
                 foreach (var reply in comment.Replies.ToList())
                 {
                     this.dbContext.Comments.Remove(reply);
                 }
 
-                // Премахваме самия коментар
+                // След това премахваме самия коментар
                 this.dbContext.Comments.Remove(comment);
 
-                // Записваме промените в базата
                 await dbContext.SaveChangesAsync();
 
                 return Json(new { success = true });
@@ -867,7 +862,7 @@
         {
             if (!User.Identity.IsAuthenticated)
             {
-                return Redirect("/Identity/Account/Login"); // Ако не е логнат, го пращаме към логин
+                return Redirect("/Identity/Account/Login");
             }
 
             return View();
@@ -925,15 +920,12 @@
                 .Select(c => c.User1Id == currentUser.Id ? c.User2Id : c.User1Id)
                 .ToListAsync();
 
-            Console.WriteLine($"📌 Проверка: {conversationUserIds.Count} активни разговора, {mutualFollowers.Count} взаимни последователи.");
-
             var newConversations = new List<Conversation>();
 
             foreach (var followerId in mutualFollowers)
             {
                 if (!conversationUserIds.Contains(followerId)) 
                 {
-                    Console.WriteLine($"🚀 Създаваме нов разговор с {followerId}...");
                     newConversations.Add(new Conversation
                     {
                         User1Id = currentUser.Id,
@@ -947,7 +939,6 @@
             {
                 dbContext.Conversations.AddRange(newConversations);
                 await dbContext.SaveChangesAsync();
-                Console.WriteLine($"✅ {newConversations.Count} нови разговора са създадени.");
             }
 
             var conversations = await dbContext.Conversations
@@ -1076,7 +1067,6 @@
                 return NotFound(new { error = "Съобщението не беше намерено!" });
             }
 
-            // Проверка дали текущият потребител е изпратил съобщението
             if (message.SenderId != User.FindFirstValue(ClaimTypes.NameIdentifier))
             {
                 return Forbid();

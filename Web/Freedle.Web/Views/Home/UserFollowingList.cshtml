@@ -5,7 +5,7 @@
     ViewData["Title"] = "Following List";
     var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-    // Поставяме текущия потребител (ако е в списъка) най-отгоре
+    // И тук поставяме текущия потребител (ако е в списъка) най-отгоре
     var sortedUsers = Model
         .OrderByDescending(u => u.Id == currentUserId) 
         .ToList();

@@ -9,7 +9,6 @@
         <div class="col-md-6">
             <h2 class="text-center">Create a New Post</h2>
 
-            <!-- Форма за създаване на пост -->
             <form asp-action="CreatePost" method="post" enctype="multipart/form-data">
                 @Html.AntiForgeryToken()
 
@@ -34,25 +33,21 @@
 </div>
 
 <style>
-    /* Фон на страницата */
     body {
         background-color: lightgray;
         font-family: Arial, sans-serif;
     }
 
 
-    /* Стил за заглавието */
     h2 {
         text-align: center;
         color: SkyBlue;
     }
 
-    /* Центриране на формата */
     .container {
         margin-top: 50px;
     }
 
-    /* Полета за въвеждане */
     .form-group label {
         font-weight: bold;
         display: block;
@@ -60,7 +55,6 @@
         margin-bottom: 5px;
     }
 
-    /* Стилизация на бутона */
     .create-post-btn {
         margin-top:1.9em;
         padding: 12px 24px;

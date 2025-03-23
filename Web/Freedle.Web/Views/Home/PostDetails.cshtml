@@ -218,7 +218,7 @@ else
                         .then(response => response.json())
                         .then(data => {
                             if (data.success) {
-                                location.reload(); // Презареждаме страницата след успешно изтриване
+                                location.reload();
                             } else {
                                 alert("Error deleting comment.");
                             }
@@ -247,7 +247,7 @@ else
                         .then(response => response.json())
                         .then(data => {
                             if (data.success) {
-                                location.reload(); // Презареждаме страницата след успешно изтриване
+                                location.reload();
                             } else {
                                 alert("Error deleting reply.");
                             }
@@ -284,7 +284,7 @@ else
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            location.reload(); // Презареждаме, ако всичко е ОК
+                            location.reload();
                         } else {
                             alert("Error: " + data.message);
                         }
@@ -317,11 +317,9 @@ else
                             // Обновяване на броя на харесванията
                             likeCountSpan.textContent = data.likeCount;
 
-                            // Промяна на стила на бутона
                             likeButton.classList.toggle("btn-primary", data.isLiked);
                             likeButton.classList.toggle("btn-outline-primary", !data.isLiked);
 
-                            // Управление на "Liked by" линка
                             if (data.likeCount > 0) {
                                 if (!likedByLink) {
                                     likedByLink = document.createElement("a");

@@ -1065,6 +1065,30 @@
             return Ok(new { message = "Съобщението беше изпратено успешно!" });
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteMessage(int id)
+        {
+            var message = await dbContext.Messages.FindAsync(id);
+            if (message == null)
+            {
+                return NotFound(new { error = "Съобщението не беше намерено!" });
+            }
+
+            // Проверка дали текущият потребител е изпратил съобщението
+            if (message.SenderId != User.FindFirstValue(ClaimTypes.NameIdentifier))
+            {
+                return Forbid();
+            }
+
+            dbContext.Messages.Remove(message);
+            await dbContext.SaveChangesAsync();
+
+            return Ok(new { message = "Съобщението беше изтрито успешно!" });
+        }
+
+
+
 
         [HttpGet]
         public async Task<IActionResult> GetMessages(int conversationId)
@@ -1086,6 +1110,7 @@
                         ? "/images/default-avatar.jpg"
                         : m.Sender.ProfilePictureURL,
                     SentOn = m.SentOn.ToString("g"),
+                    MessageId = m.Id,
                 })
                 .ToListAsync();
 
@@ -1131,6 +1156,8 @@
 
             return Json(new { conversationId = newConversation.Id });
         }
+
+
 
         public IActionResult Privacy()
         {

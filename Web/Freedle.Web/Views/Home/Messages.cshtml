@@ -198,6 +198,8 @@
         .then(() => console.log("SignalR стартиран успешно!"))
         .catch(err => console.error("Грешка при стартиране на SignalR:", err));
 
+    
+
     function loadChat(conversationId, userName) {
         currentConversationId = conversationId;
         document.getElementById("chatHeader").innerText = "Chat with " + userName;
@@ -207,7 +209,7 @@
 
         // Присъединяване към SignalR група за този разговор
         connection.invoke("JoinConversation", conversationId)
-            .catch(err => console.error("❌ Грешка при присъединяване към разговора:", err));
+            .catch(err => console.error("Грешка при присъединяване към разговора:", err));
     }
 
     function loadMessages(conversationId) {
@@ -233,7 +235,8 @@
                     let content = msg.content || "(Празно съобщение)";
                     let profilePicture = msg.messageSenderProfilePictureURL?.trim() || "/images/default-avatar.jpg";
                     let sentOn = msg.sentOn || new Date().toISOString();
-                    addMessageToChat(senderName, content, profilePicture, sentOn);
+                    let id = typeof msg.messageId !== "undefined" && msg.messageId !== null ? msg.messageId : -1;
+                    addMessageToChat(senderName, content, profilePicture, sentOn, id);
                 });
 
                 setTimeout(() => {
@@ -245,7 +248,7 @@
             .catch(err => console.error("Грешка при зареждане на съобщенията:", err));
     }
 
-    function addMessageToChat(user, message, profilePictureUrl, sentOn) {
+    function addMessageToChat(user, message, profilePictureUrl, sentOn, messageId) {
         let messagesList = document.getElementById("messagesList");
         if (!messagesList) {
             console.error("messagesList не е намерен!");
@@ -260,8 +263,8 @@
         li.style.alignItems = isCurrentUser ? "flex-end" : "flex-start";
         li.style.marginBottom = "10px";
         li.style.width = "100%";
+        li.setAttribute("data-message-id", messageId); // Запази ID-то на съобщението
 
-        // Форматиране на датата
         let sentDate = sentOn ? new Date(sentOn) : new Date();
         let formattedDate = sentDate.toLocaleString("bg-BG", {
             year: "numeric",
@@ -271,28 +274,12 @@
             minute: "2-digit"
         });
 
-        // Контейнер за време и съобщение
         let messageContainer = document.createElement("div");
         messageContainer.style.display = "flex";
-        messageContainer.style.flexDirection = "column";
-        messageContainer.style.alignItems = isCurrentUser ? "flex-end" : "flex-start";
-        messageContainer.style.maxWidth = "60%";
+        messageContainer.style.alignItems = "center";
+        messageContainer.style.gap = "8px";
+        messageContainer.style.position = "relative";
 
-        // Времето на съобщението
-        let timeDiv = document.createElement("div");
-        timeDiv.innerText = formattedDate;
-        timeDiv.style.fontSize = "12px";
-        timeDiv.style.color = "gray";
-        timeDiv.style.marginBottom = "3px";
-        timeDiv.style.textAlign = "center";
-
-        // Контейнер за съобщението и профилната снимка
-        let messageWrapper = document.createElement("div");
-        messageWrapper.style.display = "flex";
-        messageWrapper.style.alignItems = "center";
-        messageWrapper.style.gap = "8px";
-
-        // Профилна снимка
         let img = document.createElement("img");
         img.src = profilePictureUrl;
         img.alt = user;
@@ -300,12 +287,18 @@
         img.style.height = "35px";
         img.style.borderRadius = "50%";
 
-        // Текстова част (име + съобщение)
         let textContainer = document.createElement("div");
         textContainer.style.display = "flex";
         textContainer.style.flexDirection = "column";
+        textContainer.style.alignItems = "flex-end"; // Центриране на времето
 
-        // Име на потребителя
+        let timeDiv = document.createElement("div");
+        timeDiv.innerText = formattedDate;
+        timeDiv.style.fontSize = "12px";
+        timeDiv.style.color = "gray";
+        timeDiv.style.marginBottom = "3px";
+        timeDiv.style.textAlign = "center";
+
         let nameDiv = document.createElement("strong");
         nameDiv.innerText = user;
         nameDiv.style.fontSize = "14px";
@@ -320,34 +313,52 @@
         messageDiv.style.overflowWrap = "break-word";
         messageDiv.style.background = isCurrentUser ? "#F5F5F5" : "#E3F2FD";
         messageDiv.style.textAlign = "left";
-        messageDiv.style.display = "block"; // Позволява пренасянето на думите
-        messageDiv.style.width = "auto"; // Автоматично настройва ширината
-        messageDiv.style.maxWidth = "100%"; // Ограничение на ширината, за да не се разпъва целия екран
+        messageDiv.style.display = "block";
+        messageDiv.style.width = "auto";
+        messageDiv.style.maxWidth = "100%";
         messageDiv.style.wordBreak = "break-word";
 
-        // Подреждане на елементите
-        messageContainer.appendChild(timeDiv); // Времето над съобщението
+        // Добавяме времето най-отгоре
+        textContainer.appendChild(timeDiv);
         textContainer.appendChild(nameDiv);
         textContainer.appendChild(messageDiv);
 
         if (isCurrentUser) {
-            messageWrapper.appendChild(textContainer);
-            messageWrapper.appendChild(img);
+            let deleteButton = document.createElement("button");
+            deleteButton.innerHTML = "🗑️"; // 🗑️
+            deleteButton.style.background = "red";
+            deleteButton.style.color = "white";
+            deleteButton.style.border = "none";
+            deleteButton.style.borderRadius = "5px";
+            deleteButton.style.padding = "5px";
+            deleteButton.style.marginLeft = "6px";
+            deleteButton.style.cursor = "pointer";
+            deleteButton.style.position = "relative";
+            deleteButton.style.top = "22px";
+
+            deleteButton.addEventListener("click", function () {
+                deleteMessage(messageId, li);
+            }, { passive: true });
+
+            messageContainer.appendChild(deleteButton);
+            messageContainer.appendChild(textContainer);
+            messageContainer.appendChild(img);
         } else {
-            messageWrapper.appendChild(img);
-            messageWrapper.appendChild(textContainer);
+            messageContainer.appendChild(img);
+            messageContainer.appendChild(textContainer);
         }
 
-        messageContainer.appendChild(messageWrapper);
         li.appendChild(messageContainer);
         messagesList.appendChild(li);
 
-        // Автоматично скролиране надолу
         setTimeout(() => {
             let messagesContainer = document.querySelector(".chat-messages");
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            if (messagesContainer) {
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
         }, 100);
     }
+
 
 
 
@@ -400,6 +411,35 @@
             })
             .catch(error => console.error("❌ Грешка при изпращане:", error));
     });
+
+
+    function deleteMessage(messageId, messageElement) {
+        console.log("ID на съобщението:", messageId); // Проверка дали ID-то е валидно
+        if (!confirm("Сигурен ли си, че искаш да изтриеш това съобщение?")) return;
+
+        let tokenElement = document.querySelector('input[name="__RequestVerificationToken"]');
+        let token = tokenElement ? tokenElement.value : "";
+
+        fetch(`/Home/DeleteMessage?id=${messageId}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "RequestVerificationToken": token
+            }
+        })
+
+            .then(response => {
+                if (!response.ok) throw new Error("Грешка при изтриване!");
+                return response.json();
+            })
+            .then(data => {
+                alert(data.message);
+                messageElement.remove();
+            })
+            .catch(error => console.error("❌ Грешка при изтриване:", error));
+    }
+
+
 
     document.getElementById("messageInput").addEventListener("keypress", function (event) {
         if (event.key === "Enter") {

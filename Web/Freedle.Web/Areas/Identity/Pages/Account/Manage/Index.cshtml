@@ -1,0 +1,79 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Profile";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+}
+
+<style>
+    body {
+        background: linear-gradient(to bottom, skyblue, lightgrey);
+    }
+    .profile-container {
+        position: relative;
+    }
+    .left-image, .right-image {
+        position: absolute;
+        width: 30em;
+        opacity: 0.9;
+        z-index: 0;
+    }
+    .right-image {
+        right: -1em;
+        top: 0.5em;
+    }
+
+    h3 {
+        margin-left: 6.5em;
+    }
+</style>
+
+<h3>@ViewData["Title"]</h3>
+<partial name="_StatusMessage" for="StatusMessage" />
+<div class="row profile-container">
+    <div class="col-md-6">
+        <form id="profile-form" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.FullName" class="form-control" placeholder="Full Name" disabled />
+                <label asp-for="Input.FullName" class="form-label"></label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Username" class="form-control" placeholder="Username" disabled />
+                <label asp-for="Username" class="form-label"></label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.BirthDay" type="date" class="form-control" placeholder="Birth Date" disabled />
+                <label asp-for="Input.BirthDay" class="form-label"></label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Phone Number" />
+                <label asp-for="Input.PhoneNumber" class="form-label"></label>
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.City" class="form-control" placeholder="City" />
+                <label asp-for="Input.City" class="form-label"></label>
+                <span asp-validation-for="Input.City" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Country" class="form-control" placeholder="Country" />
+                <label asp-for="Input.Country" class="form-label"></label>
+                <span asp-validation-for="Input.Country" class="text-danger"></span>
+            </div>
+
+            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+        </form>
+    </div>
+    <img src="~/images/rightIdentity.png" alt="Right Identity" class="right-image">
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

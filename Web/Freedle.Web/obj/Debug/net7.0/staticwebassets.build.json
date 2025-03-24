@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "hvmZMmZOOCignVvmq4pXbkq6qL30JoxILep+8QhSqLs=",
+  "Hash": "0kZpt3N3RIpgnN16Ma65S1+T3UJ495BAJu7EHGhG950=",
   "Source": "Freedle.Web",
   "BasePath": "_content/Freedle.Web",
   "Mode": "Default",
@@ -1611,6 +1611,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\7c406cb1-f841-4706-b94c-eb9950f6b0e0.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\80e528f2-9dd4-40f5-a2bd-0bd4460f4907.jpg",
+      "SourceId": "Freedle.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\",
+      "BasePath": "_content/Freedle.Web",
+      "RelativePath": "images/80e528f2-9dd4-40f5-a2bd-0bd4460f4907.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\80e528f2-9dd4-40f5-a2bd-0bd4460f4907.jpg"
     },
     {
       "Identity": "C:\\Users\\Admin\\Documents\\Sites\\Freedle\\Web\\Freedle.Web\\wwwroot\\images\\848a840a-796d-43d6-b53f-15e75a8b2a46.jpg",

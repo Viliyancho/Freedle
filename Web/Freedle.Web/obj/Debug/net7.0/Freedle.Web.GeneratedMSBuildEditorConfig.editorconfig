@@ -82,28 +82,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Documents/Sites/Freedle/Web/Freedle.Web/Views/Home/CreatePost.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmVhdGVQb3N0LmNzaHRtbA==
+[C:/Users/Admin/Documents/Sites/Freedle/Web/Freedle.Web/Views/Follow/FollowersList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9sbG93XEZvbGxvd2Vyc0xpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Documents/Sites/Freedle/Web/Freedle.Web/Views/Home/EditProfile.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0UHJvZmlsZS5jc2h0bWw=
+[C:/Users/Admin/Documents/Sites/Freedle/Web/Freedle.Web/Views/Follow/FollowingList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9sbG93XEZvbGxvd2luZ0xpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Documents/Sites/Freedle/Web/Freedle.Web/Views/Home/FollowersList.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGb2xsb3dlcnNMaXN0LmNzaHRtbA==
+[C:/Users/Admin/Documents/Sites/Freedle/Web/Freedle.Web/Views/Follow/UserFollowersList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9sbG93XFVzZXJGb2xsb3dlcnNMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Documents/Sites/Freedle/Web/Freedle.Web/Views/Home/FollowingList.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGb2xsb3dpbmdMaXN0LmNzaHRtbA==
+[C:/Users/Admin/Documents/Sites/Freedle/Web/Freedle.Web/Views/Follow/UserFollowingList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9sbG93XFVzZXJGb2xsb3dpbmdMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Admin/Documents/Sites/Freedle/Web/Freedle.Web/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Admin/Documents/Sites/Freedle/Web/Freedle.Web/Views/Home/LikedByList.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMaWtlZEJ5TGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Admin/Documents/Sites/Freedle/Web/Freedle.Web/Views/Home/Messages.cshtml]
@@ -114,10 +110,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNeVByb2ZpbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Documents/Sites/Freedle/Web/Freedle.Web/Views/Home/PostDetails.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQb3N0RGV0YWlscy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Admin/Documents/Sites/Freedle/Web/Freedle.Web/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -126,20 +118,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZWFyY2guY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Documents/Sites/Freedle/Web/Freedle.Web/Views/Home/UserFollowersList.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxVc2VyRm9sbG93ZXJzTGlzdC5jc2h0bWw=
+[C:/Users/Admin/Documents/Sites/Freedle/Web/Freedle.Web/Views/Post/CreatePost.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxDcmVhdGVQb3N0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Documents/Sites/Freedle/Web/Freedle.Web/Views/Home/UserFollowingList.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxVc2VyRm9sbG93aW5nTGlzdC5jc2h0bWw=
+[C:/Users/Admin/Documents/Sites/Freedle/Web/Freedle.Web/Views/Post/LikedByList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxMaWtlZEJ5TGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Documents/Sites/Freedle/Web/Freedle.Web/Views/Home/UserProfile.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxVc2VyUHJvZmlsZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Admin/Documents/Sites/Freedle/Web/Freedle.Web/Views/Home/﻿MessagesDemo.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVzvu79NZXNzYWdlc0RlbW8uY3NodG1s
+[C:/Users/Admin/Documents/Sites/Freedle/Web/Freedle.Web/Views/Post/PostDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxQb3N0RGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Admin/Documents/Sites/Freedle/Web/Freedle.Web/Views/Settings/Index.cshtml]
@@ -160,6 +148,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Admin/Documents/Sites/Freedle/Web/Freedle.Web/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Documents/Sites/Freedle/Web/Freedle.Web/Views/User/EditProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxFZGl0UHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Documents/Sites/Freedle/Web/Freedle.Web/Views/User/UserProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxVc2VyUHJvZmlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Admin/Documents/Sites/Freedle/Web/Freedle.Web/Views/_ViewImports.cshtml]

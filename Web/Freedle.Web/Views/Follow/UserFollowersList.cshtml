@@ -1,0 +1,177 @@
+﻿@using System.Security.Claims
+@model List<UserViewModel>
+
+@{
+    ViewData["Title"] = "Followers List";
+
+    var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+    // Поставяме текущия потребител (ако е в списъка) най-отгоре
+    var sortedUsers = Model
+        .OrderByDescending(u => u.Id == currentUserId)
+        .ToList();
+}
+
+<body>
+    <div class="container">
+        <h2 class="title followers-title">Followers</h2>
+        <ul class="user-list">
+            @foreach (var user in sortedUsers)
+            {
+                <li class="user-item">
+                    <img class="profile-pic" src="@user.ProfilePictureUrl" alt="Profile Picture">
+                    <span class="username">
+                        @if (user.Id == currentUserId)
+                        {
+                            <strong>(You) @user.Username</strong>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("UserProfile", "User", new { id = user.Id })" class="profile-link">
+                                @user.Username
+                            </a>
+                        }
+                    </span>
+
+                    @if (user.Id != currentUserId)
+                    {
+                        if (user.IsFollowing)
+                        {
+                            <form method="post" action="@Url.Action("Unfollow", "Follow")">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="userId" value="@user.Id">
+                                <button type="submit" class="unfollow-btn">Unfollow</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <form method="post" action="@Url.Action("ToggleFollow", "Follow")">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@user.Id">
+                                <button type="submit" class="follow-btn">Follow</button>
+                            </form>
+                        }
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+</body>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Followers List</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, skyblue, lightgray);
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 32px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #333;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .followers-title::after {
+            content: "";
+            width: 80px;
+            height: 4px;
+            background-color: #ff4d4d;
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .user-list {
+            list-style: none;
+            padding: 0;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .user-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+            .user-item:hover {
+                transform: scale(1.03);
+                background-color: #f1f1f1;
+            }
+
+        .profile-pic {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .username {
+            flex-grow: 1;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-right: 15px;
+        }
+
+        .follow-btn, .unfollow-btn {
+            padding: 8px 15px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .follow-btn {
+            background-color: #1da1f2;
+            color: white;
+        }
+
+            .follow-btn:hover {
+                background-color: #0d8aec;
+            }
+
+        .unfollow-btn {
+            background-color: #ff4d4d;
+            color: white;
+        }
+
+            .unfollow-btn:hover {
+                background-color: #cc0000;
+            }
+
+        .profile-link {
+            text-decoration: none;
+            color: black; 
+            font-weight: bold; 
+        }
+
+            .profile-link:hover {
+                color: skyblue; 
+            }
+
+    </style>
+</head>
+</html>

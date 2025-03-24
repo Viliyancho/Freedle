@@ -19,7 +19,7 @@
             }
 
             $.ajax({
-                url: "/Home/SearchUsers",
+                url: "/Search/SearchUsers",
                 type: "GET",
                 data: { query: query },
                 success: function (response) {
@@ -43,7 +43,7 @@
                         let userId = $(this).attr("data-userid");
                         console.log("Clicked User ID:", userId);
                         if (userId) {
-                            window.location.href = "/Home/UserProfile?id=" + userId;
+                            window.location.href = "/User/UserProfile?id=" + userId;
                         } else {
                             alert("User ID is missing!");
                         }

@@ -189,7 +189,7 @@
     var currentConversationId = "@Model.SelectedConversationId" || null;
     var currentUserName = "@Model.CurrentUserName";
     var currentUserProfilePicture = "@Model.CurrentUserProfilePicture" || "/images/default-avatar.jpg";
-    var sendMessageUrl = "@Url.Action("SendMessage", "Home")";
+    var sendMessageUrl = "@Url.Action("SendMessage", "Message")";
     var messagesUrl = "@Url.Action("Messages", "Home")";
 
     var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
@@ -213,7 +213,7 @@
     }
 
     function loadMessages(conversationId) {
-        fetch(`/Home/GetMessages?conversationId=${conversationId}`)
+        fetch(`/Message/GetMessages?conversationId=${conversationId}`)
             .then(response => response.json())
             .then(messages => {
                 console.log("Получени съобщения:", messages);
@@ -425,7 +425,7 @@
         let tokenElement = document.querySelector('input[name="__RequestVerificationToken"]');
         let token = tokenElement ? tokenElement.value : "";
 
-        fetch(`/Home/DeleteMessage?id=${messageId}`, {
+        fetch(`/Message/DeleteMessage?id=${messageId}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

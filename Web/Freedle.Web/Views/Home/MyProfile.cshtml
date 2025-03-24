@@ -169,7 +169,7 @@
 <body>
     <div class="profile-container">
         <img class="profile-pic" src="@Model.ProfilePictureUrl" alt="Profile Picture">
-        <a href="@Url.Action("EditProfile", "Home")">
+        <a href="@Url.Action("EditProfile", "User")">
             <button class="edit-btn">Edit Profile✍️</button>
         </a>
         <div class="username">
@@ -191,10 +191,10 @@
         <div class="fullname">@Model.FirstName @Model.LastName</div>
         <div class="bio">@Model.Description</div>
         <div class="stats">
-            <a href="@Url.Action("FollowingList", "Home", new { id = Model.ProfileUserId })" class="stat-item">
+            <a href="@Url.Action("FollowingList", "Follow", new { id = Model.ProfileUserId })" class="stat-item">
                 <strong>@Model.FollowingCount</strong> Following
             </a>
-            <a href="@Url.Action("FollowersList", "Home", new { id = Model.ProfileUserId })" class="stat-item">
+            <a href="@Url.Action("FollowersList", "Follow", new { id = Model.ProfileUserId })" class="stat-item">
                 <strong>@Model.FollowerCount</strong> Followers
             </a>
         </div>
@@ -208,7 +208,7 @@
                 @foreach (var post in Model.Posts)
                 {
                     <div class="post-item">
-                        <a href="@Url.Action("PostDetails", "Home", new { id = post.Id })">
+                        <a href="@Url.Action("PostDetails", "Post", new { id = post.Id })">
                             <img src="@post.ImageUrl" alt="Post Image">
                         </a>
                     </div>
@@ -219,7 +219,7 @@
         {
             <div class="no-posts">📷 No posts yet</div>
         }
-        <a href="@Url.Action("CreatePost", "Home")" class="create-post-btn">
+        <a href="@Url.Action("CreatePost", "Post")" class="create-post-btn">
 
             ➕ Create New Post
 

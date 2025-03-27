@@ -1,7 +1,7 @@
 # Freedle - Social Network 🚀
 
-![Freedle Logo](https://your-logo-url.com)  
-*A modern and feature-rich social network built with ASP.NET Core, SignalR, and MSSQL.*
+![Freedle Logo](PicturesForGitHub/logoPicture.png)  
+*A modern and funcional social network built with ASP.NET Core MVC, .NET 7.0, EF Core, MSSQL, SignalR, JavaScript, AJAX, Bootstrap 
 
 ## 📌 Project Overview
 Freedle is a full-stack social media platform designed with scalability and interactivity in mind. It allows users to share posts, interact with comments, follow/unfollow others, and engage in real-time chat using SignalR.
@@ -29,9 +29,6 @@ Freedle is a full-stack social media platform designed with scalability and inte
 ## 📷 Screenshots
 ### 🖼️ Controllers and Actions
 ![Controllers](PicturesForGitHub/Controllers-Actions.png)
-
-### 🎨 UI Example
-![Freedle UI](https://your-ui-image-url.com)
 
 ---
 
@@ -69,9 +66,9 @@ dotnet run
 ## 📌 Project Structure
 ```plaintext
 📂 Freedle
-├── 📂 Controllers       # Business logic (User, Post, Comment, Message, etc.)
-├── 📂 Models            # Database models for EF Core
-├── 📂 Views             # UI with Razor Pages
+├── 📂 (M)odels            # Database models for EF Core
+├── 📂 (V)iews             # UI with Razor Pages
+├── 📂 (C)ontrollers       # Business logic (User, Post, Comment, Message, Follow, Search and etc.)
 ├── 📂 wwwroot           # Static assets (CSS, JS, images)
 ├── appsettings.json     # Configuration file
 └── Program.cs           # Entry point
@@ -81,7 +78,7 @@ dotnet run
 
 ## 🚀 Future Improvements
 - ✅ Host with Microsoft Azure
-- ✅ Integrate Send Grid
+- ✅ Add email sending functionality using SendGrid
 - ✅ Optimize database queries for better performance
 
 ---

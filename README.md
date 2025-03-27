@@ -19,10 +19,10 @@ Freedle is a full-stack social media platform designed with scalability and inte
 ## 🛠️ Technologies Used
 
 - **Backend:** C#, ASP.NET Core MVC, SignalR
-- **Frontend:** Razor Pages, Bootstrap, JavaScript, AJAX
+- **Frontend:** HTML&CSS, Razor Pages, Bootstrap, JavaScript, AJAX
 - **Database:** MSSQL with Entity Framework Core
 - **Version Control:** Git & GitHub
-- **Hosting:** Azure / Local
+- **Hosting:** Local
 
 ---
 

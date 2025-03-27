@@ -1,6 +1,4 @@
 # Freedle - Social Network 🚀
-
-![Freedle Logo](PicturesForGitHub/logoPicture.png)  
 *A modern and funcional social network built with ASP.NET Core MVC, .NET 7.0, EF Core, MSSQL, SignalR, JavaScript, AJAX, Bootstrap 
 
 ## 📌 Project Overview

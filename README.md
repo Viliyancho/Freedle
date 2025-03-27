@@ -28,7 +28,7 @@ Freedle is a full-stack social media platform designed with scalability and inte
 
 ## 📷 Screenshots
 ### 🖼️ Controllers and Actions
-![Controllers](Controllers-Actions.png)
+![Controllers](PicturesForGitHub/Controllers-Actions.png)
 
 ### 🎨 UI Example
 ![Freedle UI](https://your-ui-image-url.com)
